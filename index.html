@@ -29,6 +29,9 @@
       .menu-backdrop { position: fixed; z-index: 50; inset: 0; background: rgb(0 0 0 / 62%); opacity: 0; pointer-events: none; transition: opacity 220ms ease; }
       .menu-backdrop.is-open { opacity: 1; pointer-events: auto; }
       body.menu-open { overflow: hidden; }
+      .page-transition { position: fixed; z-index: 70; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 42%, rgb(103 28 45 / 24%), transparent 38%), linear-gradient(135deg, #08060b 0%, #321326 48%, #08060b 100%); background-position: 0% 50%; background-size: 180% 180%; transition: opacity 1.2s ease, background-position 1.2s ease; }
+      body.is-leaving .page-transition { opacity: 1; background-position: 100% 50%; }
+      body.is-leaving .hero { filter: blur(2px); transform: scale(1.015); transition: filter 1.2s ease, transform 1.2s ease; }
       .hero { position: relative; display: grid; min-height: 82vh; align-content: center; padding: 7rem 0 4.2rem; text-align: center; }
       .hero::after { position: absolute; right: 5%; bottom: 0; width: 22rem; height: 11rem; content: ""; opacity: 0.32; background: radial-gradient(ellipse at center, transparent 42%, #000 44% 48%, transparent 50%), repeating-radial-gradient(ellipse at center, transparent 0 1.1rem, rgb(186 62 85 / 22%) 1.15rem 1.2rem); filter: blur(1px); pointer-events: none; }
       .hero > * { position: relative; z-index: 1; }
@@ -44,6 +47,7 @@
   <body>
     <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="目次を開く"><span></span><span></span><span></span></button>
     <div class="menu-backdrop" id="menu-backdrop" aria-hidden="true"></div>
+    <div class="page-transition" aria-hidden="true"></div>
     <nav class="menu-drawer" id="site-menu" aria-label="サイト目次">
       <p>夜の目次</p>
       <ul>
@@ -71,6 +75,12 @@
         const menuToggle = document.getElementById("menu-toggle");
         const menu = document.getElementById("site-menu");
         const backdrop = document.getElementById("menu-backdrop");
+        const fadeDuration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 50 : 1200;
+        const navigationTimer = window.setTimeout(() => {
+          document.body.classList.add("is-leaving");
+          window.setTimeout(() => window.location.assign("guide.html"), fadeDuration);
+        }, 5000);
+
         function closeMenu() {
           menu.classList.remove("is-open");
           backdrop.classList.remove("is-open");
@@ -92,7 +102,10 @@
           }
         });
         backdrop.addEventListener("click", closeMenu);
-        menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+        menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+          window.clearTimeout(navigationTimer);
+          closeMenu();
+        }));
         document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeMenu(); });
       })();
     </script>

@@ -1,0 +1,1707 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="日本各地の妖怪を、民俗学・宗教史・文化史の視点から紹介する図鑑・研究ページ。" />
+    <title>妖怪図鑑と研究 | 日本の妖怪 | Sumomo</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+        color: #eee2d8;
+        background: #0b090e;
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+        line-height: 1.75;
+        background: #0b090e;
+        background-image: radial-gradient(circle at 10% 0%, rgb(103 28 45 / 50%), transparent 34rem),
+          radial-gradient(circle at 92% 16%, rgb(35 40 65 / 60%), transparent 28rem),
+          repeating-linear-gradient(0deg, rgb(255 255 255 / 1.5%) 0 1px, transparent 1px 4px);
+      }
+
+      body::before {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        content: "";
+        pointer-events: none;
+        background: radial-gradient(ellipse at center, transparent 42%, rgb(0 0 0 / 48%) 100%);
+      }
+
+      a { color: inherit; }
+
+      header, main, footer {
+        width: min(92%, 1080px);
+        margin-inline: auto;
+      }
+
+      .hero {
+        position: relative;
+        isolation: isolate;
+        padding: 5.5rem 0 4rem;
+        text-align: center;
+      }
+
+      /* 左上の飾りは、かわいい絵文字ではなく夜道に立つ影をイメージ。 */
+      .hero-figure {
+        position: absolute;
+        z-index: 0;
+        top: 0.8rem;
+        left: clamp(0.45rem, 3vw, 2rem);
+        width: 6.8rem;
+        height: 9.2rem;
+        opacity: 0.86;
+        pointer-events: none;
+        transform: rotate(-5deg);
+        filter: drop-shadow(0 0 0.8rem rgb(186 62 85 / 44%));
+      }
+
+      .hero > :not(.hero-figure) { position: relative; z-index: 1; }
+
+      .hero-figure::before {
+        position: absolute;
+        top: 0.7rem;
+        left: 1.55rem;
+        width: 3.85rem;
+        height: 4.1rem;
+        content: "";
+        background: radial-gradient(ellipse at 54% 34%, #24151d 0 34%, #0a080d 72%);
+        border: 1px solid rgb(219 163 108 / 36%);
+        border-radius: 48% 52% 42% 44%;
+        box-shadow: inset -0.55rem -0.25rem 0 rgb(0 0 0 / 38%), 0 0 1.3rem rgb(0 0 0 / 75%);
+        clip-path: polygon(14% 16%, 29% 0, 42% 15%, 59% 6%, 74% 0, 88% 20%, 100% 52%, 82% 100%, 59% 91%, 43% 100%, 17% 88%, 0 54%);
+      }
+
+      .hero-figure::after {
+        position: absolute;
+        right: 0.4rem;
+        bottom: 0;
+        left: 0.55rem;
+        height: 5.7rem;
+        content: "";
+        background: linear-gradient(100deg, #08070b 0 44%, #1f121b 57%, #07060a 78%);
+        border: 1px solid rgb(219 163 108 / 20%);
+        clip-path: polygon(36% 0, 67% 0, 82% 24%, 100% 100%, 0 100%, 20% 28%);
+        box-shadow: inset 0 0 1.8rem rgb(186 62 85 / 15%);
+      }
+
+      .hero-figure .figure-eyes {
+        position: absolute;
+        z-index: 1;
+        top: 2.25rem;
+        left: 2.05rem;
+        width: 0.75rem;
+        height: 0.24rem;
+        content: "";
+        background: #e06462;
+        border-radius: 80% 20%;
+        box-shadow: 1.1rem 0.18rem 0 #e06462, 0 0 0.55rem #e06462, 1.1rem 0.18rem 0.55rem #e06462;
+        transform: rotate(-14deg);
+      }
+
+      .hero-figure .figure-mouth {
+        position: absolute;
+        z-index: 1;
+        top: 3.2rem;
+        left: 2.18rem;
+        width: 2rem;
+        height: 0.68rem;
+        content: "";
+        border-bottom: 2px solid #ba3e55;
+        border-radius: 50%;
+        box-shadow: 0 0.08rem 0 rgb(234 180 125 / 30%);
+        transform: rotate(4deg);
+      }
+
+      .hero-figure .figure-mouth::before,
+      .hero-figure .figure-mouth::after {
+        position: absolute;
+        bottom: -0.12rem;
+        width: 0.13rem;
+        height: 0.38rem;
+        content: "";
+        background: #eab47d;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+      }
+
+      .hero-figure .figure-mouth::before { left: 0.35rem; }
+      .hero-figure .figure-mouth::after { right: 0.35rem; }
+
+      .eyebrow, .section-kicker {
+        margin: 0 0 0.65rem;
+        color: #dba36c;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.24em;
+      }
+
+      h1, h2, h3 { line-height: 1.3; }
+
+      h1 {
+        margin: 0;
+        color: #f3e5d6;
+        font-size: clamp(2.8rem, 9vw, 5.8rem);
+        letter-spacing: 0.14em;
+        text-shadow: 0.08em 0.08em 0 #421827, 0 0 1.8rem rgb(186 62 85 / 20%);
+      }
+
+      .lead {
+        max-width: 47rem;
+        margin: 1.5rem auto 0;
+        color: #d7cdd5;
+        font-size: 1.06rem;
+      }
+
+      .hero nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.65rem;
+        margin-top: 2rem;
+      }
+
+      .hero nav a {
+        padding: 0.45rem 0.9rem;
+        color: #eab47d;
+        border: 1px solid rgb(219 163 108 / 38%);
+        border-radius: 0.25rem;
+        font-size: 0.84rem;
+        text-decoration: none;
+        transition: background 160ms ease, color 160ms ease;
+      }
+
+      .hero nav a:hover, .hero nav a:focus-visible { color: #0b090e; background: #eab47d; }
+
+      .menu-toggle {
+        position: fixed;
+        z-index: 60;
+        top: 1rem;
+        left: 1rem;
+        display: grid;
+        width: 2.9rem;
+        height: 2.9rem;
+        place-content: center;
+        gap: 0.28rem;
+        padding: 0;
+        color: #f3e5d6;
+        background: rgb(11 9 14 / 88%);
+        border: 1px solid rgb(219 163 108 / 62%);
+        border-radius: 0.25rem;
+        box-shadow: 0 0.5rem 1.2rem rgb(0 0 0 / 40%), 0 0 1rem rgb(186 62 85 / 20%);
+        cursor: pointer;
+      }
+
+      .menu-toggle:hover, .menu-toggle:focus-visible { color: #0b090e; background: #eab47d; }
+      .menu-toggle:focus-visible { outline: 2px solid #f3d0a8; outline-offset: 3px; }
+      .menu-toggle span { display: block; width: 1.35rem; height: 2px; background: currentColor; transition: transform 180ms ease, opacity 180ms ease; }
+      .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(0.38rem) rotate(45deg); }
+      .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-0.38rem) rotate(-45deg); }
+
+      .menu-drawer {
+        position: fixed;
+        z-index: 55;
+        inset: 0 auto 0 0;
+        width: min(20rem, 86vw);
+        padding: 5.4rem 1.25rem 2rem;
+        overflow-y: auto;
+        background: linear-gradient(165deg, #1b0d16, #0b090e 72%);
+        border-right: 1px solid rgb(186 62 85 / 65%);
+        box-shadow: 1rem 0 3rem rgb(0 0 0 / 48%);
+        transform: translateX(-105%);
+        transition: transform 220ms ease;
+      }
+
+      .menu-drawer.is-open { transform: translateX(0); }
+      .menu-drawer p { margin: 0 0 0.8rem; color: #dba36c; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; }
+      .menu-drawer ul { display: grid; gap: 0.3rem; margin: 0; padding: 0; list-style: none; }
+      .menu-drawer a { display: block; padding: 0.55rem 0.65rem; color: #eee2d8; border: 1px solid transparent; border-radius: 0.2rem; font-size: 0.9rem; text-decoration: none; }
+      .menu-drawer a:hover, .menu-drawer a:focus-visible { color: #f3d0a8; background: rgb(186 62 85 / 16%); border-color: rgb(186 62 85 / 56%); }
+      .menu-backdrop { position: fixed; z-index: 50; inset: 0; background: rgb(0 0 0 / 62%); opacity: 0; pointer-events: none; transition: opacity 220ms ease; }
+      .menu-backdrop.is-open { opacity: 1; pointer-events: auto; }
+      body.menu-open { overflow: hidden; }
+
+      section { padding: 2rem 0 4rem; }
+
+      .section-heading { max-width: 46rem; margin-bottom: 1.8rem; }
+
+      h2 {
+        margin: 0 0 0.75rem;
+        font-size: clamp(1.65rem, 4vw, 2.25rem);
+        letter-spacing: 0.08em;
+      }
+
+      .section-heading > p:last-child { margin: 0; color: #d7cdd5; }
+
+      .catalog-tools {
+        display: grid;
+        grid-template-columns: minmax(220px, 2fr) repeat(2, minmax(150px, 1fr));
+        gap: 0.8rem;
+        margin: 0 0 1rem;
+        padding: 1rem;
+        background: rgb(0 0 0 / 22%);
+        border: 1px solid rgb(186 62 85 / 35%);
+        border-radius: 0.35rem;
+      }
+
+      .catalog-tools label {
+        display: grid;
+        gap: 0.3rem;
+        color: #dba36c;
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+
+      .catalog-tools input,
+      .catalog-tools select {
+        width: 100%;
+        min-height: 2.4rem;
+        padding: 0.45rem 0.6rem;
+        color: #eee2d8;
+        background: #151018;
+        border: 1px solid rgb(219 163 108 / 35%);
+        border-radius: 0.2rem;
+        font: inherit;
+        font-size: 0.86rem;
+      }
+
+      .catalog-tools input:focus,
+      .catalog-tools select:focus { outline: 2px solid #ba3e55; outline-offset: 1px; }
+
+      .search-result {
+        min-height: 1.5em;
+        margin: 0 0 1rem;
+        color: #a99a9d;
+        font-size: 0.82rem;
+      }
+
+      .name-only-teaser {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 1rem;
+        align-items: center;
+        margin: 1.2rem 0 0;
+        padding: 1.1rem 1.2rem;
+        background: linear-gradient(110deg, rgb(62 19 35 / 70%), rgb(255 255 255 / 4%));
+        border: 1px solid rgb(186 62 85 / 48%);
+        border-radius: 0.35rem;
+      }
+
+      .name-only-teaser h3 { margin: 0 0 0.3rem; color: #f0c384; font-size: 1.08rem; }
+      .name-only-teaser p { margin: 0; color: #d7cdd5; font-size: 0.86rem; }
+      .name-only-teaser a { display: inline-block; padding: 0.48rem 0.7rem; color: #0b090e; background: #eab47d; border-radius: 0.2rem; font-size: 0.8rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
+      .name-only-teaser a:hover, .name-only-teaser a:focus-visible { background: #f3d0a8; }
+
+      .yokai-card[hidden] { display: none; }
+
+      .yokai-grid, .perspective-grid, .boundary-grid { display: grid; gap: 1rem; }
+
+      .yokai-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+      .yokai-card, .perspective-card, .boundary-card {
+        padding: 1.45rem;
+        background: linear-gradient(145deg, rgb(255 255 255 / 8%), rgb(255 255 255 / 3%));
+        border: 1px solid rgb(219 163 108 / 25%);
+        border-radius: 0.45rem;
+        box-shadow: 0 1.2rem 2.5rem rgb(0 0 0 / 30%), inset 0 0 1.5rem rgb(0 0 0 / 14%);
+        transition: border-color 160ms ease, transform 160ms ease;
+      }
+
+      .yokai-card { display: flex; flex-direction: column; }
+
+      .yokai-card:hover {
+        border-color: rgb(186 62 85 / 70%);
+        transform: translateY(-3px);
+      }
+
+      .card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem;
+      }
+
+      .icon { font-size: 2.45rem; line-height: 1; filter: drop-shadow(0 0 0.5rem rgb(186 62 85 / 25%)); }
+
+      .icon {
+        opacity: 0.72;
+        filter: grayscale(0.85) contrast(1.35) brightness(0.7) drop-shadow(0 0 0.55rem rgb(186 62 85 / 45%));
+        transform: rotate(-4deg);
+      }
+
+      .tag {
+        padding: 0.2rem 0.55rem;
+        color: #dba36c;
+        border: 1px solid rgb(186 62 85 / 55%);
+        border-radius: 0.2rem;
+        font-size: 0.72rem;
+        white-space: nowrap;
+      }
+
+      h3 { margin: 1rem 0 0.5rem; color: #eab47d; font-size: 1.2rem; }
+
+      .yokai-card p {
+        margin: 0;
+        color: #d7cdd5;
+        font-size: 0.93rem;
+      }
+
+      .yokai-card h3 a {
+        color: #eab47d;
+        text-decoration: none;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 0.2em;
+      }
+
+      .yokai-card h3 a:hover,
+      .yokai-card h3 a:focus-visible { text-decoration: underline; }
+
+      .detail-list {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .detail-card {
+        padding: 1.5rem;
+        background: rgb(255 255 255 / 7%);
+        border: 1px solid rgb(255 255 255 / 14%);
+        border-radius: 1rem;
+        scroll-margin-top: 1.5rem;
+      }
+
+      .detail-card:target {
+        border-color: rgb(239 185 110 / 70%);
+        box-shadow: 0 0 0 3px rgb(239 185 110 / 12%);
+      }
+
+      .detail-card h3 {
+        margin: 0 0 0.65rem;
+        color: #f5cf95;
+        font-size: 1.35rem;
+      }
+
+      .detail-card p {
+        margin: 0;
+        color: #d7cdd5;
+        font-size: 0.95rem;
+      }
+
+      .detail-card p + p { margin-top: 0.75rem; }
+
+      .detail-lens strong { color: #efb96e; }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 1rem;
+        color: #efb96e;
+        font-size: 0.82rem;
+        text-decoration: none;
+      }
+
+      .back-link:hover,
+      .back-link:focus-visible { text-decoration: underline; }
+
+      .perspective-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+      .trio-section { padding-top: 0; }
+
+      .trio-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .trio-card {
+        position: relative;
+        min-height: 14rem;
+        padding: 1.35rem;
+        overflow: hidden;
+        background: linear-gradient(150deg, rgb(63 15 28 / 78%), rgb(10 8 14 / 88%));
+        border: 1px solid rgb(186 62 85 / 56%);
+        border-radius: 0.45rem;
+        box-shadow: inset 0 0 2rem rgb(186 62 85 / 10%), 0 1rem 2rem rgb(0 0 0 / 28%);
+      }
+
+      .trio-card::before {
+        position: absolute;
+        top: -2.2rem;
+        right: -1.5rem;
+        content: attr(data-number);
+        color: rgb(234 180 125 / 10%);
+        font-size: 8rem;
+        line-height: 1;
+      }
+
+      .trio-card .trio-kicker {
+        position: relative;
+        margin: 0 0 0.55rem;
+        color: #dba36c;
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+      }
+
+      .trio-card h3 { position: relative; margin: 0 0 0.65rem; font-size: 1.35rem; }
+      .trio-card h3 a { color: #f0c384; text-decoration: none; }
+      .trio-card h3 a:hover, .trio-card h3 a:focus-visible { text-decoration: underline; }
+      .trio-card p:last-child { position: relative; margin: 0; color: #d7cdd5; font-size: 0.9rem; }
+
+      .trio-note {
+        margin: 1rem 0 0;
+        color: #a99a9d;
+        font-size: 0.8rem;
+      }
+
+      .map-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(250px, 0.75fr);
+        gap: 1rem;
+        align-items: start;
+      }
+
+      .map-stage {
+        position: relative;
+        aspect-ratio: 620 / 720;
+        min-height: 0;
+        overflow: hidden;
+        background: radial-gradient(circle at 48% 48%, rgb(51 21 38 / 36%), transparent 55%), #09080d;
+        border: 1px solid rgb(186 62 85 / 50%);
+        border-radius: 0.45rem;
+        box-shadow: inset 0 0 2.4rem rgb(0 0 0 / 62%), 0 1rem 2rem rgb(0 0 0 / 25%);
+      }
+
+      .map-stage::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        pointer-events: none;
+        background: repeating-linear-gradient(0deg, transparent 0 2.5rem, rgb(219 163 108 / 5%) 2.5rem 2.55rem), repeating-linear-gradient(90deg, transparent 0 2.5rem, rgb(219 163 108 / 4%) 2.5rem 2.55rem);
+        mask-image: linear-gradient(to bottom, transparent, #000 16%, #000 85%, transparent);
+      }
+
+      .japan-map { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+      .map-sea { fill: #09080d; }
+
+      .map-land {
+        fill: rgb(78 39 53 / 64%);
+        stroke: rgb(219 163 108 / 45%);
+        stroke-width: 2;
+        stroke-linejoin: round;
+      }
+
+      .map-land.is-small { fill: rgb(91 43 57 / 52%); stroke-width: 1.5; }
+
+      .map-rift {
+        fill: none;
+        stroke: rgb(234 180 125 / 18%);
+        stroke-dasharray: 3 7;
+        stroke-width: 1;
+      }
+
+      .map-label {
+        fill: rgb(238 226 216 / 52%);
+        font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+        font-size: 13px;
+        letter-spacing: 0.16em;
+      }
+
+      .map-caption {
+        position: absolute;
+        right: 0.8rem;
+        bottom: 0.55rem;
+        margin: 0;
+        color: rgb(238 226 216 / 52%);
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+      }
+
+      .map-pins { position: absolute; inset: 0; }
+
+      .map-pin {
+        position: absolute;
+        top: calc(var(--y) * 1%);
+        left: calc(var(--x) * 1%);
+        width: 1.45rem;
+        height: 1.8rem;
+        padding: 0;
+        color: #eee2d8;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        transform: translate(-50%, -100%);
+      }
+
+      .map-pin::before {
+        position: absolute;
+        top: 0.12rem;
+        left: 0.38rem;
+        width: 0.7rem;
+        height: 0.7rem;
+        content: "";
+        background: #a9324c;
+        border: 1px solid #f0c384;
+        border-radius: 50% 50% 50% 12%;
+        box-shadow: 0 0 0.35rem rgb(186 62 85 / 90%);
+        transform: rotate(-45deg);
+      }
+
+      .map-pin::after {
+        position: absolute;
+        top: 0.76rem;
+        left: 0.67rem;
+        width: 0;
+        height: 0;
+        content: "";
+        border-top: 0.8rem solid #a9324c;
+        border-right: 0.18rem solid transparent;
+        border-left: 0.18rem solid transparent;
+        filter: drop-shadow(0 0 0.18rem rgb(186 62 85 / 70%));
+      }
+
+      .map-pin:hover::before,
+      .map-pin:focus-visible::before,
+      .map-pin[aria-pressed="true"]::before {
+        width: 0.9rem;
+        height: 0.9rem;
+        background: #e06462;
+        box-shadow: 0 0 0.7rem #e06462, 0 0 1.15rem rgb(186 62 85 / 90%);
+      }
+
+      .map-pin:focus-visible { outline: 2px solid #eab47d; outline-offset: 3px; }
+
+      .map-pin-label {
+        position: absolute;
+        bottom: 1.65rem;
+        left: 50%;
+        display: none;
+        width: max-content;
+        max-width: 11rem;
+        padding: 0.18rem 0.4rem;
+        color: #f3e5d6;
+        background: rgb(11 9 14 / 92%);
+        border: 1px solid rgb(219 163 108 / 55%);
+        border-radius: 0.15rem;
+        font-size: 0.68rem;
+        white-space: nowrap;
+        transform: translateX(-50%);
+      }
+
+      .map-pin:hover .map-pin-label,
+      .map-pin:focus-visible .map-pin-label,
+      .map-pin[aria-pressed="true"] .map-pin-label { display: block; }
+
+      .map-panel {
+        padding: 1.2rem;
+        background: rgb(255 255 255 / 5%);
+        border: 1px solid rgb(219 163 108 / 26%);
+        border-radius: 0.45rem;
+      }
+
+      .map-panel label {
+        display: grid;
+        gap: 0.35rem;
+        color: #dba36c;
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+
+      .map-panel select {
+        width: 100%;
+        min-height: 2.4rem;
+        padding: 0.45rem 0.6rem;
+        color: #eee2d8;
+        background: #151018;
+        border: 1px solid rgb(219 163 108 / 35%);
+        border-radius: 0.2rem;
+        font: inherit;
+        font-size: 0.86rem;
+      }
+
+      .map-panel select:focus { outline: 2px solid #ba3e55; outline-offset: 1px; }
+
+      .map-summary {
+        min-height: 7.4rem;
+        margin: 1rem 0;
+        padding: 0.85rem;
+        color: #d7cdd5;
+        background: rgb(0 0 0 / 22%);
+        border-left: 2px solid #ba3e55;
+        font-size: 0.84rem;
+      }
+
+      .map-summary strong { display: block; margin-bottom: 0.18rem; color: #f0c384; font-size: 1.1rem; }
+      .map-summary .map-area { display: block; margin-bottom: 0.4rem; color: #dba36c; font-size: 0.76rem; }
+      .map-summary p { margin: 0; }
+      .map-summary a { display: inline-block; margin-top: 0.35rem; color: #eab47d; font-size: 0.78rem; }
+
+      .map-list-title { margin: 0 0 0.45rem; color: #cdbfc0; font-size: 0.76rem; letter-spacing: 0.08em; }
+
+      .map-location-list {
+        display: grid;
+        gap: 0.3rem;
+        max-height: 23rem;
+        margin: 0;
+        padding: 0;
+        overflow: auto;
+        list-style: none;
+        scrollbar-color: #6f2b40 #110d14;
+      }
+
+      .map-location-list button {
+        display: flex;
+        width: 100%;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0.36rem 0.45rem;
+        color: #d7cdd5;
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.15rem;
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.77rem;
+        text-align: left;
+      }
+
+      .map-location-list button:hover,
+      .map-location-list button:focus-visible,
+      .map-location-list button[aria-current="true"] { color: #f0c384; background: rgb(186 62 85 / 14%); border-color: rgb(186 62 85 / 55%); }
+
+      .map-location-list small { color: #9f939c; font-size: 0.68rem; white-space: nowrap; }
+
+      @media (max-width: 720px) {
+        .map-layout { grid-template-columns: 1fr; }
+        .map-stage { min-height: 0; }
+        .map-location-list { max-height: 16rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+
+      @media (max-width: 440px) {
+        .map-location-list { grid-template-columns: 1fr; }
+      }
+
+      .perspective-card h3, .boundary-card h3 { margin-top: 0; }
+
+      .perspective-card p, .boundary-card p {
+        margin: 0;
+        color: #d7cdd5;
+        font-size: 0.94rem;
+      }
+
+      .boundary-grid { grid-template-columns: repeat(4, 1fr); }
+
+      .boundary-card { padding: 1.2rem; }
+
+      .boundary-card h3 { font-size: 1rem; }
+
+      .sources { padding-bottom: 3rem; }
+
+      .sources ul {
+        display: grid;
+        gap: 0.65rem;
+        margin: 0;
+        padding-left: 1.2rem;
+        color: #d7cdd5;
+      }
+
+      .sources a { color: #f5cf95; }
+
+      .game-section {
+        position: relative;
+        margin-bottom: 2rem;
+        padding: 2rem 1.2rem 1.4rem;
+        overflow: hidden;
+        background: linear-gradient(160deg, rgb(46 10 22 / 80%), rgb(8 7 12 / 92%));
+        border: 1px solid rgb(186 62 85 / 48%);
+        border-radius: 0.5rem;
+        box-shadow: 0 1.5rem 3rem rgb(0 0 0 / 35%), inset 0 0 3rem rgb(186 62 85 / 8%);
+      }
+
+      .game-section::before {
+        position: absolute;
+        top: -5rem;
+        right: -3rem;
+        width: 14rem;
+        height: 14rem;
+        content: "";
+        border: 1px solid rgb(186 62 85 / 30%);
+        border-radius: 50%;
+        box-shadow: 0 0 0 2rem rgb(186 62 85 / 5%), 0 0 0 4rem rgb(186 62 85 / 4%);
+      }
+
+      .game-intro { position: relative; z-index: 1; }
+
+      .game-intro p { margin: 0; color: #d7cdd5; font-size: 0.92rem; }
+
+      .game-board {
+        position: relative;
+        z-index: 1;
+        margin-top: 1.2rem;
+      }
+
+      #yokai-game {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: #07070b;
+        border: 1px solid rgb(219 163 108 / 36%);
+        border-radius: 0.25rem;
+        box-shadow: inset 0 0 2rem rgb(0 0 0 / 70%);
+        touch-action: none;
+      }
+
+      .game-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.8rem 1.2rem;
+        margin-top: 0.9rem;
+      }
+
+      .game-button {
+        padding: 0.6rem 1rem;
+        color: #0b090e;
+        background: #eab47d;
+        border: 0;
+        border-radius: 0.2rem;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 700;
+      }
+
+      .game-button:hover, .game-button:focus-visible { background: #f3d0a8; }
+
+      .game-button:disabled { cursor: wait; opacity: 0.7; }
+
+      .game-status {
+        margin: 0;
+        color: #eab47d;
+        font-size: 0.88rem;
+      }
+
+      .game-time {
+        margin-left: auto;
+        color: #cdbfc0;
+        font-size: 0.82rem;
+      }
+
+      .game-time strong { color: #f3e5d6; font-variant-numeric: tabular-nums; }
+
+      .game-health, .game-help { margin: 0; color: #cdbfc0; font-size: 0.82rem; }
+      .game-health strong { color: #f0c384; font-variant-numeric: tabular-nums; }
+      .game-help { flex-basis: 100%; color: #a99a9d; font-size: 0.75rem; }
+
+      .game-section.is-danger {
+        animation: danger-pulse 900ms ease-in-out infinite alternate;
+      }
+
+      @keyframes danger-pulse {
+        from { box-shadow: 0 1.5rem 3rem rgb(0 0 0 / 35%), inset 0 0 3rem rgb(186 62 85 / 8%); }
+        to { box-shadow: 0 1.5rem 3rem rgb(0 0 0 / 35%), inset 0 0 4rem rgb(186 62 85 / 24%); }
+      }
+
+      footer {
+        padding: 1rem 0 2.5rem;
+        color: #9f93a2;
+        font-size: 0.8rem;
+        text-align: center;
+      }
+
+      @media (max-width: 720px) {
+        .hero { padding-top: 4rem; }
+        .boundary-grid { grid-template-columns: repeat(2, 1fr); }
+        .catalog-tools { grid-template-columns: 1fr; }
+        .hero-figure { opacity: 0.58; transform: scale(0.8) rotate(-5deg); transform-origin: top left; }
+        .trio-grid { grid-template-columns: 1fr; }
+        .name-only-teaser { grid-template-columns: 1fr; }
+        .name-only-teaser a { justify-self: start; }
+      }
+
+      @media (max-width: 440px) {
+        .hero-figure { opacity: 0.38; transform: scale(0.62) rotate(-5deg); }
+        .boundary-grid { grid-template-columns: 1fr; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="目次を開く">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="menu-backdrop" id="menu-backdrop" aria-hidden="true"></div>
+    <nav class="menu-drawer" id="site-menu" aria-label="サイト目次">
+      <p>夜の目次</p>
+      <ul>
+        <li><a href="index.html">メインページ</a></li>
+        <li><a href="#catalog">妖怪図鑑・検索</a></li>
+        <li><a href="#name-only">名前だけ残る妖怪</a></li>
+        <li><a href="#three-great">日本三大妖怪</a></li>
+        <li><a href="#map">伝承地マップ</a></li>
+        <li><a href="#perspectives">民俗学・宗教史の視点</a></li>
+        <li><a href="#boundaries">境界と地域</a></li>
+        <li><a href="yokai.html">妖怪ごとの詳しいページ</a></li>
+        <li><a href="#game">夜道のミニゲーム</a></li>
+        <li><a href="#sources">参考資料</a></li>
+      </ul>
+    </nav>
+    <header class="hero">
+      <div class="hero-figure" aria-hidden="true"><span class="figure-eyes"></span><span class="figure-mouth"></span></div>
+      <p class="eyebrow">FOLKLORE OF JAPAN</p>
+      <h1>日本の妖怪</h1>
+      <p class="lead">古くから日本各地で語り継がれてきた、不思議で少しこわい存在たち。妖怪は、自然への畏れ、共同体の規範、死者へのまなざしを映す「語り」のかたちでもあります。</p>
+      <nav aria-label="ページ内ナビゲーション">
+        <a href="index.html">メインページ</a>
+        <a href="#catalog">妖怪図鑑</a>
+        <a href="#name-only">名前だけの妖怪</a>
+        <a href="#three-great">三大妖怪</a>
+        <a href="#map">伝承地マップ</a>
+        <a href="yokai.html">詳しい解説</a>
+        <a href="#perspectives">3つの見方</a>
+        <a href="#boundaries">境界と地域</a>
+        <a href="#sources">参考資料</a>
+        <a href="#game">怖いゲーム</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="catalog" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <p class="section-kicker">YŌKAI CATALOG</p>
+          <h2 id="catalog-title">土地と暮らしから生まれた存在</h2>
+          <p>ここで紹介する姿や性格は、時代・地域・語り手によって変化します。名前をクリックすると、別ページで伝承の背景と民俗学・宗教史からの読み解きを詳しく読めます。</p>
+        </div>
+
+        <div class="catalog-tools" aria-label="妖怪の検索と絞り込み">
+          <label>キーワード
+            <input id="yokai-search" type="search" placeholder="名前・特徴で検索" autocomplete="off" />
+          </label>
+          <label>分類
+            <select id="yokai-category">
+              <option value="all">すべての分類</option>
+              <option value="自然・水">自然・水</option>
+              <option value="山・信仰">山・信仰</option>
+              <option value="動物・変化">動物・変化</option>
+              <option value="鬼・怪異">鬼・怪異</option>
+              <option value="家・道具">家・道具</option>
+              <option value="死者・宗教">死者・宗教</option>
+              <option value="書物・記憶">書物・記憶</option>
+              <option value="予言・異界">予言・異界</option>
+            </select>
+          </label>
+          <label>五十音
+            <select id="yokai-kana">
+              <option value="all">すべての行</option>
+              <option value="あ">あ行</option>
+              <option value="か">か行</option>
+              <option value="さ">さ行</option>
+              <option value="た">た行</option>
+              <option value="な">な行</option>
+              <option value="は">は行</option>
+              <option value="ま">ま行</option>
+              <option value="や">や行</option>
+              <option value="ら">ら行</option>
+              <option value="わ">わ行</option>
+            </select>
+          </label>
+        </div>
+        <p id="search-result" class="search-result" role="status" aria-live="polite"></p>
+
+        <div class="yokai-grid">
+          <article class="yokai-card" data-yokai-card data-name="河童" data-kana="かっぱ" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">🥒</span><span class="tag">水辺</span></div><h3><a href="yokai/kappa.html">河童（かっぱ）</a></h3><p>川や沼に住むとされる水の妖怪。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="天狗" data-kana="てんぐ" data-category="山・信仰"><div class="card-top"><span class="icon" aria-hidden="true">👺</span><span class="tag">山岳信仰</span></div><h3><a href="yokai/tengu.html">天狗（てんぐ）</a></h3><p>山中に現れる異形の存在。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="雪女" data-kana="ゆきおんな" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">❄️</span><span class="tag">雪国</span></div><h3><a href="yokai/yuki-onna.html">雪女（ゆきおんな）</a></h3><p>雪の夜に現れる白い姿の女性。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="狐" data-kana="きつね" data-category="動物・変化"><div class="card-top"><span class="icon" aria-hidden="true">🦊</span><span class="tag">動物霊</span></div><h3><a href="yokai/kitsune.html">狐（きつね）</a></h3><p>人を化かす話や狐火で知られる動物霊。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="化け狸" data-kana="ばけだぬき" data-category="動物・変化"><div class="card-top"><span class="icon" aria-hidden="true">🦝</span><span class="tag">里山</span></div><h3><a href="yokai/tanuki.html">化け狸（ばけだぬき）</a></h3><p>人や物に化けていたずらをする狸。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="鬼" data-kana="おに" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">👹</span><span class="tag">異界・災厄</span></div><h3><a href="yokai/oni.html">鬼（おに）</a></h3><p>災厄や異界の脅威を体現する存在。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="玉藻前" data-kana="たまものまえ" data-category="動物・変化"><div class="card-top"><span class="icon" aria-hidden="true">🦊</span><span class="tag">九尾の狐</span></div><h3><a href="yokai/tamamo-no-mae.html">玉藻前（たまものまえ）</a></h3><p>宮中に入り込んだ白面金毛九尾の狐。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="酒呑童子" data-kana="しゅてんどうじ" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">🍶</span><span class="tag">大江山</span></div><h3><a href="yokai/shutendoji.html">酒呑童子（しゅてんどうじ）</a></h3><p>都の外に鬼の王国を築いた首領。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="大嶽丸" data-kana="おおたけまる" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">⛰️</span><span class="tag">鈴鹿山</span></div><h3><a href="yokai/otakemaru.html">大嶽丸（おおたけまる）</a></h3><p>鈴鹿山に棲むと語られた鬼神・魔王。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="座敷童子" data-kana="ざしきわらし" data-category="家・道具"><div class="card-top"><span class="icon" aria-hidden="true">🏠</span><span class="tag">家の守り</span></div><h3><a href="yokai/zashiki-warashi.html">座敷童子（ざしきわらし）</a></h3><p>家の繁栄を見守る子どもの姿の精霊。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="海坊主" data-kana="うみぼうず" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">🌊</span><span class="tag">海の怪異</span></div><h3><a href="yokai/umibozu.html">海坊主（うみぼうず）</a></h3><p>海上に突然現れて船を脅かす怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="産女・姑獲鳥" data-kana="うぶめこかくちょう" data-category="死者・宗教"><div class="card-top"><span class="icon" aria-hidden="true">🕯️</span><span class="tag">母・死者</span></div><h3><a href="yokai/ubume.html">産女・姑獲鳥</a></h3><p>母と鳥の姿が重なる、死者をめぐる怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="付喪神" data-kana="つくもがみ" data-category="家・道具"><div class="card-top"><span class="icon" aria-hidden="true">🪵</span><span class="tag">道具の分類</span></div><h3><a href="yokai/tsukumogami.html">付喪神（つくもがみ）</a></h3><p>道具に宿る霊性を、用途別に読み解く。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="鵺" data-kana="ぬえ" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">🌙</span><span class="tag">宮廷説話</span></div><h3><a href="yokai/nue.html">鵺（ぬえ）</a></h3><p>正体のわからない声から生まれた合成怪物。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="アマビエ" data-kana="あまびえ" data-category="予言・異界"><div class="card-top"><span class="icon" aria-hidden="true">🔮</span><span class="tag">予言獣</span></div><h3><a href="yokai/amabie.html">アマビエ</a></h3><p>疫病よけの図像として知られる予言獣。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="魍魎" data-kana="もうりょう" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">🌫️</span><span class="tag">精霊</span></div><h3><a href="yokai/mouryou.html">魍魎（もうりょう）</a></h3><p>水や山の精霊をまとめて呼ぶ古い語彙。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="鉄鼠" data-kana="てっそ" data-category="死者・宗教"><div class="card-top"><span class="icon" aria-hidden="true">🐀</span><span class="tag">寺院・怨念</span></div><h3><a href="yokai/tessou.html">鉄鼠（てっそ）</a></h3><p>寺院や僧侶をめぐる巨大な鼠の怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="絡新婦" data-kana="じょろうぐも" data-category="動物・変化"><div class="card-top"><span class="icon" aria-hidden="true">🕷️</span><span class="tag">変化・誘惑</span></div><h3><a href="yokai/jorogumo.html">絡新婦（じょろうぐも）</a></h3><p>蜘蛛が女性に化けて人を惑わせる怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="塗仏" data-kana="ぬりぼとけ" data-category="死者・宗教"><div class="card-top"><span class="icon" aria-hidden="true">🪦</span><span class="tag">仏像・異形</span></div><h3><a href="yokai/nuribotoke.html">塗仏（ぬりぼとけ）</a></h3><p>祈りの像と怪異の像の境界に立つ姿。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="陰摩羅鬼" data-kana="おんもらき" data-category="死者・宗教"><div class="card-top"><span class="icon" aria-hidden="true">🦅</span><span class="tag">死体・変化</span></div><h3><a href="yokai/onmoraki.html">陰摩羅鬼（おんもらき）</a></h3><p>弔われない身体から生じる鳥の怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="邪魅" data-kana="じゃみ" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">👁️</span><span class="tag">邪気・境界</span></div><h3><a href="yokai/jakki.html">邪魅（じゃみ）</a></h3><p>病や災いをもたらす名のない気配。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="文車妖妃" data-kana="ふぐるまようび" data-category="書物・記憶"><div class="card-top"><span class="icon" aria-hidden="true">📜</span><span class="tag">書物・記憶</span></div><h3><a href="yokai/fukurumayoubi.html">文車妖妃（ふぐるまようび）</a></h3><p>読まれなかった文の情念を運ぶ怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="火車" data-kana="かしゃ" data-category="死者・宗教"><div class="card-top"><span class="icon" aria-hidden="true">🔥</span><span class="tag">葬送・地獄</span></div><h3><a href="yokai/kasha.html">火車（かしゃ）</a></h3><p>葬列の向こうから現れる燃える車輪。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="ぬらりひょん" data-kana="ぬらりひょん" data-category="家・道具"><div class="card-top"><span class="icon" aria-hidden="true">🎩</span><span class="tag">家・都市</span></div><h3><a href="yokai/nurarihyon.html">ぬらりひょん</a></h3><p>いつの間にか家へ上がり込む老人の怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="見越入道" data-kana="みこしにゅうどう" data-category="山・信仰"><div class="card-top"><span class="icon" aria-hidden="true">🧎</span><span class="tag">道・変化</span></div><h3><a href="yokai/mikoshi-nyudo.html">見越入道（みこしにゅうどう）</a></h3><p>見上げるほど大きくなり夜道をふさぐ僧形。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="目目連" data-kana="もくもくれん" data-category="家・道具"><div class="card-top"><span class="icon" aria-hidden="true">👁️</span><span class="tag">建物・視線</span></div><h3><a href="yokai/mokumokuren.html">目目連（もくもくれん）</a></h3><p>破れた障子に浮かぶ無数のまなざし。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="ろくろ首" data-kana="ろくろくび" data-category="動物・変化"><div class="card-top"><span class="icon" aria-hidden="true">🫥</span><span class="tag">身体・変身</span></div><h3><a href="yokai/rokurokubi.html">ろくろ首（ろくろくび）</a></h3><p>眠りのあいだ首だけが夜の闇へ伸びる怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="からかさ小僧" data-kana="からかさこぞう" data-category="家・道具"><div class="card-top"><span class="icon" aria-hidden="true">☂️</span><span class="tag">付喪神</span></div><h3><a href="yokai/karakasa.html">からかさ小僧</a></h3><p>片目と一本足で古い傘が跳ね回る。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="小豆洗い" data-kana="あずきあらい" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">🥣</span><span class="tag">音・水辺</span></div><h3><a href="yokai/azuki-arai.html">小豆洗い（あずきあらい）</a></h3><p>誰もいない川辺で小豆を洗う音。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="べとべとさん" data-kana="べとべとさん" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">👣</span><span class="tag">音・夜道</span></div><h3><a href="yokai/betobeto.html">べとべとさん</a></h3><p>背後から足音だけがついてくる夜道の気配。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="川赤子" data-kana="かわあかご" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">👶</span><span class="tag">水辺・声</span></div><h3><a href="yokai/kawa-akago.html">川赤子（かわあかご）</a></h3><p>川辺から聞こえる赤子の泣き声。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="火間虫入道" data-kana="ひまむしにゅうどう" data-category="書物・記憶"><div class="card-top"><span class="icon" aria-hidden="true">🕯️</span><span class="tag">火・夜・書物</span></div><h3><a href="yokai/himamushi-nyudo.html">火間虫入道（ひまむしにゅうどう）</a></h3><p>灯りのそばを飛び回る火に縁のある怪異。</p></article>
+        </div>
+      </section>
+
+      <section id="name-only" aria-labelledby="name-only-title">
+        <div class="section-heading">
+          <p class="section-kicker">UNFIXED NAMES</p>
+          <h2 id="name-only-title">名前だけ残る妖怪群</h2>
+          <p>全国には、姿や物語が定まらないまま、地名・古文書・聞き書きに名前だけ残る怪異もあります。ひとつの妖怪として数を競うのではなく、呼び名が生まれた環境ごとにまとめました。</p>
+        </div>
+        <div class="name-only-teaser">
+          <div>
+            <h3>「もののけ」「山の怪」「辻の怪」など</h3>
+            <p>柳田国男の採集的な視線と折口信夫の境界論を手がかりに、名前が記憶をつなぐ仕組みを読む小さな分類帖。</p>
+          </div>
+          <a href="yokai/name-only.html">分類帖をひらく →</a>
+        </div>
+      </section>
+
+      <section id="map" aria-labelledby="map-title">
+        <div class="section-heading">
+          <p class="section-kicker">FOLKLORE MAP</p>
+          <h2 id="map-title">妖怪の伝承地をたどる</h2>
+          <p>妖怪ごとに、記録・聞き書き・地域の物語がよく知られている場所を代表点として示します。全国に分布する妖怪も多いため、ピンは「ここだけ」という境界ではなく、語りへ入る入口です。</p>
+        </div>
+        <div class="map-layout">
+          <div class="map-stage">
+            <svg class="japan-map" viewBox="0 0 620 720" role="img" aria-labelledby="map-svg-title map-svg-desc">
+              <title id="map-svg-title">日本列島と妖怪伝承地の地図</title>
+              <desc id="map-svg-desc">北海道、本州、四国、九州を描いた暗い地図。赤いピンが妖怪ごとの代表的な伝承地を示す。</desc>
+              <rect class="map-sea" x="0" y="0" width="620" height="720" />
+<g aria-hidden="true">
+  <path class="map-land is-small" d="M 202.5,329.5 L 198.4,330.3 L 196.8,328.6 L 200.2,325.1 L 202.9,328.1 Z" />
+  <path class="map-land is-small" d="M 360.7,277.7 L 356.9,277.5 L 360.0,273.0 L 357.6,272.2 L 357.7,269.5 L 365.8,261.9 L 364.2,269.6 L 368.0,269.9 L 365.5,275.1 Z" />
+  <path class="map-land" d="M 534.9,76.3 L 543.7,76.8 L 555.8,81.6 L 563.3,82.3 L 584.1,69.5 L 576.3,84.2 L 576.7,90.8 L 583.1,102.3 L 587.8,103.0 L 593.7,99.6 L 598.8,99.7 L 588.4,106.4 L 583.4,106.3 L 569.8,112.0 L 560.6,113.7 L 546.8,112.8 L 539.5,115.8 L 522.4,130.6 L 516.2,144.0 L 493.1,135.7 L 472.2,125.5 L 458.1,126.5 L 444.7,133.1 L 435.9,126.2 L 428.6,126.1 L 424.5,130.1 L 423.7,134.6 L 430.1,139.8 L 436.7,140.3 L 449.9,150.2 L 445.1,152.4 L 434.3,149.9 L 421.9,161.4 L 418.1,162.5 L 414.5,160.8 L 413.2,157.6 L 416.8,146.8 L 415.1,141.8 L 408.1,135.1 L 408.9,125.4 L 409.9,123.2 L 427.1,113.5 L 428.8,110.4 L 426.0,106.6 L 425.8,102.3 L 428.8,101.2 L 439.4,105.4 L 449.5,106.2 L 454.5,105.6 L 457.0,103.1 L 457.8,91.4 L 465.6,79.4 L 466.1,71.6 L 469.3,64.6 L 470.0,57.1 L 463.7,43.0 L 466.4,35.2 L 476.3,32.5 L 505.1,58.6 L 532.9,75.8 Z" />
+  <path class="map-land" d="M 132.7,412.7 L 138.8,413.7 L 145.7,411.1 L 149.3,412.7 L 149.8,415.9 L 144.3,423.2 L 155.7,423.9 L 154.1,428.2 L 157.4,430.5 L 156.1,432.8 L 159.0,435.8 L 148.2,449.1 L 141.8,467.7 L 141.8,474.5 L 137.9,483.1 L 129.4,482.0 L 128.3,483.9 L 130.3,487.8 L 117.2,495.5 L 120.5,487.4 L 117.8,477.5 L 120.7,476.0 L 120.1,473.4 L 116.2,473.0 L 113.1,478.0 L 112.6,483.1 L 115.9,487.4 L 114.1,490.3 L 101.8,486.7 L 100.1,482.9 L 104.7,481.6 L 105.6,476.8 L 101.4,471.4 L 101.6,461.1 L 107.9,457.0 L 115.8,444.2 L 111.2,443.0 L 113.5,440.5 L 112.8,437.4 L 107.5,429.0 L 102.9,426.3 L 99.4,428.6 L 100.9,436.8 L 105.8,436.7 L 106.2,441.5 L 103.2,442.3 L 97.1,439.3 L 88.0,445.7 L 89.9,440.8 L 85.5,436.0 L 85.2,430.1 L 89.9,435.4 L 95.1,436.8 L 92.1,431.3 L 82.0,424.4 L 83.0,421.0 L 90.4,421.7 L 89.8,418.0 L 107.0,411.7 L 110.8,405.3 L 116.7,402.7 L 125.7,404.1 L 129.0,410.5 Z" />
+  <path class="map-land" d="M 233.9,391.8 L 242.8,392.7 L 244.0,404.9 L 246.1,405.7 L 234.6,412.5 L 228.3,424.1 L 221.3,417.7 L 210.9,415.6 L 199.9,420.5 L 195.4,429.3 L 191.3,432.5 L 190.0,437.1 L 184.5,439.9 L 179.4,439.6 L 181.5,435.1 L 174.7,434.7 L 172.6,430.1 L 175.2,422.6 L 171.9,421.4 L 172.1,418.2 L 160.0,421.1 L 179.4,409.9 L 183.9,400.2 L 188.7,397.0 L 195.0,402.3 L 205.8,400.9 L 210.7,397.8 L 209.9,392.2 L 220.9,388.9 L 229.5,389.8 Z" />
+  <path class="map-land" d="M 452.4,164.1 L 459.6,163.0 L 457.8,172.9 L 458.8,184.9 L 459.8,188.4 L 470.5,198.7 L 476.6,214.6 L 476.2,226.3 L 473.8,236.4 L 466.1,240.8 L 462.5,247.6 L 460.0,259.1 L 448.6,261.2 L 443.9,267.2 L 442.8,273.6 L 446.3,289.0 L 445.2,300.3 L 436.5,312.6 L 431.6,328.6 L 433.1,334.1 L 441.1,344.8 L 433.7,346.8 L 427.9,351.7 L 424.6,362.2 L 415.2,366.8 L 410.8,371.2 L 408.4,370.7 L 406.9,369.4 L 408.3,367.7 L 407.8,358.5 L 416.4,349.3 L 412.9,346.6 L 408.1,346.9 L 405.9,352.2 L 402.2,354.9 L 405.2,359.9 L 403.0,363.2 L 396.6,358.4 L 389.5,359.1 L 385.8,363.0 L 384.3,373.1 L 376.4,380.2 L 373.9,377.6 L 375.3,368.8 L 378.5,367.2 L 372.6,364.0 L 368.1,365.2 L 355.8,380.9 L 335.2,378.7 L 319.9,381.4 L 327.1,377.5 L 326.7,375.3 L 319.0,375.5 L 316.8,373.3 L 316.2,376.9 L 313.9,376.5 L 314.7,366.9 L 311.7,366.4 L 308.1,368.5 L 303.1,378.3 L 314.1,386.1 L 313.3,389.6 L 296.6,394.3 L 283.5,414.0 L 276.5,416.4 L 268.8,414.3 L 258.4,399.8 L 257.5,390.8 L 264.2,386.7 L 267.6,380.2 L 255.7,379.8 L 246.1,375.5 L 230.4,377.2 L 221.6,383.1 L 204.9,386.1 L 195.3,390.3 L 191.4,389.5 L 179.8,392.1 L 172.4,388.7 L 168.9,389.6 L 163.6,405.2 L 150.7,398.3 L 134.6,401.7 L 129.5,399.3 L 124.6,400.8 L 123.7,391.6 L 127.3,387.4 L 138.4,386.8 L 167.2,367.3 L 181.2,354.6 L 188.3,351.6 L 199.3,350.2 L 202.7,353.3 L 222.0,351.8 L 259.9,344.1 L 262.8,344.9 L 261.7,349.1 L 264.8,351.2 L 276.0,351.9 L 283.1,348.6 L 289.2,343.4 L 286.4,336.3 L 288.3,332.3 L 308.4,312.3 L 310.0,305.6 L 309.0,297.7 L 313.0,291.8 L 328.2,287.3 L 328.7,290.0 L 314.8,300.2 L 317.8,303.1 L 318.5,309.2 L 325.8,311.9 L 328.8,311.3 L 334.3,305.6 L 359.9,297.0 L 369.9,288.9 L 377.9,277.0 L 393.1,268.8 L 398.1,255.9 L 407.0,243.8 L 410.5,232.7 L 414.5,226.8 L 415.4,220.0 L 413.2,212.6 L 405.1,210.5 L 410.4,207.3 L 413.7,199.7 L 410.9,190.9 L 412.3,186.5 L 422.3,180.9 L 424.3,175.8 L 423.4,170.9 L 425.6,168.6 L 433.3,169.7 L 434.9,179.4 L 437.1,181.4 L 441.2,178.3 L 448.9,179.8 L 451.0,178.4 L 453.5,172.7 L 451.5,168.2 L 438.8,171.6 L 441.7,160.6 L 448.5,161.4 Z" />
+  <path class="map-land is-small" d="M 40.0,635.1 L 27.6,641.8 L 28.8,645.5 L 25.1,647.8 L 25.6,651.1 L 20.8,653.0 L 23.2,642.1 L 30.1,637.0 L 28.8,633.8 L 34.9,634.6 L 39.9,627.8 L 42.3,630.0 L 41.7,632.9 Z" />
+  <path class="map-land is-small" d="M 63.5,600.9 L 60.4,600.7 L 60.7,595.3 L 62.1,594.9 L 64.1,599.4 Z" />
+  <path class="map-land is-small" d="M 78.0,585.3 L 75.2,587.9 L 68.8,584.0 L 85.5,575.4 L 86.2,578.2 L 77.5,583.8 Z" />
+  <path class="map-land is-small" d="M 73.9,588.6 L 71.0,588.8 L 69.7,585.8 L 72.4,587.4 Z" />
+  <path class="map-land is-small" d="M 408.3,430.2 L 406.3,428.0 L 409.3,429.0 Z" />
+  <path class="map-rift" d="M 445 160 C 414 256 358 342 275 424" />
+  <path class="map-rift" d="M 160 410 C 200 426 244 445 287 456" />
+  <text class="map-label" x="500" y="105">北海道</text>
+  <text class="map-label" x="335" y="300">本州</text>
+  <text class="map-label" x="200" y="445">四国</text>
+  <text class="map-label" x="115" y="485">九州</text>
+  <text class="map-label" x="50" y="680">沖縄</text>
+</g>
+            </svg>
+            <div id="map-pins" class="map-pins" aria-label="妖怪の伝承地ピン"></div>
+            <p class="map-caption">海岸線はNatural Earth 50mを簡略化／代表地点・縮尺は目安</p>
+          </div>
+          <aside class="map-panel" aria-label="伝承地マップの検索">
+            <label for="map-yokai">妖怪を選ぶ
+              <select id="map-yokai"><option value="all">すべての妖怪（全ピン）</option></select>
+            </label>
+            <div id="map-summary" class="map-summary" role="status" aria-live="polite"><strong>全てのピン</strong><span class="map-area">32体の代表的な伝承地</span><p>ピンまたは下の名前を選ぶと、地域と個別解説へのリンクが表示されます。</p></div>
+            <p class="map-list-title">妖怪ごとの代表地点</p>
+            <ul id="map-location-list" class="map-location-list"></ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="three-great" class="trio-section" aria-labelledby="three-great-title">
+        <div class="section-heading">
+          <p class="section-kicker">THREE GREAT YŌKAI</p>
+          <h2 id="three-great-title">日本三大妖怪という括り</h2>
+          <p>玉藻前、酒呑童子、大嶽丸は、王権や都の外側から脅威をもたらす物語の主人公たちです。三者を「日本三大妖怪」と呼ぶのは近現代に広まった通称で、古典に固定された公式の三大分類ではありません。</p>
+        </div>
+        <div class="trio-grid">
+          <article class="trio-card" data-number="壱"><p class="trio-kicker">狐・宮中・殺生石</p><h3><a href="yokai/tamamo-no-mae.html">玉藻前</a></h3><p>美女に化けた九尾の狐の物語。陰陽師に正体を見破られ、那須野の殺生石へ変じるまで、異国の説話と日本の能・伝説が重なります。</p></article>
+          <article class="trio-card" data-number="弐"><p class="trio-kicker">鬼・大江山・酒</p><h3><a href="yokai/shutendoji.html">酒呑童子</a></h3><p>大江山の鬼の首領。源頼光一行の討伐譚は、都の秩序と山の異界を対置しながら、絵巻・謡曲・芸能へ姿を変えました。</p></article>
+          <article class="trio-card" data-number="参"><p class="trio-kicker">鬼神・鈴鹿山・田村丸</p><h3><a href="yokai/otakemaru.html">大嶽丸</a></h3><p>鈴鹿山を舞台に、坂上田村麻呂（物語の田村丸）と対決する鬼神。地域ごとの伝説が、征討と境界の記憶を伝えます。</p></article>
+        </div>
+        <p class="trio-note">※伝承の筋や呼び名は作品・地域・時代によって異なります。個別ページでは、その揺れも含めて紹介します。</p>
+      </section>
+
+      <section id="perspectives" aria-labelledby="perspectives-title">
+        <div class="section-heading">
+          <p class="section-kicker">THREE LENSES</p>
+          <h2 id="perspectives-title">妖怪を読む、3つの見方</h2>
+          <p>妖怪を「本当にいたか、いなかったか」だけで判断すると、伝承が果たしてきた役割を見落とします。学問の視点を重ねると、語りの背景が見えてきます。</p>
+        </div>
+
+        <div class="perspective-grid">
+          <article class="perspective-card">
+            <h3>01　民俗学：柳田国男と折口信夫</h3>
+            <p>柳田国男は、名もない人々の暮らしを担う「常民」に目を向け、言い伝えや小さな事例を集めて地域の歴史を描こうとしました。折口信夫は、異界から時を定めて訪れる神を「まれびと」と捉え、祭りや芸能の発生と結びつけました。妖怪を、生活の記憶と境界を訪れる存在として読む手がかりです。</p>
+            <p>二人の理論は重要な出発点ですが、現在の研究では地域差や資料の偏りも含めて再検討されています。</p>
+          </article>
+          <article class="perspective-card">
+            <h3>02　宗教史：神・仏・霊のあいだ</h3>
+            <p>神道の神、仏教の鬼神、祖霊、怨霊、もののけは、歴史上いつも明確に分かれていたわけではありません。神仏習合や修験道の実践を通じて、異界の存在は祀られたり、鎮められたり、物語の中で姿を変えたりしました。</p>
+          </article>
+          <article class="perspective-card">
+            <h3>03　文化史：絵とメディアが姿を整える</h3>
+            <p>江戸時代の絵入り版本や鳥山石燕の『画図百鬼夜行』のような作品は、各地の怪異を並べ、名前と姿を広めました。現代の漫画・映画・ゲームもまた、妖怪のイメージを更新する新しい伝承の場です。</p>
+          </article>
+          <article class="perspective-card">
+            <h3>04　比較する：伝承と変遷を追う</h3>
+            <p>同じ名前でも、語られる場所や時代が変われば役割も変わります。古典、地域の聞き書き、絵、現代作品を並べると、受け継がれた要素と新しく加わった要素の両方が見えてきます。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="boundaries" aria-labelledby="boundaries-title">
+        <div class="section-heading">
+          <p class="section-kicker">PLACES &amp; BOUNDARIES</p>
+          <h2 id="boundaries-title">妖怪が現れる「境界」</h2>
+          <p>山と里、陸と海、昼と夜、生と死。異なる領域が接する場所は、恵みと危険が交差する場所でもあります。</p>
+        </div>
+
+        <div class="boundary-grid">
+          <article class="boundary-card"><h3>山</h3><p>天狗や山の神の伝承。修行の場であり、資源の場でもある山への畏れ。</p></article>
+          <article class="boundary-card"><h3>川・池</h3><p>河童などの水の怪異。生活を支える水と、水難の記憶が隣り合う場所。</p></article>
+          <article class="boundary-card"><h3>海</h3><p>海坊主や竜宮の物語。遠い異界と、漁や航海の現実がつながる場所。</p></article>
+          <article class="boundary-card"><h3>家・辻</h3><p>座敷童子や道祖神の周辺。家の内外、人の世と異界を分ける小さな境目。</p></article>
+        </div>
+      </section>
+
+      <section id="sources" class="sources" aria-labelledby="sources-title">
+        <div class="section-heading">
+          <p class="section-kicker">FURTHER READING</p>
+          <h2 id="sources-title">さらに調べる</h2>
+          <p>妖怪は地域ごとの資料を読み比べることで、ひとつの「正解」ではなく、複数の語りとして理解できます。</p>
+        </div>
+        <ul>
+          <li><a href="yokai.html">京極夏彦さんの著作を手がかりに読む</a> — 個別ページでは『妖怪の理 妖怪の檻』『妖怪の宴 妖怪の匣』などを参考に、本文を引用せず独自に解説しています。</li>
+          <li><a href="https://www.iida-museum.org/guidance/related-facility/yanagida/" target="_blank" rel="noreferrer">柳田國男館（飯田市美術博物館）</a> — 「常民」や郷土研究を知る手がかり。</li>
+          <li><a href="https://www.kokugakuin.ac.jp/article/101140" target="_blank" rel="noreferrer">國學院大學「折口信夫『大嘗祭の本義』」</a> — 「まれびと」と来訪神の考えを知る手がかり。</li>
+          <li><a href="https://sekiei.nichibun.ac.jp/YoukaiDB/" target="_blank" rel="noreferrer">国際日本文化研究センター「怪異・妖怪伝承データベース」</a> — 民俗学の調査などから集めた全国の事例を検索できます。</li>
+          <li><a href="https://id.ndl.go.jp/auth/ndlsh/%E5%A6%96%E6%80%AA" target="_blank" rel="noreferrer">国立国会図書館典拠データ「妖怪」</a> — 関連する図書・件名をたどるための手がかりです。</li>
+          <li><a href="https://www.naturalearthdata.com/downloads/50m-cultural-vectors/" target="_blank" rel="noreferrer">Natural Earth 1:50m Cultural Vectors</a> — 地図の海岸線をページ用に簡略化する際の基礎データです。</li>
+        </ul>
+      </section>
+
+      <section id="game" class="game-section" aria-labelledby="game-title">
+        <div class="game-intro">
+          <p class="section-kicker">NIGHT PARADE</p>
+          <h2 id="game-title">百鬼夜行：夜道の影</h2>
+          <p>暗い夜道に現れる妖怪から、20秒間逃げ切ろう。河童、鬼、ろくろ首、絡新婦、ぬらりひょん、目目連が灯りを追ってきます。矢印キーまたはWASDで灯りを動かしてください。妖怪に触れても灯りの体力が1減るだけですが、黒い呪い札に触れると一時的に足が遅くなります。赤い回復札を拾えば、体力が1戻ります。</p>
+        </div>
+        <div class="game-board">
+          <canvas id="yokai-game" width="720" height="405" aria-label="妖怪の影から逃げるゲーム"></canvas>
+          <div class="game-toolbar">
+            <button id="game-start" class="game-button" type="button">夜道に入る</button>
+            <p id="game-status" class="game-status" aria-live="polite">灯りを手に、夜道へ進みますか？</p>
+            <p class="game-health">灯りの体力：<strong id="game-health">3</strong> / 3</p>
+            <p class="game-time">生存時間：<strong id="game-time">0.0</strong> / 20.0 秒</p>
+            <p class="game-help">回復札（赤い御守り）：体力+1。呪い札（黒い札）：約1.8秒、移動速度ダウン。</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>妖怪の伝承を通して、日本の文化と想像力を楽しもう。</footer>
+    <script>
+      (() => {
+        const grid = document.querySelector(".yokai-grid");
+        const cards = [...grid.querySelectorAll("[data-yokai-card]")];
+        const search = document.getElementById("yokai-search");
+        const category = document.getElementById("yokai-category");
+        const kana = document.getElementById("yokai-kana");
+        const result = document.getElementById("search-result");
+        const collator = new Intl.Collator("ja");
+        const rows = {
+          あ: "あいうえお", か: "かきくけこがぎぐげご", さ: "さしすせそざじずぜぞ",
+          た: "たちつてとだぢづでど", な: "なにぬねの", は: "はひふへほばびぶべぼぱぴぷぺぽ",
+          ま: "まみむめも", や: "やゆよ", ら: "らりるれろ", わ: "わをん",
+        };
+
+        function rowFor(first) {
+          return Object.entries(rows).find(([, characters]) => characters.includes(first))?.[0] || "all";
+        }
+
+        function updateCatalog() {
+          const term = search.value.trim().toLocaleLowerCase();
+          const selectedCategory = category.value;
+          const selectedRow = kana.value;
+          let visible = 0;
+          cards.forEach((card) => {
+            const matchesTerm = !term || `${card.dataset.name} ${card.textContent}`.toLocaleLowerCase().includes(term);
+            const matchesCategory = selectedCategory === "all" || card.dataset.category === selectedCategory;
+            const matchesRow = selectedRow === "all" || rowFor(card.dataset.kana[0]) === selectedRow;
+            const show = matchesTerm && matchesCategory && matchesRow;
+            card.hidden = !show;
+            if (show) visible += 1;
+          });
+          result.textContent = `${visible}体を表示中（全${cards.length}体）`;
+        }
+
+        cards.sort((a, b) => collator.compare(a.dataset.kana, b.dataset.kana)).forEach((card) => grid.append(card));
+        [search, category, kana].forEach((control) => {
+          control.addEventListener("input", updateCatalog);
+          control.addEventListener("change", updateCatalog);
+        });
+        updateCatalog();
+      })();
+    </script>
+    <script>
+      (() => {
+        const pinLayer = document.getElementById("map-pins");
+        const mapSelect = document.getElementById("map-yokai");
+        const mapSummary = document.getElementById("map-summary");
+        const locationList = document.getElementById("map-location-list");
+        if (!pinLayer || !mapSelect || !mapSummary || !locationList) return;
+
+        const mapEntries = [
+          { id: "amabie", name: "アマビエ", kana: "あまびえ", href: "yokai/amabie.html", region: "熊本・肥後", x: 19.0, y: 60.9, note: "江戸後期の瓦版に現れた予言獣の記憶。" },
+          { id: "azuki-arai", name: "小豆洗い", kana: "あずきあらい", href: "yokai/azuki-arai.html", region: "鳥取・山陰", x: 36.9, y: 48.9, note: "川辺から聞こえる音をめぐる山陰の語り。" },
+          { id: "oni", name: "鬼", kana: "おに", href: "yokai/oni.html", region: "京都・大江山", x: 40.5, y: 48.9, note: "都の外側にある山の鬼退治譚。" },
+          { id: "otakemaru", name: "大嶽丸", kana: "おおたけまる", href: "yokai/otakemaru.html", region: "三重・鈴鹿峠", x: 47.7, y: 51.1, note: "鈴鹿山の鬼神と田村丸の伝説。" },
+          { id: "onmoraki", name: "陰摩羅鬼", kana: "おんもらき", href: "yokai/onmoraki.html", region: "京都・寺院説話", x: 45.1, y: 51.1, note: "弔いと鳥の姿が結びつく仏教説話。" },
+          { id: "kappa", name: "河童", kana: "かっぱ", href: "yokai/kappa.html", region: "岩手・遠野", x: 74.4, y: 32.0, note: "『遠野物語』などで知られる川の怪異。" },
+          { id: "kasha", name: "火車", kana: "かしゃ", href: "yokai/kasha.html", region: "京都・寺社", x: 45.1, y: 51.1, note: "葬送と地獄の説話に現れる火の車。" },
+          { id: "karakasa", name: "からかさ小僧", kana: "からかさこぞう", href: "yokai/karakasa.html", region: "東京・江戸", x: 65.1, y: 48.0, note: "江戸の絵入り出版物で親しまれた付喪神。" },
+          { id: "kitsune", name: "狐", kana: "きつね", href: "yokai/kitsune.html", region: "京都・伏見", x: 45.1, y: 51.2, note: "稲荷信仰と人を化かす昔話が交差する場所。" },
+          { id: "jorogumo", name: "絡新婦", kana: "じょろうぐも", href: "yokai/jorogumo.html", region: "静岡・伊豆", x: 61.0, y: 51.6, note: "山道や滝を舞台にした蜘蛛の変化譚。" },
+          { id: "jakki", name: "邪魅", kana: "じゃみ", href: "yokai/jakki.html", region: "奈良・寺社", x: 45.1, y: 52.4, note: "病や境界の邪気を指す古い語彙。" },
+          { id: "shutendoji", name: "酒呑童子", kana: "しゅてんどうじ", href: "yokai/shutendoji.html", region: "京都・大江山", x: 40.5, y: 48.9, note: "源頼光一行の鬼退治を伝える山の物語。" },
+          { id: "zashiki-warashi", name: "座敷童子", kana: "ざしきわらし", href: "yokai/zashiki-warashi.html", region: "岩手・遠野", x: 74.4, y: 32.0, note: "家の繁栄と喪失を語る東北の子どもの精霊。" },
+          { id: "tessou", name: "鉄鼠", kana: "てっそ", href: "yokai/tessou.html", region: "京都・比叡山", x: 45.1, y: 50.7, note: "僧侶の怨念と寺院をめぐる鼠の怪異。" },
+          { id: "tengu", name: "天狗", kana: "てんぐ", href: "yokai/tengu.html", region: "長野・戸隠", x: 56.4, y: 43.6, note: "山岳修験と深山の異界を結ぶ伝承。" },
+          { id: "tanuki", name: "化け狸", kana: "ばけだぬき", href: "yokai/tanuki.html", region: "愛媛・松山", x: 29.7, y: 56.4, note: "四国の狸伝承と里山の変化譚。" },
+          { id: "tamamo-no-mae", name: "玉藻前", kana: "たまものまえ", href: "yokai/tamamo-no-mae.html", region: "栃木・那須", x: 66.7, y: 41.8, note: "九尾の狐と殺生石の伝説が残る土地。" },
+          { id: "tsukumogami", name: "付喪神", kana: "つくもがみ", href: "yokai/tsukumogami.html", region: "京都・江戸", x: 65.1, y: 48.0, note: "古道具の霊性が絵入り本で形を得た文化圏。" },
+          { id: "nuribotoke", name: "塗仏", kana: "ぬりぼとけ", href: "yokai/nuribotoke.html", region: "京都・寺町", x: 45.1, y: 51.1, note: "仏像と怪異の境界をめぐる都市の語り。" },
+          { id: "nue", name: "鵺", kana: "ぬえ", href: "yokai/nue.html", region: "京都・宮中", x: 45.1, y: 51.1, note: "宮廷の夜に聞こえた正体不明の声。" },
+          { id: "nurarihyon", name: "ぬらりひょん", kana: "ぬらりひょん", href: "yokai/nurarihyon.html", region: "東京・江戸", x: 65.1, y: 48.0, note: "江戸の絵や都市伝説で姿を整えた怪異。" },
+          { id: "himamushi-nyudo", name: "火間虫入道", kana: "ひまむしにゅうどう", href: "yokai/himamushi-nyudo.html", region: "東京・江戸", x: 65.1, y: 48.0, note: "灯火と絵入り本の想像力に結びつく名前。" },
+          { id: "fukurumayoubi", name: "文車妖妃", kana: "ふぐるまようび", href: "yokai/fukurumayoubi.html", region: "京都・寺社", x: 45.1, y: 51.1, note: "読まれない文書の情念をめぐる文化史的な怪異。" },
+          { id: "betobeto", name: "べとべとさん", kana: "べとべとさん", href: "yokai/betobeto.html", region: "奈良・夜道", x: 45.1, y: 52.4, note: "背後の足音だけを語る夜道の伝承。" },
+          { id: "mokumokuren", name: "目目連", kana: "もくもくれん", href: "yokai/mokumokuren.html", region: "東京・江戸", x: 65.1, y: 48.0, note: "障子の目という江戸の絵画的な発想。" },
+          { id: "mouryou", name: "魍魎", kana: "もうりょう", href: "yokai/mouryou.html", region: "奈良・吉野", x: 45.6, y: 53.8, note: "山や水の精霊をまとめる古典語彙。" },
+          { id: "umibozu", name: "海坊主", kana: "うみぼうず", href: "yokai/umibozu.html", region: "島根・隠岐", x: 31.8, y: 45.8, note: "海上の異変と航海の不安を語る場所。" },
+          { id: "ubume", name: "産女・姑獲鳥", kana: "うぶめこかくちょう", href: "yokai/ubume.html", region: "京都・洛中", x: 45.1, y: 51.1, note: "母子の死と鳥のイメージが重なる怪異。" },
+          { id: "kawa-akago", name: "川赤子", kana: "かわあかご", href: "yokai/kawa-akago.html", region: "熊本・球磨川", x: 19.5, y: 63.1, note: "川辺から聞こえる赤子の泣き声の語り。" },
+          { id: "rokurokubi", name: "ろくろ首", kana: "ろくろくび", href: "yokai/rokurokubi.html", region: "熊本・九州", x: 19.0, y: 60.9, note: "身体の境界が伸びる変身譚の一例。" },
+          { id: "yuki-onna", name: "雪女", kana: "ゆきおんな", href: "yokai/yuki-onna.html", region: "新潟・越後", x: 61.0, y: 38.2, note: "雪国の吹雪・遭難の記憶と結びつく女性。" },
+          { id: "mikoshi-nyudo", name: "見越入道", kana: "みこしにゅうどう", href: "yokai/mikoshi-nyudo.html", region: "兵庫・播磨", x: 40.0, y: 52.0, note: "夜道で見上げるほど大きくなる僧形。" },
+        ];
+
+        const collator = new Intl.Collator("ja");
+        mapEntries.sort((a, b) => collator.compare(a.kana, b.kana));
+        const pinById = new Map();
+        const listButtonById = new Map();
+
+        for (const entry of mapEntries) {
+          const option = document.createElement("option");
+          option.value = entry.id;
+          option.textContent = entry.name;
+          mapSelect.append(option);
+
+          const pin = document.createElement("button");
+          pin.type = "button";
+          pin.className = "map-pin";
+          pin.dataset.mapId = entry.id;
+          pin.style.setProperty("--x", entry.x);
+          pin.style.setProperty("--y", entry.y);
+          pin.setAttribute("aria-label", `${entry.name}：${entry.region}`);
+          pin.setAttribute("aria-pressed", "false");
+          pin.innerHTML = `<span class="map-pin-label">${entry.name}</span>`;
+          pin.addEventListener("click", () => selectEntry(entry.id));
+          pinLayer.append(pin);
+          pinById.set(entry.id, pin);
+
+          const listItem = document.createElement("li");
+          const listButton = document.createElement("button");
+          listButton.type = "button";
+          listButton.dataset.mapId = entry.id;
+          listButton.setAttribute("aria-current", "false");
+          listButton.innerHTML = `<span>${entry.name}</span><small>${entry.region}</small>`;
+          listButton.addEventListener("click", () => selectEntry(entry.id));
+          listItem.append(listButton);
+          locationList.append(listItem);
+          listButtonById.set(entry.id, listButton);
+        }
+
+        function showAll() {
+          mapSelect.value = "all";
+          pinById.forEach((pin) => pin.setAttribute("aria-pressed", "false"));
+          listButtonById.forEach((button) => button.setAttribute("aria-current", "false"));
+          mapSummary.innerHTML = `<strong>全てのピン</strong><span class="map-area">${mapEntries.length}体の代表的な伝承地</span><p>ピンまたは下の名前を選ぶと、地域と個別解説へのリンクが表示されます。</p>`;
+        }
+
+        function selectEntry(id) {
+          const entry = mapEntries.find((candidate) => candidate.id === id);
+          if (!entry) { showAll(); return; }
+          mapSelect.value = entry.id;
+          pinById.forEach((pin, pinId) => pin.setAttribute("aria-pressed", String(pinId === entry.id)));
+          listButtonById.forEach((button, buttonId) => button.setAttribute("aria-current", String(buttonId === entry.id)));
+          mapSummary.innerHTML = `<strong>${entry.name}</strong><span class="map-area">${entry.region}</span><p>${entry.note}</p><a href="${entry.href}">個別解説を読む →</a>`;
+        }
+
+        mapSelect.addEventListener("change", () => mapSelect.value === "all" ? showAll() : selectEntry(mapSelect.value));
+        showAll();
+      })();
+    </script>
+    <script>
+      (() => {
+        const menuToggle = document.getElementById("menu-toggle");
+        const menu = document.getElementById("site-menu");
+        const backdrop = document.getElementById("menu-backdrop");
+        if (!menuToggle || !menu || !backdrop) return;
+
+        function closeMenu() {
+          menu.classList.remove("is-open");
+          backdrop.classList.remove("is-open");
+          backdrop.setAttribute("aria-hidden", "true");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "目次を開く");
+          document.body.classList.remove("menu-open");
+        }
+
+        function toggleMenu() {
+          const open = menuToggle.getAttribute("aria-expanded") === "true";
+          if (open) closeMenu();
+          else {
+            menu.classList.add("is-open");
+            backdrop.classList.add("is-open");
+            backdrop.setAttribute("aria-hidden", "false");
+            menuToggle.setAttribute("aria-expanded", "true");
+            menuToggle.setAttribute("aria-label", "目次を閉じる");
+            document.body.classList.add("menu-open");
+          }
+        }
+
+        menuToggle.addEventListener("click", toggleMenu);
+        backdrop.addEventListener("click", closeMenu);
+        menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") closeMenu();
+        });
+      })();
+    </script>
+    <script>
+      (() => {
+        const canvas = document.getElementById("yokai-game");
+        const context = canvas.getContext("2d");
+        const startButton = document.getElementById("game-start");
+        const status = document.getElementById("game-status");
+        const timeLabel = document.getElementById("game-time");
+        const healthLabel = document.getElementById("game-health");
+        const width = canvas.width;
+        const height = canvas.height;
+        const duration = 20;
+        const keys = new Set();
+        const player = { x: width / 2, y: height / 2, radius: 9, speed: 210 };
+        const shadows = [];
+        const recoveryItems = [];
+        const hazardItems = [];
+        const maxHealth = 3;
+        let running = false;
+        let startedAt = 0;
+        let lastFrame = 0;
+        let spawnTimer = 0;
+        let animationFrame;
+        let fear = 0;
+        let health = maxHealth;
+        let itemTimer = 0;
+        let hazardTimer = 0;
+        let slowTimer = 0;
+        let pickupFlash = 0;
+        let hazardFlash = 0;
+
+        const kinds = [
+          { name: "河童", color: "#5f9a88", type: "kappa" },
+          { name: "鬼", color: "#b33d4e", type: "oni" },
+          { name: "ろくろ首", color: "#9d6487", type: "rokurokubi" },
+          { name: "絡新婦", color: "#bd5873", type: "jorogumo" },
+          { name: "ぬらりひょん", color: "#9e4356", type: "nurarihyon" },
+          { name: "目目連", color: "#c78455", type: "mokumokuren" },
+        ];
+
+        function reset() {
+          player.x = width / 2;
+          player.y = height / 2;
+          shadows.length = 0;
+          recoveryItems.length = 0;
+          hazardItems.length = 0;
+          spawnTimer = 0;
+          itemTimer = 0;
+          hazardTimer = 0;
+          slowTimer = 0;
+          health = maxHealth;
+          pickupFlash = 0;
+          hazardFlash = 0;
+          fear = 0;
+          document.getElementById("game").classList.remove("is-danger");
+          timeLabel.textContent = "0.0";
+          healthLabel.textContent = String(health);
+          draw(0);
+        }
+
+        function spawnShadow() {
+          const side = Math.floor(Math.random() * 4);
+          const margin = 24;
+          const position = side === 0 ? { x: Math.random() * width, y: -margin }
+            : side === 1 ? { x: width + margin, y: Math.random() * height }
+              : side === 2 ? { x: Math.random() * width, y: height + margin }
+                : { x: -margin, y: Math.random() * height };
+          const kind = kinds[Math.floor(Math.random() * kinds.length)];
+          shadows.push({ ...position, radius: 13 + Math.random() * 6, speed: 34 + Math.random() * 28, kind });
+        }
+
+        function spawnRecoveryItem() {
+          if (recoveryItems.length >= 2 || health >= maxHealth) return;
+          const margin = 34;
+          recoveryItems.push({
+            x: margin + Math.random() * (width - margin * 2),
+            y: margin + Math.random() * (height - margin * 2),
+            radius: 9,
+            phase: Math.random() * Math.PI * 2,
+          });
+        }
+
+        function spawnHazardItem() {
+          if (hazardItems.length >= 4) return;
+          const margin = 30;
+          let x = margin + Math.random() * (width - margin * 2);
+          let y = margin + Math.random() * (height - margin * 2);
+          if (Math.hypot(player.x - x, player.y - y) < 90) {
+            x = player.x < width / 2 ? width - margin - 40 : margin + 40;
+            y = player.y < height / 2 ? height - margin - 40 : margin + 40;
+          }
+          hazardItems.push({ x, y, radius: 10, phase: Math.random() * Math.PI * 2 });
+        }
+
+        function drawRecoveryItem(item, elapsed) {
+          const pulse = Math.sin(elapsed * 4 + item.phase) * 1.5;
+          context.save();
+          context.translate(item.x, item.y + pulse);
+          context.rotate(-0.12);
+          context.shadowColor = "#e06462";
+          context.shadowBlur = 12;
+          context.fillStyle = "#eab47d";
+          context.fillRect(-8, -10, 16, 20);
+          context.fillStyle = "#6d1c35";
+          context.fillRect(-8, -4, 16, 2);
+          context.fillRect(-8, 4, 16, 2);
+          context.font = "bold 11px serif";
+          context.textAlign = "center";
+          context.textBaseline = "middle";
+          context.fillText("護", 0, 0);
+          context.restore();
+        }
+
+        function drawHazardItem(item, elapsed) {
+          const pulse = Math.sin(elapsed * 5 + item.phase) * 1.6;
+          context.save();
+          context.translate(item.x, item.y + pulse);
+          context.rotate(0.16);
+          context.shadowColor = "#7e315f";
+          context.shadowBlur = 14;
+          context.fillStyle = "#180e1d";
+          context.fillRect(-9, -11, 18, 22);
+          context.strokeStyle = "#9d6487";
+          context.lineWidth = 1.5;
+          context.strokeRect(-9, -11, 18, 22);
+          context.fillStyle = "#d06472";
+          context.font = "bold 11px serif";
+          context.textAlign = "center";
+          context.textBaseline = "middle";
+          context.fillText("呪", 0, 0);
+          context.restore();
+        }
+
+        function update(delta, elapsed) {
+          let dx = 0;
+          let dy = 0;
+          if (keys.has("ArrowLeft") || keys.has("a")) dx -= 1;
+          if (keys.has("ArrowRight") || keys.has("d")) dx += 1;
+          if (keys.has("ArrowUp") || keys.has("w")) dy -= 1;
+          if (keys.has("ArrowDown") || keys.has("s")) dy += 1;
+          const length = Math.hypot(dx, dy) || 1;
+          slowTimer = Math.max(0, slowTimer - delta);
+          const currentSpeed = slowTimer > 0 ? player.speed * 0.42 : player.speed;
+          player.x = Math.max(player.radius, Math.min(width - player.radius, player.x + (dx / length) * currentSpeed * delta));
+          player.y = Math.max(player.radius, Math.min(height - player.radius, player.y + (dy / length) * currentSpeed * delta));
+
+          spawnTimer += delta;
+          const interval = Math.max(0.36, 0.88 - elapsed * 0.018);
+          if (spawnTimer > interval) {
+            spawnTimer = 0;
+            spawnShadow();
+          }
+
+          itemTimer += delta;
+          if (itemTimer > 3.6) {
+            itemTimer = 0;
+            spawnRecoveryItem();
+          }
+          hazardTimer += delta;
+          if (hazardTimer > 2.7) {
+            hazardTimer = 0;
+            spawnHazardItem();
+          }
+          pickupFlash = Math.max(0, pickupFlash - delta);
+          hazardFlash = Math.max(0, hazardFlash - delta);
+          for (let itemIndex = recoveryItems.length - 1; itemIndex >= 0; itemIndex -= 1) {
+            const item = recoveryItems[itemIndex];
+            if (Math.hypot(player.x - item.x, player.y - item.y) < player.radius + item.radius + 7) {
+              recoveryItems.splice(itemIndex, 1);
+              health = Math.min(maxHealth, health + 1);
+              healthLabel.textContent = String(health);
+              pickupFlash = 0.8;
+              status.textContent = `回復札を拾った。灯りが戻った（${health}/${maxHealth}）`;
+            }
+          }
+
+          for (let hazardIndex = hazardItems.length - 1; hazardIndex >= 0; hazardIndex -= 1) {
+            const hazard = hazardItems[hazardIndex];
+            if (Math.hypot(player.x - hazard.x, player.y - hazard.y) < player.radius + hazard.radius + 6) {
+              hazardItems.splice(hazardIndex, 1);
+              slowTimer = Math.max(slowTimer, 1.8);
+              hazardFlash = 0.75;
+              status.textContent = "呪い札に触れた……足が重い！";
+            }
+          }
+
+          for (let shadowIndex = shadows.length - 1; shadowIndex >= 0; shadowIndex -= 1) {
+            const shadow = shadows[shadowIndex];
+            const toPlayerX = player.x - shadow.x;
+            const toPlayerY = player.y - shadow.y;
+            const distance = Math.hypot(toPlayerX, toPlayerY) || 1;
+            shadow.x += (toPlayerX / distance) * shadow.speed * delta;
+            shadow.y += (toPlayerY / distance) * shadow.speed * delta;
+            if (distance < player.radius + shadow.radius - 3) {
+              if (health <= 0) return "caught";
+              health -= 1;
+              healthLabel.textContent = String(health);
+              shadows.splice(shadowIndex, 1);
+              status.textContent = health > 0 ? `影が灯りをかすめた……身代わりの札（残り${health}）` : "灯りが消えかけている……";
+              if (health <= 0) return "caught";
+            }
+          }
+          const nearest = shadows.reduce((minimum, shadow) => Math.min(minimum, Math.hypot(player.x - shadow.x, player.y - shadow.y)), Infinity);
+          fear = Math.max(0, Math.min(1, 1 - nearest / 170));
+          return elapsed >= duration ? "escaped" : "running";
+        }
+
+        function drawYokai(shadow) {
+          const size = shadow.radius;
+          context.save();
+          context.translate(shadow.x, shadow.y);
+          context.shadowColor = shadow.kind.color;
+          context.shadowBlur = 18 + fear * 14;
+          context.fillStyle = "rgba(5, 4, 8, 0.94)";
+          context.strokeStyle = shadow.kind.color;
+          context.lineWidth = 2;
+
+          if (shadow.kind.type === "oni") {
+            context.beginPath();
+            context.ellipse(0, 5, size * 0.9, size * 1.15, 0, 0, Math.PI * 2);
+            context.fill();
+            context.beginPath();
+            context.moveTo(-size * 0.55, -size * 0.65);
+            context.lineTo(-size * 0.95, -size * 1.55);
+            context.lineTo(-size * 0.15, -size * 1.02);
+            context.moveTo(size * 0.55, -size * 0.65);
+            context.lineTo(size * 0.95, -size * 1.55);
+            context.lineTo(size * 0.15, -size * 1.02);
+            context.fill();
+          } else if (shadow.kind.type === "kappa") {
+            context.beginPath();
+            context.arc(0, -size * 0.45, size * 0.72, 0, Math.PI * 2);
+            context.fill();
+            context.beginPath();
+            context.arc(0, -size * 0.68, size * 0.42, Math.PI, Math.PI * 2);
+            context.stroke();
+            context.beginPath();
+            context.ellipse(0, size * 0.65, size * 0.9, size * 0.75, 0, 0, Math.PI * 2);
+            context.fill();
+          } else if (shadow.kind.type === "rokurokubi") {
+            context.beginPath();
+            context.moveTo(-size * 0.2, size * 0.9);
+            context.lineTo(-size * 0.14, -size * 1.5);
+            context.lineTo(size * 0.14, -size * 1.5);
+            context.lineTo(size * 0.2, size * 0.9);
+            context.fill();
+            context.beginPath();
+            context.arc(0, -size * 1.65, size * 0.42, 0, Math.PI * 2);
+            context.fill();
+          } else if (shadow.kind.type === "jorogumo") {
+            context.beginPath();
+            context.ellipse(0, 3, size * 0.7, size * 0.9, 0, 0, Math.PI * 2);
+            context.fill();
+            for (let leg = 0; leg < 4; leg += 1) {
+              const y = -size * 0.4 + leg * size * 0.35;
+              context.beginPath();
+              context.moveTo(-size * 0.35, y);
+              context.lineTo(-size * (1.3 - leg * 0.12), y - size * 0.45);
+              context.moveTo(size * 0.35, y);
+              context.lineTo(size * (1.3 - leg * 0.12), y - size * 0.45);
+              context.stroke();
+            }
+          } else if (shadow.kind.type === "mokumokuren") {
+            context.fillRect(-size * 0.9, -size * 0.75, size * 1.8, size * 1.5);
+            context.fillStyle = shadow.kind.color;
+            for (let eye = 0; eye < 5; eye += 1) {
+              context.beginPath();
+              context.arc(-size * 0.55 + (eye % 3) * size * 0.55, -size * 0.38 + Math.floor(eye / 3) * size * 0.55, size * 0.1, 0, Math.PI * 2);
+              context.fill();
+            }
+          } else {
+            context.beginPath();
+            context.ellipse(0, 3, size * 0.8, size * 1.2, 0, 0, Math.PI * 2);
+            context.fill();
+          }
+
+          context.shadowBlur = 4 + fear * 7;
+          context.fillStyle = shadow.kind.color;
+          context.beginPath();
+          context.arc(-size * 0.27, -size * 0.35, 2.5, 0, Math.PI * 2);
+          context.arc(size * 0.27, -size * 0.35, 2.5, 0, Math.PI * 2);
+          context.fill();
+          context.restore();
+
+          context.save();
+          context.font = "12px serif";
+          context.textAlign = "center";
+          context.fillStyle = `rgba(234, 180, 125, ${0.35 + fear * 0.45})`;
+          context.fillText(shadow.kind.name, shadow.x, shadow.y - size * 1.65);
+          context.restore();
+        }
+
+        function draw(elapsed) {
+          const shake = running ? fear * 3 : 0;
+          context.save();
+          context.translate((Math.random() - 0.5) * shake, (Math.random() - 0.5) * shake);
+          const background = context.createRadialGradient(width / 2, height / 2, 20, width / 2, height / 2, width * 0.7);
+          background.addColorStop(0, "#202033");
+          background.addColorStop(1, "#050509");
+          context.fillStyle = background;
+          context.fillRect(0, 0, width, height);
+
+          context.strokeStyle = "rgba(219, 163, 108, 0.08)";
+          context.lineWidth = 1;
+          for (let x = 0; x < width; x += 36) {
+            context.beginPath();
+            context.moveTo(x, 0);
+            context.lineTo(x + 90, height);
+            context.stroke();
+          }
+
+          context.fillStyle = "rgba(168, 183, 197, 0.035)";
+          for (let mist = 0; mist < 6; mist += 1) {
+            const mistX = ((mist * 157 + elapsed * (8 + mist)) % (width + 180)) - 90;
+            const mistY = 50 + mist * 64 + Math.sin(elapsed * 0.7 + mist) * 12;
+            context.beginPath();
+            context.ellipse(mistX, mistY, 100, 18, 0, 0, Math.PI * 2);
+            context.fill();
+          }
+
+          for (const item of recoveryItems) drawRecoveryItem(item, elapsed);
+          for (const hazard of hazardItems) drawHazardItem(hazard, elapsed);
+          for (const shadow of shadows) drawYokai(shadow);
+
+          const lantern = context.createRadialGradient(player.x, player.y, 1, player.x, player.y, 62);
+          lantern.addColorStop(0, "rgba(255, 226, 160, 0.9)");
+          lantern.addColorStop(0.14, "rgba(238, 165, 83, 0.36)");
+          lantern.addColorStop(1, "rgba(238, 165, 83, 0)");
+          context.fillStyle = lantern;
+          context.beginPath();
+          context.arc(player.x, player.y, 64, 0, Math.PI * 2);
+          context.fill();
+          context.fillStyle = "#ffe0a0";
+          context.shadowColor = "#efb96e";
+          context.shadowBlur = 14;
+          context.beginPath();
+          context.arc(player.x, player.y, player.radius, 0, Math.PI * 2);
+          context.fill();
+          context.shadowBlur = 0;
+
+          if (pickupFlash > 0) {
+            context.fillStyle = `rgba(234, 180, 125, ${pickupFlash * 0.13})`;
+            context.fillRect(0, 0, width, height);
+          }
+          if (hazardFlash > 0) {
+            context.fillStyle = `rgba(86, 20, 72, ${hazardFlash * 0.2})`;
+            context.fillRect(0, 0, width, height);
+          }
+
+          if (running && fear > 0) {
+            document.getElementById("game").classList.toggle("is-danger", fear > 0.35);
+            context.fillStyle = `rgba(130, 15, 35, ${0.05 + fear * 0.2})`;
+            context.fillRect(0, 0, width, height);
+            if (fear > 0.35) status.textContent = "妖怪が近い……走って！";
+          }
+          const vignette = context.createRadialGradient(player.x, player.y, 50, player.x, player.y, width * 0.72);
+          vignette.addColorStop(0, "rgba(0, 0, 0, 0)");
+          vignette.addColorStop(1, `rgba(0, 0, 0, ${0.42 + fear * 0.25})`);
+          context.fillStyle = vignette;
+          context.fillRect(0, 0, width, height);
+          context.restore();
+        }
+
+        function finish(result) {
+          running = false;
+          document.getElementById("game").classList.remove("is-danger");
+          startButton.disabled = false;
+          startButton.textContent = result === "escaped" ? "もう一度遊ぶ" : "再び夜道へ";
+          status.textContent = result === "escaped" ? "夜明けだ。影を振り切りました。" : "護符が尽き、影に呑まれました……もう一度、灯りを持って。";
+          context.fillStyle = "rgba(4, 3, 7, 0.66)";
+          context.fillRect(0, 0, width, height);
+          context.fillStyle = result === "escaped" ? "#eab47d" : "#ba3e55";
+          context.font = "bold 32px serif";
+          context.textAlign = "center";
+          context.fillText(result === "escaped" ? "夜明け" : "見つかった", width / 2, height / 2);
+          context.font = "14px serif";
+          context.fillStyle = "#eee2d8";
+          context.fillText(result === "escaped" ? "影は霧の向こうへ消えた" : "背後に気配が残っている", width / 2, height / 2 + 30);
+        }
+
+        function frame(timestamp) {
+          if (!running) return;
+          const delta = Math.min(0.05, (timestamp - lastFrame) / 1000 || 0);
+          lastFrame = timestamp;
+          const elapsed = (timestamp - startedAt) / 1000;
+          const result = update(delta, elapsed);
+          timeLabel.textContent = Math.min(duration, elapsed).toFixed(1);
+          draw(elapsed);
+          if (result === "running") animationFrame = requestAnimationFrame(frame);
+          else finish(result);
+        }
+
+        function start() {
+          if (animationFrame) cancelAnimationFrame(animationFrame);
+          reset();
+          running = true;
+          startButton.disabled = true;
+          startButton.textContent = "逃走中…";
+          status.textContent = "影が動き出した。逃げ切って！";
+          startedAt = performance.now();
+          lastFrame = startedAt;
+          animationFrame = requestAnimationFrame(frame);
+        }
+
+        window.addEventListener("keydown", (event) => {
+          const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+          if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "w", "a", "s", "d"].includes(key)) event.preventDefault();
+          keys.add(key);
+          if (key === "Enter" && !running) start();
+        });
+        window.addEventListener("keyup", (event) => keys.delete(event.key.length === 1 ? event.key.toLowerCase() : event.key));
+        startButton.addEventListener("click", start);
+        reset();
+      })();
+    </script>
+  </body>
+</html>

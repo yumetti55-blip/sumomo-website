@@ -43,7 +43,97 @@
         margin-inline: auto;
       }
 
-      .hero { padding: 5.5rem 0 4rem; text-align: center; }
+      .hero {
+        position: relative;
+        isolation: isolate;
+        padding: 5.5rem 0 4rem;
+        text-align: center;
+      }
+
+      /* 左上の飾りは、かわいい絵文字ではなく夜道に立つ影をイメージ。 */
+      .hero-figure {
+        position: absolute;
+        z-index: 0;
+        top: 0.8rem;
+        left: clamp(0.45rem, 3vw, 2rem);
+        width: 6.8rem;
+        height: 9.2rem;
+        opacity: 0.86;
+        pointer-events: none;
+        transform: rotate(-5deg);
+        filter: drop-shadow(0 0 0.8rem rgb(186 62 85 / 44%));
+      }
+
+      .hero > :not(.hero-figure) { position: relative; z-index: 1; }
+
+      .hero-figure::before {
+        position: absolute;
+        top: 0.7rem;
+        left: 1.55rem;
+        width: 3.85rem;
+        height: 4.1rem;
+        content: "";
+        background: radial-gradient(ellipse at 54% 34%, #24151d 0 34%, #0a080d 72%);
+        border: 1px solid rgb(219 163 108 / 36%);
+        border-radius: 48% 52% 42% 44%;
+        box-shadow: inset -0.55rem -0.25rem 0 rgb(0 0 0 / 38%), 0 0 1.3rem rgb(0 0 0 / 75%);
+        clip-path: polygon(14% 16%, 29% 0, 42% 15%, 59% 6%, 74% 0, 88% 20%, 100% 52%, 82% 100%, 59% 91%, 43% 100%, 17% 88%, 0 54%);
+      }
+
+      .hero-figure::after {
+        position: absolute;
+        right: 0.4rem;
+        bottom: 0;
+        left: 0.55rem;
+        height: 5.7rem;
+        content: "";
+        background: linear-gradient(100deg, #08070b 0 44%, #1f121b 57%, #07060a 78%);
+        border: 1px solid rgb(219 163 108 / 20%);
+        clip-path: polygon(36% 0, 67% 0, 82% 24%, 100% 100%, 0 100%, 20% 28%);
+        box-shadow: inset 0 0 1.8rem rgb(186 62 85 / 15%);
+      }
+
+      .hero-figure .figure-eyes {
+        position: absolute;
+        z-index: 1;
+        top: 2.25rem;
+        left: 2.05rem;
+        width: 0.75rem;
+        height: 0.24rem;
+        content: "";
+        background: #e06462;
+        border-radius: 80% 20%;
+        box-shadow: 1.1rem 0.18rem 0 #e06462, 0 0 0.55rem #e06462, 1.1rem 0.18rem 0.55rem #e06462;
+        transform: rotate(-14deg);
+      }
+
+      .hero-figure .figure-mouth {
+        position: absolute;
+        z-index: 1;
+        top: 3.2rem;
+        left: 2.18rem;
+        width: 2rem;
+        height: 0.68rem;
+        content: "";
+        border-bottom: 2px solid #ba3e55;
+        border-radius: 50%;
+        box-shadow: 0 0.08rem 0 rgb(234 180 125 / 30%);
+        transform: rotate(4deg);
+      }
+
+      .hero-figure .figure-mouth::before,
+      .hero-figure .figure-mouth::after {
+        position: absolute;
+        bottom: -0.12rem;
+        width: 0.13rem;
+        height: 0.38rem;
+        content: "";
+        background: #eab47d;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+      }
+
+      .hero-figure .figure-mouth::before { left: 0.35rem; }
+      .hero-figure .figure-mouth::after { right: 0.35rem; }
 
       .eyebrow, .section-kicker {
         margin: 0 0 0.65rem;
@@ -176,6 +266,12 @@
 
       .icon { font-size: 2.45rem; line-height: 1; filter: drop-shadow(0 0 0.5rem rgb(186 62 85 / 25%)); }
 
+      .icon {
+        opacity: 0.72;
+        filter: grayscale(0.85) contrast(1.35) brightness(0.7) drop-shadow(0 0 0.55rem rgb(186 62 85 / 45%));
+        transform: rotate(-4deg);
+      }
+
       .tag {
         padding: 0.2rem 0.55rem;
         color: #dba36c;
@@ -249,6 +345,54 @@
       .back-link:focus-visible { text-decoration: underline; }
 
       .perspective-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+      .trio-section { padding-top: 0; }
+
+      .trio-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .trio-card {
+        position: relative;
+        min-height: 14rem;
+        padding: 1.35rem;
+        overflow: hidden;
+        background: linear-gradient(150deg, rgb(63 15 28 / 78%), rgb(10 8 14 / 88%));
+        border: 1px solid rgb(186 62 85 / 56%);
+        border-radius: 0.45rem;
+        box-shadow: inset 0 0 2rem rgb(186 62 85 / 10%), 0 1rem 2rem rgb(0 0 0 / 28%);
+      }
+
+      .trio-card::before {
+        position: absolute;
+        top: -2.2rem;
+        right: -1.5rem;
+        content: attr(data-number);
+        color: rgb(234 180 125 / 10%);
+        font-size: 8rem;
+        line-height: 1;
+      }
+
+      .trio-card .trio-kicker {
+        position: relative;
+        margin: 0 0 0.55rem;
+        color: #dba36c;
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+      }
+
+      .trio-card h3 { position: relative; margin: 0 0 0.65rem; font-size: 1.35rem; }
+      .trio-card h3 a { color: #f0c384; text-decoration: none; }
+      .trio-card h3 a:hover, .trio-card h3 a:focus-visible { text-decoration: underline; }
+      .trio-card p:last-child { position: relative; margin: 0; color: #d7cdd5; font-size: 0.9rem; }
+
+      .trio-note {
+        margin: 1rem 0 0;
+        color: #a99a9d;
+        font-size: 0.8rem;
+      }
 
       .perspective-card h3, .boundary-card h3 { margin-top: 0; }
 
@@ -377,20 +521,25 @@
         .hero { padding-top: 4rem; }
         .boundary-grid { grid-template-columns: repeat(2, 1fr); }
         .catalog-tools { grid-template-columns: 1fr; }
+        .hero-figure { opacity: 0.58; transform: scale(0.8) rotate(-5deg); transform-origin: top left; }
+        .trio-grid { grid-template-columns: 1fr; }
       }
 
       @media (max-width: 440px) {
+        .hero-figure { opacity: 0.38; transform: scale(0.62) rotate(-5deg); }
         .boundary-grid { grid-template-columns: 1fr; }
       }
     </style>
   </head>
   <body>
     <header class="hero">
+      <div class="hero-figure" aria-hidden="true"><span class="figure-eyes"></span><span class="figure-mouth"></span></div>
       <p class="eyebrow">FOLKLORE OF JAPAN</p>
       <h1>日本の妖怪</h1>
       <p class="lead">古くから日本各地で語り継がれてきた、不思議で少しこわい存在たち。妖怪は、自然への畏れ、共同体の規範、死者へのまなざしを映す「語り」のかたちでもあります。</p>
       <nav aria-label="ページ内ナビゲーション">
         <a href="#catalog">妖怪図鑑</a>
+        <a href="#three-great">三大妖怪</a>
         <a href="yokai.html">詳しい解説</a>
         <a href="#perspectives">3つの見方</a>
         <a href="#boundaries">境界と地域</a>
@@ -449,6 +598,9 @@
           <article class="yokai-card" data-yokai-card data-name="狐" data-kana="きつね" data-category="動物・変化"><div class="card-top"><span class="icon" aria-hidden="true">🦊</span><span class="tag">動物霊</span></div><h3><a href="yokai/kitsune.html">狐（きつね）</a></h3><p>人を化かす話や狐火で知られる動物霊。</p></article>
           <article class="yokai-card" data-yokai-card data-name="化け狸" data-kana="ばけだぬき" data-category="動物・変化"><div class="card-top"><span class="icon" aria-hidden="true">🦝</span><span class="tag">里山</span></div><h3><a href="yokai/tanuki.html">化け狸（ばけだぬき）</a></h3><p>人や物に化けていたずらをする狸。</p></article>
           <article class="yokai-card" data-yokai-card data-name="鬼" data-kana="おに" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">👹</span><span class="tag">異界・災厄</span></div><h3><a href="yokai/oni.html">鬼（おに）</a></h3><p>災厄や異界の脅威を体現する存在。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="玉藻前" data-kana="たまものまえ" data-category="動物・変化"><div class="card-top"><span class="icon" aria-hidden="true">🦊</span><span class="tag">九尾の狐</span></div><h3><a href="yokai/tamamo-no-mae.html">玉藻前（たまものまえ）</a></h3><p>宮中に入り込んだ白面金毛九尾の狐。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="酒呑童子" data-kana="しゅてんどうじ" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">🍶</span><span class="tag">大江山</span></div><h3><a href="yokai/shutendoji.html">酒呑童子（しゅてんどうじ）</a></h3><p>都の外に鬼の王国を築いた首領。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="大嶽丸" data-kana="おおたけまる" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">⛰️</span><span class="tag">鈴鹿山</span></div><h3><a href="yokai/otakemaru.html">大嶽丸（おおたけまる）</a></h3><p>鈴鹿山に棲むと語られた鬼神・魔王。</p></article>
           <article class="yokai-card" data-yokai-card data-name="座敷童子" data-kana="ざしきわらし" data-category="家・道具"><div class="card-top"><span class="icon" aria-hidden="true">🏠</span><span class="tag">家の守り</span></div><h3><a href="yokai/zashiki-warashi.html">座敷童子（ざしきわらし）</a></h3><p>家の繁栄を見守る子どもの姿の精霊。</p></article>
           <article class="yokai-card" data-yokai-card data-name="海坊主" data-kana="うみぼうず" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">🌊</span><span class="tag">海の怪異</span></div><h3><a href="yokai/umibozu.html">海坊主（うみぼうず）</a></h3><p>海上に突然現れて船を脅かす怪異。</p></article>
           <article class="yokai-card" data-yokai-card data-name="産女・姑獲鳥" data-kana="うぶめこかくちょう" data-category="死者・宗教"><div class="card-top"><span class="icon" aria-hidden="true">🕯️</span><span class="tag">母・死者</span></div><h3><a href="yokai/ubume.html">産女・姑獲鳥</a></h3><p>母と鳥の姿が重なる、死者をめぐる怪異。</p></article>
@@ -473,6 +625,20 @@
           <article class="yokai-card" data-yokai-card data-name="川赤子" data-kana="かわあかご" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">👶</span><span class="tag">水辺・声</span></div><h3><a href="yokai/kawa-akago.html">川赤子（かわあかご）</a></h3><p>川辺から聞こえる赤子の泣き声。</p></article>
           <article class="yokai-card" data-yokai-card data-name="火間虫入道" data-kana="ひまむしにゅうどう" data-category="書物・記憶"><div class="card-top"><span class="icon" aria-hidden="true">🕯️</span><span class="tag">火・夜・書物</span></div><h3><a href="yokai/himamushi-nyudo.html">火間虫入道（ひまむしにゅうどう）</a></h3><p>灯りのそばを飛び回る火に縁のある怪異。</p></article>
         </div>
+      </section>
+
+      <section id="three-great" class="trio-section" aria-labelledby="three-great-title">
+        <div class="section-heading">
+          <p class="section-kicker">THREE GREAT YŌKAI</p>
+          <h2 id="three-great-title">日本三大妖怪という括り</h2>
+          <p>玉藻前、酒呑童子、大嶽丸は、王権や都の外側から脅威をもたらす物語の主人公たちです。三者を「日本三大妖怪」と呼ぶのは近現代に広まった通称で、古典に固定された公式の三大分類ではありません。</p>
+        </div>
+        <div class="trio-grid">
+          <article class="trio-card" data-number="壱"><p class="trio-kicker">狐・宮中・殺生石</p><h3><a href="yokai/tamamo-no-mae.html">玉藻前</a></h3><p>美女に化けた九尾の狐の物語。陰陽師に正体を見破られ、那須野の殺生石へ変じるまで、異国の説話と日本の能・伝説が重なります。</p></article>
+          <article class="trio-card" data-number="弐"><p class="trio-kicker">鬼・大江山・酒</p><h3><a href="yokai/shutendoji.html">酒呑童子</a></h3><p>大江山の鬼の首領。源頼光一行の討伐譚は、都の秩序と山の異界を対置しながら、絵巻・謡曲・芸能へ姿を変えました。</p></article>
+          <article class="trio-card" data-number="参"><p class="trio-kicker">鬼神・鈴鹿山・田村丸</p><h3><a href="yokai/otakemaru.html">大嶽丸</a></h3><p>鈴鹿山を舞台に、坂上田村麻呂（物語の田村丸）と対決する鬼神。地域ごとの伝説が、征討と境界の記憶を伝えます。</p></article>
+        </div>
+        <p class="trio-note">※伝承の筋や呼び名は作品・地域・時代によって異なります。個別ページでは、その揺れも含めて紹介します。</p>
       </section>
 
       <section id="perspectives" aria-labelledby="perspectives-title">

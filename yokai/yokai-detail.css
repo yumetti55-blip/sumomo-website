@@ -55,7 +55,8 @@ a { color: inherit; }
   color: #ba3e55;
   font-size: 3.3rem;
   line-height: 1;
-  filter: drop-shadow(0 0 0.8rem rgb(186 62 85 / 28%));
+  filter: grayscale(0.85) contrast(1.35) brightness(0.68) drop-shadow(0 0 0.8rem rgb(186 62 85 / 48%));
+  transform: rotate(-4deg);
 }
 
 .category {

@@ -1094,7 +1094,7 @@
         <div class="game-intro">
           <p class="section-kicker">NIGHT PARADE</p>
           <h2 id="game-title">百鬼夜行：夜道の影</h2>
-          <p>暗い夜道に現れる妖怪から、20秒間逃げ切ろう。河童、鬼、ろくろ首、絡新婦、ぬらりひょん、目目連が灯りを追ってきます。矢印キーまたはWASDで灯りを動かし、妖怪に触れないようにしてください。妖怪に触れても灯りの体力が1減るだけ。画面に現れる回復札を拾えば、体力が1戻ります。</p>
+          <p>暗い夜道に現れる妖怪から、20秒間逃げ切ろう。河童、鬼、ろくろ首、絡新婦、ぬらりひょん、目目連が灯りを追ってきます。矢印キーまたはWASDで灯りを動かしてください。妖怪に触れても灯りの体力が1減るだけですが、黒い呪い札に触れると一時的に足が遅くなります。赤い回復札を拾えば、体力が1戻ります。</p>
         </div>
         <div class="game-board">
           <canvas id="yokai-game" width="720" height="405" aria-label="妖怪の影から逃げるゲーム"></canvas>
@@ -1103,7 +1103,7 @@
             <p id="game-status" class="game-status" aria-live="polite">灯りを手に、夜道へ進みますか？</p>
             <p class="game-health">灯りの体力：<strong id="game-health">3</strong> / 3</p>
             <p class="game-time">生存時間：<strong id="game-time">0.0</strong> / 20.0 秒</p>
-            <p class="game-help">回復札（赤い御守り）を拾うと体力が1回復します。最大3。</p>
+            <p class="game-help">回復札（赤い御守り）：体力+1。呪い札（黒い札）：約1.8秒、移動速度ダウン。</p>
           </div>
         </div>
       </section>
@@ -1304,6 +1304,7 @@
         const player = { x: width / 2, y: height / 2, radius: 9, speed: 210 };
         const shadows = [];
         const recoveryItems = [];
+        const hazardItems = [];
         const maxHealth = 3;
         let running = false;
         let startedAt = 0;
@@ -1313,7 +1314,10 @@
         let fear = 0;
         let health = maxHealth;
         let itemTimer = 0;
+        let hazardTimer = 0;
+        let slowTimer = 0;
         let pickupFlash = 0;
+        let hazardFlash = 0;
 
         const kinds = [
           { name: "河童", color: "#5f9a88", type: "kappa" },
@@ -1329,10 +1333,14 @@
           player.y = height / 2;
           shadows.length = 0;
           recoveryItems.length = 0;
+          hazardItems.length = 0;
           spawnTimer = 0;
           itemTimer = 0;
+          hazardTimer = 0;
+          slowTimer = 0;
           health = maxHealth;
           pickupFlash = 0;
+          hazardFlash = 0;
           fear = 0;
           document.getElementById("game").classList.remove("is-danger");
           timeLabel.textContent = "0.0";
@@ -1348,7 +1356,7 @@
               : side === 2 ? { x: Math.random() * width, y: height + margin }
                 : { x: -margin, y: Math.random() * height };
           const kind = kinds[Math.floor(Math.random() * kinds.length)];
-          shadows.push({ ...position, radius: 13 + Math.random() * 6, speed: 24 + Math.random() * 20, kind });
+          shadows.push({ ...position, radius: 13 + Math.random() * 6, speed: 34 + Math.random() * 28, kind });
         }
 
         function spawnRecoveryItem() {
@@ -1360,6 +1368,18 @@
             radius: 9,
             phase: Math.random() * Math.PI * 2,
           });
+        }
+
+        function spawnHazardItem() {
+          if (hazardItems.length >= 4) return;
+          const margin = 30;
+          let x = margin + Math.random() * (width - margin * 2);
+          let y = margin + Math.random() * (height - margin * 2);
+          if (Math.hypot(player.x - x, player.y - y) < 90) {
+            x = player.x < width / 2 ? width - margin - 40 : margin + 40;
+            y = player.y < height / 2 ? height - margin - 40 : margin + 40;
+          }
+          hazardItems.push({ x, y, radius: 10, phase: Math.random() * Math.PI * 2 });
         }
 
         function drawRecoveryItem(item, elapsed) {
@@ -1381,6 +1401,26 @@
           context.restore();
         }
 
+        function drawHazardItem(item, elapsed) {
+          const pulse = Math.sin(elapsed * 5 + item.phase) * 1.6;
+          context.save();
+          context.translate(item.x, item.y + pulse);
+          context.rotate(0.16);
+          context.shadowColor = "#7e315f";
+          context.shadowBlur = 14;
+          context.fillStyle = "#180e1d";
+          context.fillRect(-9, -11, 18, 22);
+          context.strokeStyle = "#9d6487";
+          context.lineWidth = 1.5;
+          context.strokeRect(-9, -11, 18, 22);
+          context.fillStyle = "#d06472";
+          context.font = "bold 11px serif";
+          context.textAlign = "center";
+          context.textBaseline = "middle";
+          context.fillText("呪", 0, 0);
+          context.restore();
+        }
+
         function update(delta, elapsed) {
           let dx = 0;
           let dy = 0;
@@ -1389,11 +1429,13 @@
           if (keys.has("ArrowUp") || keys.has("w")) dy -= 1;
           if (keys.has("ArrowDown") || keys.has("s")) dy += 1;
           const length = Math.hypot(dx, dy) || 1;
-          player.x = Math.max(player.radius, Math.min(width - player.radius, player.x + (dx / length) * player.speed * delta));
-          player.y = Math.max(player.radius, Math.min(height - player.radius, player.y + (dy / length) * player.speed * delta));
+          slowTimer = Math.max(0, slowTimer - delta);
+          const currentSpeed = slowTimer > 0 ? player.speed * 0.42 : player.speed;
+          player.x = Math.max(player.radius, Math.min(width - player.radius, player.x + (dx / length) * currentSpeed * delta));
+          player.y = Math.max(player.radius, Math.min(height - player.radius, player.y + (dy / length) * currentSpeed * delta));
 
           spawnTimer += delta;
-          const interval = Math.max(0.48, 1.15 - elapsed * 0.02);
+          const interval = Math.max(0.36, 0.88 - elapsed * 0.018);
           if (spawnTimer > interval) {
             spawnTimer = 0;
             spawnShadow();
@@ -1404,7 +1446,13 @@
             itemTimer = 0;
             spawnRecoveryItem();
           }
+          hazardTimer += delta;
+          if (hazardTimer > 2.7) {
+            hazardTimer = 0;
+            spawnHazardItem();
+          }
           pickupFlash = Math.max(0, pickupFlash - delta);
+          hazardFlash = Math.max(0, hazardFlash - delta);
           for (let itemIndex = recoveryItems.length - 1; itemIndex >= 0; itemIndex -= 1) {
             const item = recoveryItems[itemIndex];
             if (Math.hypot(player.x - item.x, player.y - item.y) < player.radius + item.radius + 7) {
@@ -1413,6 +1461,16 @@
               healthLabel.textContent = String(health);
               pickupFlash = 0.8;
               status.textContent = `回復札を拾った。灯りが戻った（${health}/${maxHealth}）`;
+            }
+          }
+
+          for (let hazardIndex = hazardItems.length - 1; hazardIndex >= 0; hazardIndex -= 1) {
+            const hazard = hazardItems[hazardIndex];
+            if (Math.hypot(player.x - hazard.x, player.y - hazard.y) < player.radius + hazard.radius + 6) {
+              hazardItems.splice(hazardIndex, 1);
+              slowTimer = Math.max(slowTimer, 1.8);
+              hazardFlash = 0.75;
+              status.textContent = "呪い札に触れた……足が重い！";
             }
           }
 
@@ -1551,6 +1609,7 @@
           }
 
           for (const item of recoveryItems) drawRecoveryItem(item, elapsed);
+          for (const hazard of hazardItems) drawHazardItem(hazard, elapsed);
           for (const shadow of shadows) drawYokai(shadow);
 
           const lantern = context.createRadialGradient(player.x, player.y, 1, player.x, player.y, 62);
@@ -1571,6 +1630,10 @@
 
           if (pickupFlash > 0) {
             context.fillStyle = `rgba(234, 180, 125, ${pickupFlash * 0.13})`;
+            context.fillRect(0, 0, width, height);
+          }
+          if (hazardFlash > 0) {
+            context.fillStyle = `rgba(86, 20, 72, ${hazardFlash * 0.2})`;
             context.fillRect(0, 0, width, height);
           }
 

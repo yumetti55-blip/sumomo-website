@@ -102,6 +102,51 @@
 
       .section-heading > p:last-child { margin: 0; color: #d7cdd5; }
 
+      .catalog-tools {
+        display: grid;
+        grid-template-columns: minmax(220px, 2fr) repeat(2, minmax(150px, 1fr));
+        gap: 0.8rem;
+        margin: 0 0 1rem;
+        padding: 1rem;
+        background: rgb(0 0 0 / 22%);
+        border: 1px solid rgb(186 62 85 / 35%);
+        border-radius: 0.35rem;
+      }
+
+      .catalog-tools label {
+        display: grid;
+        gap: 0.3rem;
+        color: #dba36c;
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+
+      .catalog-tools input,
+      .catalog-tools select {
+        width: 100%;
+        min-height: 2.4rem;
+        padding: 0.45rem 0.6rem;
+        color: #eee2d8;
+        background: #151018;
+        border: 1px solid rgb(219 163 108 / 35%);
+        border-radius: 0.2rem;
+        font: inherit;
+        font-size: 0.86rem;
+      }
+
+      .catalog-tools input:focus,
+      .catalog-tools select:focus { outline: 2px solid #ba3e55; outline-offset: 1px; }
+
+      .search-result {
+        min-height: 1.5em;
+        margin: 0 0 1rem;
+        color: #a99a9d;
+        font-size: 0.82rem;
+      }
+
+      .yokai-card[hidden] { display: none; }
+
       .yokai-grid, .perspective-grid, .boundary-grid { display: grid; gap: 1rem; }
 
       .yokai-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
@@ -312,6 +357,15 @@
 
       .game-time strong { color: #f3e5d6; font-variant-numeric: tabular-nums; }
 
+      .game-section.is-danger {
+        animation: danger-pulse 900ms ease-in-out infinite alternate;
+      }
+
+      @keyframes danger-pulse {
+        from { box-shadow: 0 1.5rem 3rem rgb(0 0 0 / 35%), inset 0 0 3rem rgb(186 62 85 / 8%); }
+        to { box-shadow: 0 1.5rem 3rem rgb(0 0 0 / 35%), inset 0 0 4rem rgb(186 62 85 / 24%); }
+      }
+
       footer {
         padding: 1rem 0 2.5rem;
         color: #9f93a2;
@@ -322,6 +376,7 @@
       @media (max-width: 720px) {
         .hero { padding-top: 4rem; }
         .boundary-grid { grid-template-columns: repeat(2, 1fr); }
+        .catalog-tools { grid-template-columns: 1fr; }
       }
 
       @media (max-width: 440px) {
@@ -352,27 +407,71 @@
           <p>ここで紹介する姿や性格は、時代・地域・語り手によって変化します。名前をクリックすると、別ページで伝承の背景と民俗学・宗教史からの読み解きを詳しく読めます。</p>
         </div>
 
+        <div class="catalog-tools" aria-label="妖怪の検索と絞り込み">
+          <label>キーワード
+            <input id="yokai-search" type="search" placeholder="名前・特徴で検索" autocomplete="off" />
+          </label>
+          <label>分類
+            <select id="yokai-category">
+              <option value="all">すべての分類</option>
+              <option value="自然・水">自然・水</option>
+              <option value="山・信仰">山・信仰</option>
+              <option value="動物・変化">動物・変化</option>
+              <option value="鬼・怪異">鬼・怪異</option>
+              <option value="家・道具">家・道具</option>
+              <option value="死者・宗教">死者・宗教</option>
+              <option value="書物・記憶">書物・記憶</option>
+              <option value="予言・異界">予言・異界</option>
+            </select>
+          </label>
+          <label>五十音
+            <select id="yokai-kana">
+              <option value="all">すべての行</option>
+              <option value="あ">あ行</option>
+              <option value="か">か行</option>
+              <option value="さ">さ行</option>
+              <option value="た">た行</option>
+              <option value="な">な行</option>
+              <option value="は">は行</option>
+              <option value="ま">ま行</option>
+              <option value="や">や行</option>
+              <option value="ら">ら行</option>
+              <option value="わ">わ行</option>
+            </select>
+          </label>
+        </div>
+        <p id="search-result" class="search-result" role="status" aria-live="polite"></p>
+
         <div class="yokai-grid">
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🥒</span><span class="tag">水辺</span></div><h3><a href="yokai/kappa.html">河童（かっぱ）</a></h3><p>川や沼に住むとされる水の妖怪。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">👺</span><span class="tag">山岳信仰</span></div><h3><a href="yokai/tengu.html">天狗（てんぐ）</a></h3><p>山中に現れる異形の存在。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">❄️</span><span class="tag">雪国</span></div><h3><a href="yokai/yuki-onna.html">雪女（ゆきおんな）</a></h3><p>雪の夜に現れる白い姿の女性。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🦊</span><span class="tag">動物霊</span></div><h3><a href="yokai/kitsune.html">狐（きつね）</a></h3><p>人を化かす話や狐火で知られる動物霊。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🦝</span><span class="tag">里山</span></div><h3><a href="yokai/tanuki.html">化け狸（ばけだぬき）</a></h3><p>人や物に化けていたずらをする狸。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">👹</span><span class="tag">異界・災厄</span></div><h3><a href="yokai/oni.html">鬼（おに）</a></h3><p>災厄や異界の脅威を体現する存在。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🏠</span><span class="tag">家の守り</span></div><h3><a href="yokai/zashiki-warashi.html">座敷童子（ざしきわらし）</a></h3><p>家の繁栄を見守る子どもの姿の精霊。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🌊</span><span class="tag">海の怪異</span></div><h3><a href="yokai/umibozu.html">海坊主（うみぼうず）</a></h3><p>海上に突然現れて船を脅かす怪異。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🕯️</span><span class="tag">母・死者</span></div><h3><a href="yokai/ubume.html">産女・姑獲鳥</a></h3><p>母と鳥の姿が重なる、死者をめぐる怪異。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🪵</span><span class="tag">道具の分類</span></div><h3><a href="yokai/tsukumogami.html">付喪神（つくもがみ）</a></h3><p>道具に宿る霊性を、用途別に読み解く。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🌙</span><span class="tag">宮廷説話</span></div><h3><a href="yokai/nue.html">鵺（ぬえ）</a></h3><p>正体のわからない声から生まれた合成怪物。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🔮</span><span class="tag">予言獣</span></div><h3><a href="yokai/amabie.html">アマビエ</a></h3><p>疫病よけの図像として知られる予言獣。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🌫️</span><span class="tag">精霊</span></div><h3><a href="yokai/mouryou.html">魍魎（もうりょう）</a></h3><p>水や山の精霊をまとめて呼ぶ古い語彙。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🐀</span><span class="tag">寺院・怨念</span></div><h3><a href="yokai/tessou.html">鉄鼠（てっそ）</a></h3><p>寺院や僧侶をめぐる巨大な鼠の怪異。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🕷️</span><span class="tag">変化・誘惑</span></div><h3><a href="yokai/jorogumo.html">絡新婦（じょろうぐも）</a></h3><p>蜘蛛が女性に化けて人を惑わせる怪異。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🪦</span><span class="tag">仏像・異形</span></div><h3><a href="yokai/nuribotoke.html">塗仏（ぬりぼとけ）</a></h3><p>祈りの像と怪異の像の境界に立つ姿。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🦅</span><span class="tag">死体・変化</span></div><h3><a href="yokai/onmoraki.html">陰摩羅鬼（おんもらき）</a></h3><p>弔われない身体から生じる鳥の怪異。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">👁️</span><span class="tag">邪気・境界</span></div><h3><a href="yokai/jakki.html">邪魅（じゃみ）</a></h3><p>病や災いをもたらす名のない気配。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">📜</span><span class="tag">書物・記憶</span></div><h3><a href="yokai/fukurumayoubi.html">文車妖妃（ふぐるまようび）</a></h3><p>読まれなかった文の情念を運ぶ怪異。</p></article>
-          <article class="yokai-card"><div class="card-top"><span class="icon" aria-hidden="true">🔥</span><span class="tag">葬送・地獄</span></div><h3><a href="yokai/kasha.html">火車（かしゃ）</a></h3><p>葬列の向こうから現れる燃える車輪。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="河童" data-kana="かっぱ" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">🥒</span><span class="tag">水辺</span></div><h3><a href="yokai/kappa.html">河童（かっぱ）</a></h3><p>川や沼に住むとされる水の妖怪。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="天狗" data-kana="てんぐ" data-category="山・信仰"><div class="card-top"><span class="icon" aria-hidden="true">👺</span><span class="tag">山岳信仰</span></div><h3><a href="yokai/tengu.html">天狗（てんぐ）</a></h3><p>山中に現れる異形の存在。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="雪女" data-kana="ゆきおんな" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">❄️</span><span class="tag">雪国</span></div><h3><a href="yokai/yuki-onna.html">雪女（ゆきおんな）</a></h3><p>雪の夜に現れる白い姿の女性。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="狐" data-kana="きつね" data-category="動物・変化"><div class="card-top"><span class="icon" aria-hidden="true">🦊</span><span class="tag">動物霊</span></div><h3><a href="yokai/kitsune.html">狐（きつね）</a></h3><p>人を化かす話や狐火で知られる動物霊。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="化け狸" data-kana="ばけだぬき" data-category="動物・変化"><div class="card-top"><span class="icon" aria-hidden="true">🦝</span><span class="tag">里山</span></div><h3><a href="yokai/tanuki.html">化け狸（ばけだぬき）</a></h3><p>人や物に化けていたずらをする狸。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="鬼" data-kana="おに" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">👹</span><span class="tag">異界・災厄</span></div><h3><a href="yokai/oni.html">鬼（おに）</a></h3><p>災厄や異界の脅威を体現する存在。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="座敷童子" data-kana="ざしきわらし" data-category="家・道具"><div class="card-top"><span class="icon" aria-hidden="true">🏠</span><span class="tag">家の守り</span></div><h3><a href="yokai/zashiki-warashi.html">座敷童子（ざしきわらし）</a></h3><p>家の繁栄を見守る子どもの姿の精霊。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="海坊主" data-kana="うみぼうず" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">🌊</span><span class="tag">海の怪異</span></div><h3><a href="yokai/umibozu.html">海坊主（うみぼうず）</a></h3><p>海上に突然現れて船を脅かす怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="産女・姑獲鳥" data-kana="うぶめこかくちょう" data-category="死者・宗教"><div class="card-top"><span class="icon" aria-hidden="true">🕯️</span><span class="tag">母・死者</span></div><h3><a href="yokai/ubume.html">産女・姑獲鳥</a></h3><p>母と鳥の姿が重なる、死者をめぐる怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="付喪神" data-kana="つくもがみ" data-category="家・道具"><div class="card-top"><span class="icon" aria-hidden="true">🪵</span><span class="tag">道具の分類</span></div><h3><a href="yokai/tsukumogami.html">付喪神（つくもがみ）</a></h3><p>道具に宿る霊性を、用途別に読み解く。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="鵺" data-kana="ぬえ" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">🌙</span><span class="tag">宮廷説話</span></div><h3><a href="yokai/nue.html">鵺（ぬえ）</a></h3><p>正体のわからない声から生まれた合成怪物。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="アマビエ" data-kana="あまびえ" data-category="予言・異界"><div class="card-top"><span class="icon" aria-hidden="true">🔮</span><span class="tag">予言獣</span></div><h3><a href="yokai/amabie.html">アマビエ</a></h3><p>疫病よけの図像として知られる予言獣。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="魍魎" data-kana="もうりょう" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">🌫️</span><span class="tag">精霊</span></div><h3><a href="yokai/mouryou.html">魍魎（もうりょう）</a></h3><p>水や山の精霊をまとめて呼ぶ古い語彙。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="鉄鼠" data-kana="てっそ" data-category="死者・宗教"><div class="card-top"><span class="icon" aria-hidden="true">🐀</span><span class="tag">寺院・怨念</span></div><h3><a href="yokai/tessou.html">鉄鼠（てっそ）</a></h3><p>寺院や僧侶をめぐる巨大な鼠の怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="絡新婦" data-kana="じょろうぐも" data-category="動物・変化"><div class="card-top"><span class="icon" aria-hidden="true">🕷️</span><span class="tag">変化・誘惑</span></div><h3><a href="yokai/jorogumo.html">絡新婦（じょろうぐも）</a></h3><p>蜘蛛が女性に化けて人を惑わせる怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="塗仏" data-kana="ぬりぼとけ" data-category="死者・宗教"><div class="card-top"><span class="icon" aria-hidden="true">🪦</span><span class="tag">仏像・異形</span></div><h3><a href="yokai/nuribotoke.html">塗仏（ぬりぼとけ）</a></h3><p>祈りの像と怪異の像の境界に立つ姿。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="陰摩羅鬼" data-kana="おんもらき" data-category="死者・宗教"><div class="card-top"><span class="icon" aria-hidden="true">🦅</span><span class="tag">死体・変化</span></div><h3><a href="yokai/onmoraki.html">陰摩羅鬼（おんもらき）</a></h3><p>弔われない身体から生じる鳥の怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="邪魅" data-kana="じゃみ" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">👁️</span><span class="tag">邪気・境界</span></div><h3><a href="yokai/jakki.html">邪魅（じゃみ）</a></h3><p>病や災いをもたらす名のない気配。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="文車妖妃" data-kana="ふぐるまようび" data-category="書物・記憶"><div class="card-top"><span class="icon" aria-hidden="true">📜</span><span class="tag">書物・記憶</span></div><h3><a href="yokai/fukurumayoubi.html">文車妖妃（ふぐるまようび）</a></h3><p>読まれなかった文の情念を運ぶ怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="火車" data-kana="かしゃ" data-category="死者・宗教"><div class="card-top"><span class="icon" aria-hidden="true">🔥</span><span class="tag">葬送・地獄</span></div><h3><a href="yokai/kasha.html">火車（かしゃ）</a></h3><p>葬列の向こうから現れる燃える車輪。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="ぬらりひょん" data-kana="ぬらりひょん" data-category="家・道具"><div class="card-top"><span class="icon" aria-hidden="true">🎩</span><span class="tag">家・都市</span></div><h3><a href="yokai/nurarihyon.html">ぬらりひょん</a></h3><p>いつの間にか家へ上がり込む老人の怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="見越入道" data-kana="みこしにゅうどう" data-category="山・信仰"><div class="card-top"><span class="icon" aria-hidden="true">🧎</span><span class="tag">道・変化</span></div><h3><a href="yokai/mikoshi-nyudo.html">見越入道（みこしにゅうどう）</a></h3><p>見上げるほど大きくなり夜道をふさぐ僧形。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="目目連" data-kana="もくもくれん" data-category="家・道具"><div class="card-top"><span class="icon" aria-hidden="true">👁️</span><span class="tag">建物・視線</span></div><h3><a href="yokai/mokumokuren.html">目目連（もくもくれん）</a></h3><p>破れた障子に浮かぶ無数のまなざし。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="ろくろ首" data-kana="ろくろくび" data-category="動物・変化"><div class="card-top"><span class="icon" aria-hidden="true">🫥</span><span class="tag">身体・変身</span></div><h3><a href="yokai/rokurokubi.html">ろくろ首（ろくろくび）</a></h3><p>眠りのあいだ首だけが夜の闇へ伸びる怪異。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="からかさ小僧" data-kana="からかさこぞう" data-category="家・道具"><div class="card-top"><span class="icon" aria-hidden="true">☂️</span><span class="tag">付喪神</span></div><h3><a href="yokai/karakasa.html">からかさ小僧</a></h3><p>片目と一本足で古い傘が跳ね回る。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="小豆洗い" data-kana="あずきあらい" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">🥣</span><span class="tag">音・水辺</span></div><h3><a href="yokai/azuki-arai.html">小豆洗い（あずきあらい）</a></h3><p>誰もいない川辺で小豆を洗う音。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="べとべとさん" data-kana="べとべとさん" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">👣</span><span class="tag">音・夜道</span></div><h3><a href="yokai/betobeto.html">べとべとさん</a></h3><p>背後から足音だけがついてくる夜道の気配。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="川赤子" data-kana="かわあかご" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">👶</span><span class="tag">水辺・声</span></div><h3><a href="yokai/kawa-akago.html">川赤子（かわあかご）</a></h3><p>川辺から聞こえる赤子の泣き声。</p></article>
+          <article class="yokai-card" data-yokai-card data-name="火間虫入道" data-kana="ひまむしにゅうどう" data-category="書物・記憶"><div class="card-top"><span class="icon" aria-hidden="true">🕯️</span><span class="tag">火・夜・書物</span></div><h3><a href="yokai/himamushi-nyudo.html">火間虫入道（ひまむしにゅうどう）</a></h3><p>灯りのそばを飛び回る火に縁のある怪異。</p></article>
         </div>
       </section>
 
@@ -438,7 +537,7 @@
         <div class="game-intro">
           <p class="section-kicker">NIGHT PARADE</p>
           <h2 id="game-title">百鬼夜行：夜道の影</h2>
-          <p>暗い夜道に現れる影から、20秒間逃げ切ろう。矢印キーまたはWASDで灯りを動かせます。影に触れるとゲームオーバーです。</p>
+          <p>暗い夜道に現れる妖怪から、20秒間逃げ切ろう。河童、鬼、ろくろ首、絡新婦、ぬらりひょん、目目連が灯りを追ってきます。矢印キーまたはWASDで灯りを動かし、妖怪に触れないようにしてください。</p>
         </div>
         <div class="game-board">
           <canvas id="yokai-game" width="720" height="405" aria-label="妖怪の影から逃げるゲーム"></canvas>
@@ -452,6 +551,49 @@
     </main>
 
     <footer>妖怪の伝承を通して、日本の文化と想像力を楽しもう。</footer>
+    <script>
+      (() => {
+        const grid = document.querySelector(".yokai-grid");
+        const cards = [...grid.querySelectorAll("[data-yokai-card]")];
+        const search = document.getElementById("yokai-search");
+        const category = document.getElementById("yokai-category");
+        const kana = document.getElementById("yokai-kana");
+        const result = document.getElementById("search-result");
+        const collator = new Intl.Collator("ja");
+        const rows = {
+          あ: "あいうえお", か: "かきくけこがぎぐげご", さ: "さしすせそざじずぜぞ",
+          た: "たちつてとだぢづでど", な: "なにぬねの", は: "はひふへほばびぶべぼぱぴぷぺぽ",
+          ま: "まみむめも", や: "やゆよ", ら: "らりるれろ", わ: "わをん",
+        };
+
+        function rowFor(first) {
+          return Object.entries(rows).find(([, characters]) => characters.includes(first))?.[0] || "all";
+        }
+
+        function updateCatalog() {
+          const term = search.value.trim().toLocaleLowerCase();
+          const selectedCategory = category.value;
+          const selectedRow = kana.value;
+          let visible = 0;
+          cards.forEach((card) => {
+            const matchesTerm = !term || `${card.dataset.name} ${card.textContent}`.toLocaleLowerCase().includes(term);
+            const matchesCategory = selectedCategory === "all" || card.dataset.category === selectedCategory;
+            const matchesRow = selectedRow === "all" || rowFor(card.dataset.kana[0]) === selectedRow;
+            const show = matchesTerm && matchesCategory && matchesRow;
+            card.hidden = !show;
+            if (show) visible += 1;
+          });
+          result.textContent = `${visible}体を表示中（全${cards.length}体）`;
+        }
+
+        cards.sort((a, b) => collator.compare(a.dataset.kana, b.dataset.kana)).forEach((card) => grid.append(card));
+        [search, category, kana].forEach((control) => {
+          control.addEventListener("input", updateCatalog);
+          control.addEventListener("change", updateCatalog);
+        });
+        updateCatalog();
+      })();
+    </script>
     <script>
       (() => {
         const canvas = document.getElementById("yokai-game");
@@ -470,12 +612,15 @@
         let lastFrame = 0;
         let spawnTimer = 0;
         let animationFrame;
+        let fear = 0;
 
         const kinds = [
-          { name: "ぬらりひょん", color: "#9e4356" },
-          { name: "見越入道", color: "#7c4c72" },
-          { name: "青行燈", color: "#486080" },
-          { name: "百目", color: "#ba744d" },
+          { name: "河童", color: "#5f9a88", type: "kappa" },
+          { name: "鬼", color: "#b33d4e", type: "oni" },
+          { name: "ろくろ首", color: "#9d6487", type: "rokurokubi" },
+          { name: "絡新婦", color: "#bd5873", type: "jorogumo" },
+          { name: "ぬらりひょん", color: "#9e4356", type: "nurarihyon" },
+          { name: "目目連", color: "#c78455", type: "mokumokuren" },
         ];
 
         function reset() {
@@ -483,6 +628,8 @@
           player.y = height / 2;
           shadows.length = 0;
           spawnTimer = 0;
+          fear = 0;
+          document.getElementById("game").classList.remove("is-danger");
           timeLabel.textContent = "0.0";
           draw(0);
         }
@@ -524,10 +671,100 @@
             shadow.y += (toPlayerY / distance) * shadow.speed * delta;
             if (distance < player.radius + shadow.radius - 3) return "caught";
           }
+          const nearest = shadows.reduce((minimum, shadow) => Math.min(minimum, Math.hypot(player.x - shadow.x, player.y - shadow.y)), Infinity);
+          fear = Math.max(0, Math.min(1, 1 - nearest / 170));
           return elapsed >= duration ? "escaped" : "running";
         }
 
+        function drawYokai(shadow) {
+          const size = shadow.radius;
+          context.save();
+          context.translate(shadow.x, shadow.y);
+          context.shadowColor = shadow.kind.color;
+          context.shadowBlur = 18 + fear * 14;
+          context.fillStyle = "rgba(5, 4, 8, 0.94)";
+          context.strokeStyle = shadow.kind.color;
+          context.lineWidth = 2;
+
+          if (shadow.kind.type === "oni") {
+            context.beginPath();
+            context.ellipse(0, 5, size * 0.9, size * 1.15, 0, 0, Math.PI * 2);
+            context.fill();
+            context.beginPath();
+            context.moveTo(-size * 0.55, -size * 0.65);
+            context.lineTo(-size * 0.95, -size * 1.55);
+            context.lineTo(-size * 0.15, -size * 1.02);
+            context.moveTo(size * 0.55, -size * 0.65);
+            context.lineTo(size * 0.95, -size * 1.55);
+            context.lineTo(size * 0.15, -size * 1.02);
+            context.fill();
+          } else if (shadow.kind.type === "kappa") {
+            context.beginPath();
+            context.arc(0, -size * 0.45, size * 0.72, 0, Math.PI * 2);
+            context.fill();
+            context.beginPath();
+            context.arc(0, -size * 0.68, size * 0.42, Math.PI, Math.PI * 2);
+            context.stroke();
+            context.beginPath();
+            context.ellipse(0, size * 0.65, size * 0.9, size * 0.75, 0, 0, Math.PI * 2);
+            context.fill();
+          } else if (shadow.kind.type === "rokurokubi") {
+            context.beginPath();
+            context.moveTo(-size * 0.2, size * 0.9);
+            context.lineTo(-size * 0.14, -size * 1.5);
+            context.lineTo(size * 0.14, -size * 1.5);
+            context.lineTo(size * 0.2, size * 0.9);
+            context.fill();
+            context.beginPath();
+            context.arc(0, -size * 1.65, size * 0.42, 0, Math.PI * 2);
+            context.fill();
+          } else if (shadow.kind.type === "jorogumo") {
+            context.beginPath();
+            context.ellipse(0, 3, size * 0.7, size * 0.9, 0, 0, Math.PI * 2);
+            context.fill();
+            for (let leg = 0; leg < 4; leg += 1) {
+              const y = -size * 0.4 + leg * size * 0.35;
+              context.beginPath();
+              context.moveTo(-size * 0.35, y);
+              context.lineTo(-size * (1.3 - leg * 0.12), y - size * 0.45);
+              context.moveTo(size * 0.35, y);
+              context.lineTo(size * (1.3 - leg * 0.12), y - size * 0.45);
+              context.stroke();
+            }
+          } else if (shadow.kind.type === "mokumokuren") {
+            context.fillRect(-size * 0.9, -size * 0.75, size * 1.8, size * 1.5);
+            context.fillStyle = shadow.kind.color;
+            for (let eye = 0; eye < 5; eye += 1) {
+              context.beginPath();
+              context.arc(-size * 0.55 + (eye % 3) * size * 0.55, -size * 0.38 + Math.floor(eye / 3) * size * 0.55, size * 0.1, 0, Math.PI * 2);
+              context.fill();
+            }
+          } else {
+            context.beginPath();
+            context.ellipse(0, 3, size * 0.8, size * 1.2, 0, 0, Math.PI * 2);
+            context.fill();
+          }
+
+          context.shadowBlur = 4 + fear * 7;
+          context.fillStyle = shadow.kind.color;
+          context.beginPath();
+          context.arc(-size * 0.27, -size * 0.35, 2.5, 0, Math.PI * 2);
+          context.arc(size * 0.27, -size * 0.35, 2.5, 0, Math.PI * 2);
+          context.fill();
+          context.restore();
+
+          context.save();
+          context.font = "12px serif";
+          context.textAlign = "center";
+          context.fillStyle = `rgba(234, 180, 125, ${0.35 + fear * 0.45})`;
+          context.fillText(shadow.kind.name, shadow.x, shadow.y - size * 1.65);
+          context.restore();
+        }
+
         function draw(elapsed) {
+          const shake = running ? fear * 3 : 0;
+          context.save();
+          context.translate((Math.random() - 0.5) * shake, (Math.random() - 0.5) * shake);
           const background = context.createRadialGradient(width / 2, height / 2, 20, width / 2, height / 2, width * 0.7);
           background.addColorStop(0, "#202033");
           background.addColorStop(1, "#050509");
@@ -543,23 +780,16 @@
             context.stroke();
           }
 
-          for (const shadow of shadows) {
-            context.save();
-            context.translate(shadow.x, shadow.y);
-            context.shadowColor = shadow.kind.color;
-            context.shadowBlur = 18;
-            context.fillStyle = "rgba(7, 5, 10, 0.92)";
+          context.fillStyle = "rgba(168, 183, 197, 0.035)";
+          for (let mist = 0; mist < 6; mist += 1) {
+            const mistX = ((mist * 157 + elapsed * (8 + mist)) % (width + 180)) - 90;
+            const mistY = 50 + mist * 64 + Math.sin(elapsed * 0.7 + mist) * 12;
             context.beginPath();
-            context.ellipse(0, 3, shadow.radius * 0.8, shadow.radius * 1.25, 0, 0, Math.PI * 2);
+            context.ellipse(mistX, mistY, 100, 18, 0, 0, Math.PI * 2);
             context.fill();
-            context.shadowBlur = 5;
-            context.fillStyle = shadow.kind.color;
-            context.beginPath();
-            context.arc(-shadow.radius * 0.27, -2, 2.5, 0, Math.PI * 2);
-            context.arc(shadow.radius * 0.27, -2, 2.5, 0, Math.PI * 2);
-            context.fill();
-            context.restore();
           }
+
+          for (const shadow of shadows) drawYokai(shadow);
 
           const lantern = context.createRadialGradient(player.x, player.y, 1, player.x, player.y, 62);
           lantern.addColorStop(0, "rgba(255, 226, 160, 0.9)");
@@ -577,18 +807,35 @@
           context.fill();
           context.shadowBlur = 0;
 
-          if (running && shadows.some((shadow) => Math.hypot(player.x - shadow.x, player.y - shadow.y) < 90)) {
-            context.fillStyle = "rgba(130, 15, 35, 0.13)";
+          if (running && fear > 0) {
+            document.getElementById("game").classList.toggle("is-danger", fear > 0.35);
+            context.fillStyle = `rgba(130, 15, 35, ${0.05 + fear * 0.2})`;
             context.fillRect(0, 0, width, height);
-            status.textContent = "気配が近い……走って！";
+            if (fear > 0.35) status.textContent = "妖怪が近い……走って！";
           }
+          const vignette = context.createRadialGradient(player.x, player.y, 50, player.x, player.y, width * 0.72);
+          vignette.addColorStop(0, "rgba(0, 0, 0, 0)");
+          vignette.addColorStop(1, `rgba(0, 0, 0, ${0.42 + fear * 0.25})`);
+          context.fillStyle = vignette;
+          context.fillRect(0, 0, width, height);
+          context.restore();
         }
 
         function finish(result) {
           running = false;
+          document.getElementById("game").classList.remove("is-danger");
           startButton.disabled = false;
           startButton.textContent = result === "escaped" ? "もう一度遊ぶ" : "再び夜道へ";
           status.textContent = result === "escaped" ? "夜明けだ。影を振り切りました。" : "影に捕まりました……もう一度、灯りを持って。";
+          context.fillStyle = "rgba(4, 3, 7, 0.66)";
+          context.fillRect(0, 0, width, height);
+          context.fillStyle = result === "escaped" ? "#eab47d" : "#ba3e55";
+          context.font = "bold 32px serif";
+          context.textAlign = "center";
+          context.fillText(result === "escaped" ? "夜明け" : "見つかった", width / 2, height / 2);
+          context.font = "14px serif";
+          context.fillStyle = "#eee2d8";
+          context.fillText(result === "escaped" ? "影は霧の向こうへ消えた" : "背後に気配が残っている", width / 2, height / 2 + 30);
         }
 
         function frame(timestamp) {

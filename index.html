@@ -394,6 +394,236 @@
         font-size: 0.8rem;
       }
 
+      .map-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(250px, 0.75fr);
+        gap: 1rem;
+        align-items: start;
+      }
+
+      .map-stage {
+        position: relative;
+        aspect-ratio: 620 / 720;
+        min-height: 0;
+        overflow: hidden;
+        background: radial-gradient(circle at 48% 48%, rgb(51 21 38 / 36%), transparent 55%), #09080d;
+        border: 1px solid rgb(186 62 85 / 50%);
+        border-radius: 0.45rem;
+        box-shadow: inset 0 0 2.4rem rgb(0 0 0 / 62%), 0 1rem 2rem rgb(0 0 0 / 25%);
+      }
+
+      .map-stage::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        pointer-events: none;
+        background: repeating-linear-gradient(0deg, transparent 0 2.5rem, rgb(219 163 108 / 5%) 2.5rem 2.55rem), repeating-linear-gradient(90deg, transparent 0 2.5rem, rgb(219 163 108 / 4%) 2.5rem 2.55rem);
+        mask-image: linear-gradient(to bottom, transparent, #000 16%, #000 85%, transparent);
+      }
+
+      .japan-map { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+      .map-sea { fill: #09080d; }
+
+      .map-land {
+        fill: rgb(78 39 53 / 64%);
+        stroke: rgb(219 163 108 / 45%);
+        stroke-width: 2;
+        stroke-linejoin: round;
+      }
+
+      .map-land.is-small { fill: rgb(91 43 57 / 52%); stroke-width: 1.5; }
+
+      .map-rift {
+        fill: none;
+        stroke: rgb(234 180 125 / 18%);
+        stroke-dasharray: 3 7;
+        stroke-width: 1;
+      }
+
+      .map-label {
+        fill: rgb(238 226 216 / 52%);
+        font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+        font-size: 13px;
+        letter-spacing: 0.16em;
+      }
+
+      .map-caption {
+        position: absolute;
+        right: 0.8rem;
+        bottom: 0.55rem;
+        margin: 0;
+        color: rgb(238 226 216 / 52%);
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+      }
+
+      .map-pins { position: absolute; inset: 0; }
+
+      .map-pin {
+        position: absolute;
+        top: calc(var(--y) * 1%);
+        left: calc(var(--x) * 1%);
+        width: 1.45rem;
+        height: 1.8rem;
+        padding: 0;
+        color: #eee2d8;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        transform: translate(-50%, -100%);
+      }
+
+      .map-pin::before {
+        position: absolute;
+        top: 0.12rem;
+        left: 0.38rem;
+        width: 0.7rem;
+        height: 0.7rem;
+        content: "";
+        background: #a9324c;
+        border: 1px solid #f0c384;
+        border-radius: 50% 50% 50% 12%;
+        box-shadow: 0 0 0.35rem rgb(186 62 85 / 90%);
+        transform: rotate(-45deg);
+      }
+
+      .map-pin::after {
+        position: absolute;
+        top: 0.76rem;
+        left: 0.67rem;
+        width: 0;
+        height: 0;
+        content: "";
+        border-top: 0.8rem solid #a9324c;
+        border-right: 0.18rem solid transparent;
+        border-left: 0.18rem solid transparent;
+        filter: drop-shadow(0 0 0.18rem rgb(186 62 85 / 70%));
+      }
+
+      .map-pin:hover::before,
+      .map-pin:focus-visible::before,
+      .map-pin[aria-pressed="true"]::before {
+        width: 0.9rem;
+        height: 0.9rem;
+        background: #e06462;
+        box-shadow: 0 0 0.7rem #e06462, 0 0 1.15rem rgb(186 62 85 / 90%);
+      }
+
+      .map-pin:focus-visible { outline: 2px solid #eab47d; outline-offset: 3px; }
+
+      .map-pin-label {
+        position: absolute;
+        bottom: 1.65rem;
+        left: 50%;
+        display: none;
+        width: max-content;
+        max-width: 11rem;
+        padding: 0.18rem 0.4rem;
+        color: #f3e5d6;
+        background: rgb(11 9 14 / 92%);
+        border: 1px solid rgb(219 163 108 / 55%);
+        border-radius: 0.15rem;
+        font-size: 0.68rem;
+        white-space: nowrap;
+        transform: translateX(-50%);
+      }
+
+      .map-pin:hover .map-pin-label,
+      .map-pin:focus-visible .map-pin-label,
+      .map-pin[aria-pressed="true"] .map-pin-label { display: block; }
+
+      .map-panel {
+        padding: 1.2rem;
+        background: rgb(255 255 255 / 5%);
+        border: 1px solid rgb(219 163 108 / 26%);
+        border-radius: 0.45rem;
+      }
+
+      .map-panel label {
+        display: grid;
+        gap: 0.35rem;
+        color: #dba36c;
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+
+      .map-panel select {
+        width: 100%;
+        min-height: 2.4rem;
+        padding: 0.45rem 0.6rem;
+        color: #eee2d8;
+        background: #151018;
+        border: 1px solid rgb(219 163 108 / 35%);
+        border-radius: 0.2rem;
+        font: inherit;
+        font-size: 0.86rem;
+      }
+
+      .map-panel select:focus { outline: 2px solid #ba3e55; outline-offset: 1px; }
+
+      .map-summary {
+        min-height: 7.4rem;
+        margin: 1rem 0;
+        padding: 0.85rem;
+        color: #d7cdd5;
+        background: rgb(0 0 0 / 22%);
+        border-left: 2px solid #ba3e55;
+        font-size: 0.84rem;
+      }
+
+      .map-summary strong { display: block; margin-bottom: 0.18rem; color: #f0c384; font-size: 1.1rem; }
+      .map-summary .map-area { display: block; margin-bottom: 0.4rem; color: #dba36c; font-size: 0.76rem; }
+      .map-summary p { margin: 0; }
+      .map-summary a { display: inline-block; margin-top: 0.35rem; color: #eab47d; font-size: 0.78rem; }
+
+      .map-list-title { margin: 0 0 0.45rem; color: #cdbfc0; font-size: 0.76rem; letter-spacing: 0.08em; }
+
+      .map-location-list {
+        display: grid;
+        gap: 0.3rem;
+        max-height: 23rem;
+        margin: 0;
+        padding: 0;
+        overflow: auto;
+        list-style: none;
+        scrollbar-color: #6f2b40 #110d14;
+      }
+
+      .map-location-list button {
+        display: flex;
+        width: 100%;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0.36rem 0.45rem;
+        color: #d7cdd5;
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.15rem;
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.77rem;
+        text-align: left;
+      }
+
+      .map-location-list button:hover,
+      .map-location-list button:focus-visible,
+      .map-location-list button[aria-current="true"] { color: #f0c384; background: rgb(186 62 85 / 14%); border-color: rgb(186 62 85 / 55%); }
+
+      .map-location-list small { color: #9f939c; font-size: 0.68rem; white-space: nowrap; }
+
+      @media (max-width: 720px) {
+        .map-layout { grid-template-columns: 1fr; }
+        .map-stage { min-height: 0; }
+        .map-location-list { max-height: 16rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+
+      @media (max-width: 440px) {
+        .map-location-list { grid-template-columns: 1fr; }
+      }
+
       .perspective-card h3, .boundary-card h3 { margin-top: 0; }
 
       .perspective-card p, .boundary-card p {
@@ -540,6 +770,7 @@
       <nav aria-label="ページ内ナビゲーション">
         <a href="#catalog">妖怪図鑑</a>
         <a href="#three-great">三大妖怪</a>
+        <a href="#map">伝承地マップ</a>
         <a href="yokai.html">詳しい解説</a>
         <a href="#perspectives">3つの見方</a>
         <a href="#boundaries">境界と地域</a>
@@ -627,6 +858,53 @@
         </div>
       </section>
 
+      <section id="map" aria-labelledby="map-title">
+        <div class="section-heading">
+          <p class="section-kicker">FOLKLORE MAP</p>
+          <h2 id="map-title">妖怪の伝承地をたどる</h2>
+          <p>妖怪ごとに、記録・聞き書き・地域の物語がよく知られている場所を代表点として示します。全国に分布する妖怪も多いため、ピンは「ここだけ」という境界ではなく、語りへ入る入口です。</p>
+        </div>
+        <div class="map-layout">
+          <div class="map-stage">
+            <svg class="japan-map" viewBox="0 0 620 720" role="img" aria-labelledby="map-svg-title map-svg-desc">
+              <title id="map-svg-title">日本列島と妖怪伝承地の地図</title>
+              <desc id="map-svg-desc">北海道、本州、四国、九州を描いた暗い地図。赤いピンが妖怪ごとの代表的な伝承地を示す。</desc>
+              <rect class="map-sea" x="0" y="0" width="620" height="720" />
+<g aria-hidden="true">
+  <path class="map-land is-small" d="M 202.5,329.5 L 198.4,330.3 L 196.8,328.6 L 200.2,325.1 L 202.9,328.1 Z" />
+  <path class="map-land is-small" d="M 360.7,277.7 L 356.9,277.5 L 360.0,273.0 L 357.6,272.2 L 357.7,269.5 L 365.8,261.9 L 364.2,269.6 L 368.0,269.9 L 365.5,275.1 Z" />
+  <path class="map-land" d="M 534.9,76.3 L 543.7,76.8 L 555.8,81.6 L 563.3,82.3 L 584.1,69.5 L 576.3,84.2 L 576.7,90.8 L 583.1,102.3 L 587.8,103.0 L 593.7,99.6 L 598.8,99.7 L 588.4,106.4 L 583.4,106.3 L 569.8,112.0 L 560.6,113.7 L 546.8,112.8 L 539.5,115.8 L 522.4,130.6 L 516.2,144.0 L 493.1,135.7 L 472.2,125.5 L 458.1,126.5 L 444.7,133.1 L 435.9,126.2 L 428.6,126.1 L 424.5,130.1 L 423.7,134.6 L 430.1,139.8 L 436.7,140.3 L 449.9,150.2 L 445.1,152.4 L 434.3,149.9 L 421.9,161.4 L 418.1,162.5 L 414.5,160.8 L 413.2,157.6 L 416.8,146.8 L 415.1,141.8 L 408.1,135.1 L 408.9,125.4 L 409.9,123.2 L 427.1,113.5 L 428.8,110.4 L 426.0,106.6 L 425.8,102.3 L 428.8,101.2 L 439.4,105.4 L 449.5,106.2 L 454.5,105.6 L 457.0,103.1 L 457.8,91.4 L 465.6,79.4 L 466.1,71.6 L 469.3,64.6 L 470.0,57.1 L 463.7,43.0 L 466.4,35.2 L 476.3,32.5 L 505.1,58.6 L 532.9,75.8 Z" />
+  <path class="map-land" d="M 132.7,412.7 L 138.8,413.7 L 145.7,411.1 L 149.3,412.7 L 149.8,415.9 L 144.3,423.2 L 155.7,423.9 L 154.1,428.2 L 157.4,430.5 L 156.1,432.8 L 159.0,435.8 L 148.2,449.1 L 141.8,467.7 L 141.8,474.5 L 137.9,483.1 L 129.4,482.0 L 128.3,483.9 L 130.3,487.8 L 117.2,495.5 L 120.5,487.4 L 117.8,477.5 L 120.7,476.0 L 120.1,473.4 L 116.2,473.0 L 113.1,478.0 L 112.6,483.1 L 115.9,487.4 L 114.1,490.3 L 101.8,486.7 L 100.1,482.9 L 104.7,481.6 L 105.6,476.8 L 101.4,471.4 L 101.6,461.1 L 107.9,457.0 L 115.8,444.2 L 111.2,443.0 L 113.5,440.5 L 112.8,437.4 L 107.5,429.0 L 102.9,426.3 L 99.4,428.6 L 100.9,436.8 L 105.8,436.7 L 106.2,441.5 L 103.2,442.3 L 97.1,439.3 L 88.0,445.7 L 89.9,440.8 L 85.5,436.0 L 85.2,430.1 L 89.9,435.4 L 95.1,436.8 L 92.1,431.3 L 82.0,424.4 L 83.0,421.0 L 90.4,421.7 L 89.8,418.0 L 107.0,411.7 L 110.8,405.3 L 116.7,402.7 L 125.7,404.1 L 129.0,410.5 Z" />
+  <path class="map-land" d="M 233.9,391.8 L 242.8,392.7 L 244.0,404.9 L 246.1,405.7 L 234.6,412.5 L 228.3,424.1 L 221.3,417.7 L 210.9,415.6 L 199.9,420.5 L 195.4,429.3 L 191.3,432.5 L 190.0,437.1 L 184.5,439.9 L 179.4,439.6 L 181.5,435.1 L 174.7,434.7 L 172.6,430.1 L 175.2,422.6 L 171.9,421.4 L 172.1,418.2 L 160.0,421.1 L 179.4,409.9 L 183.9,400.2 L 188.7,397.0 L 195.0,402.3 L 205.8,400.9 L 210.7,397.8 L 209.9,392.2 L 220.9,388.9 L 229.5,389.8 Z" />
+  <path class="map-land" d="M 452.4,164.1 L 459.6,163.0 L 457.8,172.9 L 458.8,184.9 L 459.8,188.4 L 470.5,198.7 L 476.6,214.6 L 476.2,226.3 L 473.8,236.4 L 466.1,240.8 L 462.5,247.6 L 460.0,259.1 L 448.6,261.2 L 443.9,267.2 L 442.8,273.6 L 446.3,289.0 L 445.2,300.3 L 436.5,312.6 L 431.6,328.6 L 433.1,334.1 L 441.1,344.8 L 433.7,346.8 L 427.9,351.7 L 424.6,362.2 L 415.2,366.8 L 410.8,371.2 L 408.4,370.7 L 406.9,369.4 L 408.3,367.7 L 407.8,358.5 L 416.4,349.3 L 412.9,346.6 L 408.1,346.9 L 405.9,352.2 L 402.2,354.9 L 405.2,359.9 L 403.0,363.2 L 396.6,358.4 L 389.5,359.1 L 385.8,363.0 L 384.3,373.1 L 376.4,380.2 L 373.9,377.6 L 375.3,368.8 L 378.5,367.2 L 372.6,364.0 L 368.1,365.2 L 355.8,380.9 L 335.2,378.7 L 319.9,381.4 L 327.1,377.5 L 326.7,375.3 L 319.0,375.5 L 316.8,373.3 L 316.2,376.9 L 313.9,376.5 L 314.7,366.9 L 311.7,366.4 L 308.1,368.5 L 303.1,378.3 L 314.1,386.1 L 313.3,389.6 L 296.6,394.3 L 283.5,414.0 L 276.5,416.4 L 268.8,414.3 L 258.4,399.8 L 257.5,390.8 L 264.2,386.7 L 267.6,380.2 L 255.7,379.8 L 246.1,375.5 L 230.4,377.2 L 221.6,383.1 L 204.9,386.1 L 195.3,390.3 L 191.4,389.5 L 179.8,392.1 L 172.4,388.7 L 168.9,389.6 L 163.6,405.2 L 150.7,398.3 L 134.6,401.7 L 129.5,399.3 L 124.6,400.8 L 123.7,391.6 L 127.3,387.4 L 138.4,386.8 L 167.2,367.3 L 181.2,354.6 L 188.3,351.6 L 199.3,350.2 L 202.7,353.3 L 222.0,351.8 L 259.9,344.1 L 262.8,344.9 L 261.7,349.1 L 264.8,351.2 L 276.0,351.9 L 283.1,348.6 L 289.2,343.4 L 286.4,336.3 L 288.3,332.3 L 308.4,312.3 L 310.0,305.6 L 309.0,297.7 L 313.0,291.8 L 328.2,287.3 L 328.7,290.0 L 314.8,300.2 L 317.8,303.1 L 318.5,309.2 L 325.8,311.9 L 328.8,311.3 L 334.3,305.6 L 359.9,297.0 L 369.9,288.9 L 377.9,277.0 L 393.1,268.8 L 398.1,255.9 L 407.0,243.8 L 410.5,232.7 L 414.5,226.8 L 415.4,220.0 L 413.2,212.6 L 405.1,210.5 L 410.4,207.3 L 413.7,199.7 L 410.9,190.9 L 412.3,186.5 L 422.3,180.9 L 424.3,175.8 L 423.4,170.9 L 425.6,168.6 L 433.3,169.7 L 434.9,179.4 L 437.1,181.4 L 441.2,178.3 L 448.9,179.8 L 451.0,178.4 L 453.5,172.7 L 451.5,168.2 L 438.8,171.6 L 441.7,160.6 L 448.5,161.4 Z" />
+  <path class="map-land is-small" d="M 40.0,635.1 L 27.6,641.8 L 28.8,645.5 L 25.1,647.8 L 25.6,651.1 L 20.8,653.0 L 23.2,642.1 L 30.1,637.0 L 28.8,633.8 L 34.9,634.6 L 39.9,627.8 L 42.3,630.0 L 41.7,632.9 Z" />
+  <path class="map-land is-small" d="M 63.5,600.9 L 60.4,600.7 L 60.7,595.3 L 62.1,594.9 L 64.1,599.4 Z" />
+  <path class="map-land is-small" d="M 78.0,585.3 L 75.2,587.9 L 68.8,584.0 L 85.5,575.4 L 86.2,578.2 L 77.5,583.8 Z" />
+  <path class="map-land is-small" d="M 73.9,588.6 L 71.0,588.8 L 69.7,585.8 L 72.4,587.4 Z" />
+  <path class="map-land is-small" d="M 408.3,430.2 L 406.3,428.0 L 409.3,429.0 Z" />
+  <path class="map-rift" d="M 445 160 C 414 256 358 342 275 424" />
+  <path class="map-rift" d="M 160 410 C 200 426 244 445 287 456" />
+  <text class="map-label" x="500" y="105">北海道</text>
+  <text class="map-label" x="335" y="300">本州</text>
+  <text class="map-label" x="200" y="445">四国</text>
+  <text class="map-label" x="115" y="485">九州</text>
+  <text class="map-label" x="50" y="680">沖縄</text>
+</g>
+            </svg>
+            <div id="map-pins" class="map-pins" aria-label="妖怪の伝承地ピン"></div>
+            <p class="map-caption">海岸線はNatural Earth 50mを簡略化／代表地点・縮尺は目安</p>
+          </div>
+          <aside class="map-panel" aria-label="伝承地マップの検索">
+            <label for="map-yokai">妖怪を選ぶ
+              <select id="map-yokai"><option value="all">すべての妖怪（全ピン）</option></select>
+            </label>
+            <div id="map-summary" class="map-summary" role="status" aria-live="polite"><strong>全てのピン</strong><span class="map-area">32体の代表的な伝承地</span><p>ピンまたは下の名前を選ぶと、地域と個別解説へのリンクが表示されます。</p></div>
+            <p class="map-list-title">妖怪ごとの代表地点</p>
+            <ul id="map-location-list" class="map-location-list"></ul>
+          </aside>
+        </div>
+      </section>
+
       <section id="three-great" class="trio-section" aria-labelledby="three-great-title">
         <div class="section-heading">
           <p class="section-kicker">THREE GREAT YŌKAI</p>
@@ -696,6 +974,7 @@
           <li><a href="https://www.kokugakuin.ac.jp/article/101140" target="_blank" rel="noreferrer">國學院大學「折口信夫『大嘗祭の本義』」</a> — 「まれびと」と来訪神の考えを知る手がかり。</li>
           <li><a href="https://sekiei.nichibun.ac.jp/YoukaiDB/" target="_blank" rel="noreferrer">国際日本文化研究センター「怪異・妖怪伝承データベース」</a> — 民俗学の調査などから集めた全国の事例を検索できます。</li>
           <li><a href="https://id.ndl.go.jp/auth/ndlsh/%E5%A6%96%E6%80%AA" target="_blank" rel="noreferrer">国立国会図書館典拠データ「妖怪」</a> — 関連する図書・件名をたどるための手がかりです。</li>
+          <li><a href="https://www.naturalearthdata.com/downloads/50m-cultural-vectors/" target="_blank" rel="noreferrer">Natural Earth 1:50m Cultural Vectors</a> — 地図の海岸線をページ用に簡略化する際の基礎データです。</li>
         </ul>
       </section>
 
@@ -758,6 +1037,105 @@
           control.addEventListener("change", updateCatalog);
         });
         updateCatalog();
+      })();
+    </script>
+    <script>
+      (() => {
+        const pinLayer = document.getElementById("map-pins");
+        const mapSelect = document.getElementById("map-yokai");
+        const mapSummary = document.getElementById("map-summary");
+        const locationList = document.getElementById("map-location-list");
+        if (!pinLayer || !mapSelect || !mapSummary || !locationList) return;
+
+        const mapEntries = [
+          { id: "amabie", name: "アマビエ", kana: "あまびえ", href: "yokai/amabie.html", region: "熊本・肥後", x: 19.0, y: 60.9, note: "江戸後期の瓦版に現れた予言獣の記憶。" },
+          { id: "azuki-arai", name: "小豆洗い", kana: "あずきあらい", href: "yokai/azuki-arai.html", region: "鳥取・山陰", x: 36.9, y: 48.9, note: "川辺から聞こえる音をめぐる山陰の語り。" },
+          { id: "oni", name: "鬼", kana: "おに", href: "yokai/oni.html", region: "京都・大江山", x: 40.5, y: 48.9, note: "都の外側にある山の鬼退治譚。" },
+          { id: "otakemaru", name: "大嶽丸", kana: "おおたけまる", href: "yokai/otakemaru.html", region: "三重・鈴鹿峠", x: 47.7, y: 51.1, note: "鈴鹿山の鬼神と田村丸の伝説。" },
+          { id: "onmoraki", name: "陰摩羅鬼", kana: "おんもらき", href: "yokai/onmoraki.html", region: "京都・寺院説話", x: 45.1, y: 51.1, note: "弔いと鳥の姿が結びつく仏教説話。" },
+          { id: "kappa", name: "河童", kana: "かっぱ", href: "yokai/kappa.html", region: "岩手・遠野", x: 74.4, y: 32.0, note: "『遠野物語』などで知られる川の怪異。" },
+          { id: "kasha", name: "火車", kana: "かしゃ", href: "yokai/kasha.html", region: "京都・寺社", x: 45.1, y: 51.1, note: "葬送と地獄の説話に現れる火の車。" },
+          { id: "karakasa", name: "からかさ小僧", kana: "からかさこぞう", href: "yokai/karakasa.html", region: "東京・江戸", x: 65.1, y: 48.0, note: "江戸の絵入り出版物で親しまれた付喪神。" },
+          { id: "kitsune", name: "狐", kana: "きつね", href: "yokai/kitsune.html", region: "京都・伏見", x: 45.1, y: 51.2, note: "稲荷信仰と人を化かす昔話が交差する場所。" },
+          { id: "jorogumo", name: "絡新婦", kana: "じょろうぐも", href: "yokai/jorogumo.html", region: "静岡・伊豆", x: 61.0, y: 51.6, note: "山道や滝を舞台にした蜘蛛の変化譚。" },
+          { id: "jakki", name: "邪魅", kana: "じゃみ", href: "yokai/jakki.html", region: "奈良・寺社", x: 45.1, y: 52.4, note: "病や境界の邪気を指す古い語彙。" },
+          { id: "shutendoji", name: "酒呑童子", kana: "しゅてんどうじ", href: "yokai/shutendoji.html", region: "京都・大江山", x: 40.5, y: 48.9, note: "源頼光一行の鬼退治を伝える山の物語。" },
+          { id: "zashiki-warashi", name: "座敷童子", kana: "ざしきわらし", href: "yokai/zashiki-warashi.html", region: "岩手・遠野", x: 74.4, y: 32.0, note: "家の繁栄と喪失を語る東北の子どもの精霊。" },
+          { id: "tessou", name: "鉄鼠", kana: "てっそ", href: "yokai/tessou.html", region: "京都・比叡山", x: 45.1, y: 50.7, note: "僧侶の怨念と寺院をめぐる鼠の怪異。" },
+          { id: "tengu", name: "天狗", kana: "てんぐ", href: "yokai/tengu.html", region: "長野・戸隠", x: 56.4, y: 43.6, note: "山岳修験と深山の異界を結ぶ伝承。" },
+          { id: "tanuki", name: "化け狸", kana: "ばけだぬき", href: "yokai/tanuki.html", region: "愛媛・松山", x: 29.7, y: 56.4, note: "四国の狸伝承と里山の変化譚。" },
+          { id: "tamamo-no-mae", name: "玉藻前", kana: "たまものまえ", href: "yokai/tamamo-no-mae.html", region: "栃木・那須", x: 66.7, y: 41.8, note: "九尾の狐と殺生石の伝説が残る土地。" },
+          { id: "tsukumogami", name: "付喪神", kana: "つくもがみ", href: "yokai/tsukumogami.html", region: "京都・江戸", x: 65.1, y: 48.0, note: "古道具の霊性が絵入り本で形を得た文化圏。" },
+          { id: "nuribotoke", name: "塗仏", kana: "ぬりぼとけ", href: "yokai/nuribotoke.html", region: "京都・寺町", x: 45.1, y: 51.1, note: "仏像と怪異の境界をめぐる都市の語り。" },
+          { id: "nue", name: "鵺", kana: "ぬえ", href: "yokai/nue.html", region: "京都・宮中", x: 45.1, y: 51.1, note: "宮廷の夜に聞こえた正体不明の声。" },
+          { id: "nurarihyon", name: "ぬらりひょん", kana: "ぬらりひょん", href: "yokai/nurarihyon.html", region: "東京・江戸", x: 65.1, y: 48.0, note: "江戸の絵や都市伝説で姿を整えた怪異。" },
+          { id: "himamushi-nyudo", name: "火間虫入道", kana: "ひまむしにゅうどう", href: "yokai/himamushi-nyudo.html", region: "東京・江戸", x: 65.1, y: 48.0, note: "灯火と絵入り本の想像力に結びつく名前。" },
+          { id: "fukurumayoubi", name: "文車妖妃", kana: "ふぐるまようび", href: "yokai/fukurumayoubi.html", region: "京都・寺社", x: 45.1, y: 51.1, note: "読まれない文書の情念をめぐる文化史的な怪異。" },
+          { id: "betobeto", name: "べとべとさん", kana: "べとべとさん", href: "yokai/betobeto.html", region: "奈良・夜道", x: 45.1, y: 52.4, note: "背後の足音だけを語る夜道の伝承。" },
+          { id: "mokumokuren", name: "目目連", kana: "もくもくれん", href: "yokai/mokumokuren.html", region: "東京・江戸", x: 65.1, y: 48.0, note: "障子の目という江戸の絵画的な発想。" },
+          { id: "mouryou", name: "魍魎", kana: "もうりょう", href: "yokai/mouryou.html", region: "奈良・吉野", x: 45.6, y: 53.8, note: "山や水の精霊をまとめる古典語彙。" },
+          { id: "umibozu", name: "海坊主", kana: "うみぼうず", href: "yokai/umibozu.html", region: "島根・隠岐", x: 31.8, y: 45.8, note: "海上の異変と航海の不安を語る場所。" },
+          { id: "ubume", name: "産女・姑獲鳥", kana: "うぶめこかくちょう", href: "yokai/ubume.html", region: "京都・洛中", x: 45.1, y: 51.1, note: "母子の死と鳥のイメージが重なる怪異。" },
+          { id: "kawa-akago", name: "川赤子", kana: "かわあかご", href: "yokai/kawa-akago.html", region: "熊本・球磨川", x: 19.5, y: 63.1, note: "川辺から聞こえる赤子の泣き声の語り。" },
+          { id: "rokurokubi", name: "ろくろ首", kana: "ろくろくび", href: "yokai/rokurokubi.html", region: "熊本・九州", x: 19.0, y: 60.9, note: "身体の境界が伸びる変身譚の一例。" },
+          { id: "yuki-onna", name: "雪女", kana: "ゆきおんな", href: "yokai/yuki-onna.html", region: "新潟・越後", x: 61.0, y: 38.2, note: "雪国の吹雪・遭難の記憶と結びつく女性。" },
+          { id: "mikoshi-nyudo", name: "見越入道", kana: "みこしにゅうどう", href: "yokai/mikoshi-nyudo.html", region: "兵庫・播磨", x: 40.0, y: 52.0, note: "夜道で見上げるほど大きくなる僧形。" },
+        ];
+
+        const collator = new Intl.Collator("ja");
+        mapEntries.sort((a, b) => collator.compare(a.kana, b.kana));
+        const pinById = new Map();
+        const listButtonById = new Map();
+
+        for (const entry of mapEntries) {
+          const option = document.createElement("option");
+          option.value = entry.id;
+          option.textContent = entry.name;
+          mapSelect.append(option);
+
+          const pin = document.createElement("button");
+          pin.type = "button";
+          pin.className = "map-pin";
+          pin.dataset.mapId = entry.id;
+          pin.style.setProperty("--x", entry.x);
+          pin.style.setProperty("--y", entry.y);
+          pin.setAttribute("aria-label", `${entry.name}：${entry.region}`);
+          pin.setAttribute("aria-pressed", "false");
+          pin.innerHTML = `<span class="map-pin-label">${entry.name}</span>`;
+          pin.addEventListener("click", () => selectEntry(entry.id));
+          pinLayer.append(pin);
+          pinById.set(entry.id, pin);
+
+          const listItem = document.createElement("li");
+          const listButton = document.createElement("button");
+          listButton.type = "button";
+          listButton.dataset.mapId = entry.id;
+          listButton.setAttribute("aria-current", "false");
+          listButton.innerHTML = `<span>${entry.name}</span><small>${entry.region}</small>`;
+          listButton.addEventListener("click", () => selectEntry(entry.id));
+          listItem.append(listButton);
+          locationList.append(listItem);
+          listButtonById.set(entry.id, listButton);
+        }
+
+        function showAll() {
+          mapSelect.value = "all";
+          pinById.forEach((pin) => pin.setAttribute("aria-pressed", "false"));
+          listButtonById.forEach((button) => button.setAttribute("aria-current", "false"));
+          mapSummary.innerHTML = `<strong>全てのピン</strong><span class="map-area">${mapEntries.length}体の代表的な伝承地</span><p>ピンまたは下の名前を選ぶと、地域と個別解説へのリンクが表示されます。</p>`;
+        }
+
+        function selectEntry(id) {
+          const entry = mapEntries.find((candidate) => candidate.id === id);
+          if (!entry) { showAll(); return; }
+          mapSelect.value = entry.id;
+          pinById.forEach((pin, pinId) => pin.setAttribute("aria-pressed", String(pinId === entry.id)));
+          listButtonById.forEach((button, buttonId) => button.setAttribute("aria-current", String(buttonId === entry.id)));
+          mapSummary.innerHTML = `<strong>${entry.name}</strong><span class="map-area">${entry.region}</span><p>${entry.note}</p><a href="${entry.href}">個別解説を読む →</a>`;
+        }
+
+        mapSelect.addEventListener("change", () => mapSelect.value === "all" ? showAll() : selectEntry(mapSelect.value));
+        showAll();
       })();
     </script>
     <script>

@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sumomo Website</title>
+    <meta name="description" content="日本各地に伝わる妖怪の物語と特徴を紹介します。" />
+    <title>日本の妖怪 | Sumomo</title>
     <style>
       :root {
-        color-scheme: light;
+        color-scheme: dark;
         font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
       }
 
@@ -15,40 +16,125 @@
       }
 
       body {
-        min-height: 100vh;
         margin: 0;
-        display: grid;
-        place-items: center;
-        color: #3d2632;
-        background: linear-gradient(135deg, #fff4f7, #fce0eb);
+        color: #f7efe4;
+        background: #171326;
+        background-image: radial-gradient(circle at 10% 0%, #47305f 0, transparent 35%),
+          radial-gradient(circle at 90% 20%, #263d5d 0, transparent 30%);
+        line-height: 1.7;
       }
 
-      main {
-        width: min(90%, 680px);
-        padding: 4rem 2rem;
+      header,
+      main,
+      footer {
+        width: min(92%, 960px);
+        margin-inline: auto;
+      }
+
+      header {
+        padding: 5rem 0 3rem;
         text-align: center;
-        background: rgb(255 255 255 / 85%);
-        border: 1px solid rgb(255 255 255 / 90%);
-        border-radius: 1.5rem;
-        box-shadow: 0 1rem 3rem rgb(118 47 79 / 12%);
+      }
+
+      .eyebrow {
+        margin: 0 0 0.5rem;
+        color: #efb96e;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.25em;
       }
 
       h1 {
-        margin: 0 0 1rem;
-        font-size: clamp(2rem, 6vw, 3.5rem);
-        letter-spacing: 0.05em;
+        margin: 0;
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        letter-spacing: 0.12em;
+        line-height: 1.2;
       }
 
-      p {
+      .lead {
+        max-width: 38rem;
+        margin: 1.5rem auto 0;
+        color: #d7cdd5;
+      }
+
+      section {
+        padding: 2rem 0 4rem;
+      }
+
+      h2 {
+        margin: 0 0 1.5rem;
+        font-size: 1.5rem;
+        letter-spacing: 0.08em;
+      }
+
+      .yokai-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+      }
+
+      article {
+        padding: 1.5rem;
+        background: rgb(255 255 255 / 8%);
+        border: 1px solid rgb(255 255 255 / 15%);
+        border-radius: 1rem;
+        box-shadow: 0 1rem 2rem rgb(0 0 0 / 15%);
+      }
+
+      .icon {
+        font-size: 2.5rem;
+      }
+
+      h3 {
+        margin: 0.5rem 0;
+        color: #f5cf95;
+        font-size: 1.2rem;
+      }
+
+      article p {
         margin: 0;
-        line-height: 1.8;
+        color: #d7cdd5;
+        font-size: 0.95rem;
+      }
+
+      footer {
+        padding: 1rem 0 2rem;
+        color: #9f93a2;
+        font-size: 0.8rem;
+        text-align: center;
       }
     </style>
   </head>
   <body>
+    <header>
+      <p class="eyebrow">FOLKLORE OF JAPAN</p>
+      <h1>日本の妖怪</h1>
+      <p class="lead">古くから日本各地で語り継がれてきた、不思議で少しこわい存在たち。暮らしの知恵や自然への畏れが、妖怪の物語に息づいています。</p>
+    </header>
+
     <main>
-      <h1>ようこそ</h1>
-      <p>Sumomo Websiteへようこそ。ここからサイトを始められます。</p>
+      <section aria-labelledby="featured-yokai">
+        <h2 id="featured-yokai">代表的な妖怪</h2>
+        <div class="yokai-list">
+          <article>
+            <div class="icon" aria-hidden="true">🥒</div>
+            <h3>河童（かっぱ）</h3>
+            <p>川や沼に住むとされる水の妖怪。頭の皿が乾くと力を失うという伝承で知られています。</p>
+          </article>
+          <article>
+            <div class="icon" aria-hidden="true">👺</div>
+            <h3>天狗（てんぐ）</h3>
+            <p>山奥に暮らす神秘的な存在。赤い顔と長い鼻を持ち、修験者のような姿で描かれます。</p>
+          </article>
+          <article>
+            <div class="icon" aria-hidden="true">❄️</div>
+            <h3>雪女（ゆきおんな）</h3>
+            <p>雪の夜に現れる美しい妖怪。白い着物をまとい、吹雪とともに人里へ現れるといわれます。</p>
+          </article>
+        </div>
+      </section>
     </main>
+
+    <footer>妖怪の伝承を通して、日本の文化と想像力を楽しもう。</footer>
   </body>
 </html>

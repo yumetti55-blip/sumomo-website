@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="日本の妖怪を、図鑑・伝承地・民俗学の視点から歩くためのメインページ。" />
+    <title>夜の目次 | 日本の妖怪 | Sumomo</title>
+    <style>
+      :root { color-scheme: dark; font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; color: #eee2d8; background: #0b090e; }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { min-width: 320px; margin: 0; line-height: 1.75; background: #0b090e; background-image: radial-gradient(circle at 12% 0%, rgb(103 28 45 / 52%), transparent 32rem), radial-gradient(circle at 92% 15%, rgb(35 40 65 / 58%), transparent 28rem), repeating-linear-gradient(0deg, rgb(255 255 255 / 1.5%) 0 1px, transparent 1px 4px); }
+      body::before { position: fixed; inset: 0; z-index: -1; content: ""; pointer-events: none; background: radial-gradient(ellipse at center, transparent 42%, rgb(0 0 0 / 50%) 100%); }
+      a { color: inherit; }
+      .page-shell { width: min(92%, 1080px); margin-inline: auto; }
+      .menu-toggle { position: fixed; z-index: 60; top: 1rem; left: 1rem; display: grid; width: 2.9rem; height: 2.9rem; place-content: center; gap: 0.28rem; padding: 0; color: #f3e5d6; background: rgb(11 9 14 / 88%); border: 1px solid rgb(219 163 108 / 62%); border-radius: 0.25rem; box-shadow: 0 0.5rem 1.2rem rgb(0 0 0 / 40%), 0 0 1rem rgb(186 62 85 / 20%); cursor: pointer; }
+      .menu-toggle:hover, .menu-toggle:focus-visible { color: #0b090e; background: #eab47d; }
+      .menu-toggle:focus-visible { outline: 2px solid #f3d0a8; outline-offset: 3px; }
+      .menu-toggle span { display: block; width: 1.35rem; height: 2px; background: currentColor; transition: transform 180ms ease, opacity 180ms ease; }
+      .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(0.38rem) rotate(45deg); }
+      .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-0.38rem) rotate(-45deg); }
+      .menu-drawer { position: fixed; z-index: 55; inset: 0 auto 0 0; width: min(20rem, 86vw); padding: 5.4rem 1.25rem 2rem; overflow-y: auto; background: linear-gradient(165deg, #1b0d16, #0b090e 72%); border-right: 1px solid rgb(186 62 85 / 65%); box-shadow: 1rem 0 3rem rgb(0 0 0 / 48%); transform: translateX(-105%); transition: transform 220ms ease; }
+      .menu-drawer.is-open { transform: translateX(0); }
+      .menu-drawer p { margin: 0 0 0.8rem; color: #dba36c; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; }
+      .menu-drawer ul { display: grid; gap: 0.3rem; margin: 0; padding: 0; list-style: none; }
+      .menu-drawer a { display: block; padding: 0.55rem 0.65rem; color: #eee2d8; border: 1px solid transparent; border-radius: 0.2rem; font-size: 0.9rem; text-decoration: none; }
+      .menu-drawer a:hover, .menu-drawer a:focus-visible { color: #f3d0a8; background: rgb(186 62 85 / 16%); border-color: rgb(186 62 85 / 56%); }
+      .menu-backdrop { position: fixed; z-index: 50; inset: 0; background: rgb(0 0 0 / 62%); opacity: 0; pointer-events: none; transition: opacity 220ms ease; }
+      .menu-backdrop.is-open { opacity: 1; pointer-events: auto; }
+      body.menu-open { overflow: hidden; }
+      .hero { position: relative; min-height: 43vh; padding: 7rem 0 4.2rem; text-align: center; }
+      .hero::after { position: absolute; right: 5%; bottom: 0; width: 22rem; height: 11rem; content: ""; opacity: 0.32; background: radial-gradient(ellipse at center, transparent 42%, #000 44% 48%, transparent 50%), repeating-radial-gradient(ellipse at center, transparent 0 1.1rem, rgb(186 62 85 / 22%) 1.15rem 1.2rem); filter: blur(1px); pointer-events: none; }
+      .hero > * { position: relative; z-index: 1; }
+      .eyebrow { margin: 0 0 0.7rem; color: #dba36c; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.24em; }
+      h1, h2, h3 { line-height: 1.3; }
+      h1 { margin: 0; color: #f3e5d6; font-size: clamp(2.6rem, 9vw, 5.8rem); letter-spacing: 0.16em; text-shadow: 0.08em 0.08em 0 #421827, 0 0 1.8rem rgb(186 62 85 / 22%); }
+      .lead { max-width: 44rem; margin: 1.4rem auto 0; color: #d7cdd5; font-size: 1.04rem; }
+      .hero-link { display: inline-block; margin-top: 1.6rem; padding: 0.65rem 1rem; color: #0b090e; background: #eab47d; border-radius: 0.2rem; font-size: 0.86rem; font-weight: 700; text-decoration: none; }
+      .hero-link:hover, .hero-link:focus-visible { background: #f3d0a8; }
+      .kicker { margin: 0 0 0.55rem; color: #dba36c; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; }
+      .section-heading { max-width: 44rem; margin-bottom: 1.4rem; }
+      h2 { margin: 0 0 0.7rem; color: #f0c384; font-size: clamp(1.6rem, 4vw, 2.3rem); letter-spacing: 0.08em; }
+      .section-heading p:last-child { margin: 0; color: #d7cdd5; }
+      .route-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+      .route-card { position: relative; display: block; min-height: 9.5rem; padding: 1.35rem; overflow: hidden; background: linear-gradient(145deg, rgb(255 255 255 / 8%), rgb(255 255 255 / 3%)); border: 1px solid rgb(219 163 108 / 27%); border-radius: 0.45rem; box-shadow: 0 1rem 2.2rem rgb(0 0 0 / 25%); text-decoration: none; transition: transform 180ms ease, border-color 180ms ease, background 180ms ease; }
+      .route-card::after { position: absolute; right: -0.4rem; bottom: -1.8rem; content: attr(data-mark); color: rgb(186 62 85 / 17%); font-size: 7rem; line-height: 1; }
+      .route-card:hover, .route-card:focus-visible { background: linear-gradient(145deg, rgb(93 27 47 / 42%), rgb(255 255 255 / 5%)); border-color: rgb(186 62 85 / 75%); transform: translateY(-3px); }
+      .route-card h3 { position: relative; z-index: 1; margin: 0 0 0.45rem; color: #eab47d; font-size: 1.18rem; }
+      .route-card p { position: relative; z-index: 1; margin: 0; color: #d7cdd5; font-size: 0.88rem; }
+      .route-card small { position: relative; z-index: 1; display: block; margin-top: 0.7rem; color: #a99a9d; font-size: 0.72rem; }
+      .route-note { margin: 1.4rem 0 0; padding: 0.9rem 1rem; color: #cdbfc0; background: rgb(0 0 0 / 18%); border-left: 2px solid #ba3e55; font-size: 0.84rem; }
+      section { padding: 2.2rem 0 3.5rem; }
+      footer { padding: 1rem 0 2.5rem; color: #9f93a2; font-size: 0.8rem; text-align: center; }
+      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; } }
+      @media (max-width: 520px) { .hero { min-height: 0; padding-top: 6rem; } .route-grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="目次を開く"><span></span><span></span><span></span></button>
+    <div class="menu-backdrop" id="menu-backdrop" aria-hidden="true"></div>
+    <nav class="menu-drawer" id="site-menu" aria-label="サイト目次">
+      <p>夜の目次</p>
+      <ul>
+        <li><a href="main.html">メインページ</a></li>
+        <li><a href="index.html#catalog">妖怪図鑑・検索</a></li>
+        <li><a href="yokai/name-only.html">名前だけ残る妖怪</a></li>
+        <li><a href="index.html#three-great">日本三大妖怪</a></li>
+        <li><a href="index.html#map">伝承地マップ</a></li>
+        <li><a href="index.html#perspectives">民俗学・宗教史の視点</a></li>
+        <li><a href="index.html#boundaries">境界と地域</a></li>
+        <li><a href="yokai.html">妖怪ごとの詳しいページ</a></li>
+        <li><a href="index.html#game">夜道のミニゲーム</a></li>
+        <li><a href="index.html#sources">参考資料</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero page-shell">
+      <p class="eyebrow">FOLKLORE OF JAPAN / MAIN INDEX</p>
+      <h1>夜の目次</h1>
+      <p class="lead">妖怪を一つの答えに閉じ込めず、名前、場所、信仰、記憶の層を歩いていくための入口です。ここから読みたい道を選んでください。</p>
+      <a class="hero-link" href="index.html#catalog">すべての妖怪図鑑へ進む →</a>
+    </header>
+
+    <main class="page-shell">
+      <section aria-labelledby="route-title">
+        <div class="section-heading">
+          <p class="kicker">CHOOSE A PATH</p>
+          <h2 id="route-title">今夜、どの境界をひらく？</h2>
+          <p>長い本文は目的ごとに分けてあります。気になるカードを選ぶと、該当箇所へ移動します。</p>
+        </div>
+        <div class="route-grid">
+          <a class="route-card" data-mark="図" href="index.html#catalog"><h3>妖怪図鑑・検索</h3><p>名前をクリックして個別ページへ。分類と五十音で絞り込めます。</p><small>32体・個別解説</small></a>
+          <a class="route-card" data-mark="地" href="index.html#map"><h3>伝承地マップ</h3><p>日本列島のピンから、語りが多く残る地域と妖怪をたどります。</p><small>地域・代表地点</small></a>
+          <a class="route-card" data-mark="名" href="yokai/name-only.html"><h3>名前だけ残る妖怪</h3><p>姿が定まらない「もののけ」「山の怪」などを環境別に読む分類帖。</p><small>総称・口伝・古語</small></a>
+          <a class="route-card" data-mark="三" href="index.html#three-great"><h3>日本三大妖怪</h3><p>玉藻前、酒呑童子、大嶽丸。近代的な括りと古い物語の重なり。</p><small>狐・鬼・鬼神</small></a>
+          <a class="route-card" data-mark="学" href="index.html#perspectives"><h3>民俗学・宗教史</h3><p>柳田国男、折口信夫、神仏習合などの視点から、語りの背景を考えます。</p><small>3つのレンズ</small></a>
+          <a class="route-card" data-mark="夜" href="index.html#game"><h3>夜道のミニゲーム</h3><p>影をかわし、回復札を拾いながら20秒を生き延びる短い遊び。</p><small>矢印キー / WASD</small></a>
+        </div>
+        <p class="route-note">このサイトの文章は、京極夏彦さんの「妖怪を文献や人の認識から読む」姿勢、柳田國男・折口信夫の議論などを手がかりにした独自の要約です。個別の出典は各ページ末尾から確認できます。</p>
+      </section>
+    </main>
+    <footer>妖怪の伝承を通して、日本の文化と想像力を楽しもう。</footer>
+    <script>
+      (() => {
+        const menuToggle = document.getElementById("menu-toggle");
+        const menu = document.getElementById("site-menu");
+        const backdrop = document.getElementById("menu-backdrop");
+        function closeMenu() {
+          menu.classList.remove("is-open");
+          backdrop.classList.remove("is-open");
+          backdrop.setAttribute("aria-hidden", "true");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "目次を開く");
+          document.body.classList.remove("menu-open");
+        }
+        menuToggle.addEventListener("click", () => {
+          const open = menuToggle.getAttribute("aria-expanded") === "true";
+          if (open) closeMenu();
+          else {
+            menu.classList.add("is-open");
+            backdrop.classList.add("is-open");
+            backdrop.setAttribute("aria-hidden", "false");
+            menuToggle.setAttribute("aria-expanded", "true");
+            menuToggle.setAttribute("aria-label", "目次を閉じる");
+            document.body.classList.add("menu-open");
+          }
+        });
+        backdrop.addEventListener("click", closeMenu);
+        menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+        document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeMenu(); });
+      })();
+    </script>
+  </body>
+</html>

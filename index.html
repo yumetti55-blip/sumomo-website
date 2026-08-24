@@ -160,7 +160,7 @@
         font-size: 1.06rem;
       }
 
-      nav {
+      .hero nav {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -168,7 +168,7 @@
         margin-top: 2rem;
       }
 
-      nav a {
+      .hero nav a {
         padding: 0.45rem 0.9rem;
         color: #eab47d;
         border: 1px solid rgb(219 163 108 / 38%);
@@ -178,7 +178,56 @@
         transition: background 160ms ease, color 160ms ease;
       }
 
-      nav a:hover, nav a:focus-visible { color: #0b090e; background: #eab47d; }
+      .hero nav a:hover, .hero nav a:focus-visible { color: #0b090e; background: #eab47d; }
+
+      .menu-toggle {
+        position: fixed;
+        z-index: 60;
+        top: 1rem;
+        left: 1rem;
+        display: grid;
+        width: 2.9rem;
+        height: 2.9rem;
+        place-content: center;
+        gap: 0.28rem;
+        padding: 0;
+        color: #f3e5d6;
+        background: rgb(11 9 14 / 88%);
+        border: 1px solid rgb(219 163 108 / 62%);
+        border-radius: 0.25rem;
+        box-shadow: 0 0.5rem 1.2rem rgb(0 0 0 / 40%), 0 0 1rem rgb(186 62 85 / 20%);
+        cursor: pointer;
+      }
+
+      .menu-toggle:hover, .menu-toggle:focus-visible { color: #0b090e; background: #eab47d; }
+      .menu-toggle:focus-visible { outline: 2px solid #f3d0a8; outline-offset: 3px; }
+      .menu-toggle span { display: block; width: 1.35rem; height: 2px; background: currentColor; transition: transform 180ms ease, opacity 180ms ease; }
+      .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(0.38rem) rotate(45deg); }
+      .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-0.38rem) rotate(-45deg); }
+
+      .menu-drawer {
+        position: fixed;
+        z-index: 55;
+        inset: 0 auto 0 0;
+        width: min(20rem, 86vw);
+        padding: 5.4rem 1.25rem 2rem;
+        overflow-y: auto;
+        background: linear-gradient(165deg, #1b0d16, #0b090e 72%);
+        border-right: 1px solid rgb(186 62 85 / 65%);
+        box-shadow: 1rem 0 3rem rgb(0 0 0 / 48%);
+        transform: translateX(-105%);
+        transition: transform 220ms ease;
+      }
+
+      .menu-drawer.is-open { transform: translateX(0); }
+      .menu-drawer p { margin: 0 0 0.8rem; color: #dba36c; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; }
+      .menu-drawer ul { display: grid; gap: 0.3rem; margin: 0; padding: 0; list-style: none; }
+      .menu-drawer a { display: block; padding: 0.55rem 0.65rem; color: #eee2d8; border: 1px solid transparent; border-radius: 0.2rem; font-size: 0.9rem; text-decoration: none; }
+      .menu-drawer a:hover, .menu-drawer a:focus-visible { color: #f3d0a8; background: rgb(186 62 85 / 16%); border-color: rgb(186 62 85 / 56%); }
+      .menu-backdrop { position: fixed; z-index: 50; inset: 0; background: rgb(0 0 0 / 62%); opacity: 0; pointer-events: none; transition: opacity 220ms ease; }
+      .menu-backdrop.is-open { opacity: 1; pointer-events: auto; }
+      body.menu-open { overflow: hidden; }
 
       section { padding: 2rem 0 4rem; }
 
@@ -234,6 +283,23 @@
         color: #a99a9d;
         font-size: 0.82rem;
       }
+
+      .name-only-teaser {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 1rem;
+        align-items: center;
+        margin: 1.2rem 0 0;
+        padding: 1.1rem 1.2rem;
+        background: linear-gradient(110deg, rgb(62 19 35 / 70%), rgb(255 255 255 / 4%));
+        border: 1px solid rgb(186 62 85 / 48%);
+        border-radius: 0.35rem;
+      }
+
+      .name-only-teaser h3 { margin: 0 0 0.3rem; color: #f0c384; font-size: 1.08rem; }
+      .name-only-teaser p { margin: 0; color: #d7cdd5; font-size: 0.86rem; }
+      .name-only-teaser a { display: inline-block; padding: 0.48rem 0.7rem; color: #0b090e; background: #eab47d; border-radius: 0.2rem; font-size: 0.8rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
+      .name-only-teaser a:hover, .name-only-teaser a:focus-visible { background: #f3d0a8; }
 
       .yokai-card[hidden] { display: none; }
 
@@ -731,6 +797,10 @@
 
       .game-time strong { color: #f3e5d6; font-variant-numeric: tabular-nums; }
 
+      .game-health, .game-help { margin: 0; color: #cdbfc0; font-size: 0.82rem; }
+      .game-health strong { color: #f0c384; font-variant-numeric: tabular-nums; }
+      .game-help { flex-basis: 100%; color: #a99a9d; font-size: 0.75rem; }
+
       .game-section.is-danger {
         animation: danger-pulse 900ms ease-in-out infinite alternate;
       }
@@ -753,22 +823,49 @@
         .catalog-tools { grid-template-columns: 1fr; }
         .hero-figure { opacity: 0.58; transform: scale(0.8) rotate(-5deg); transform-origin: top left; }
         .trio-grid { grid-template-columns: 1fr; }
+        .name-only-teaser { grid-template-columns: 1fr; }
+        .name-only-teaser a { justify-self: start; }
       }
 
       @media (max-width: 440px) {
         .hero-figure { opacity: 0.38; transform: scale(0.62) rotate(-5deg); }
         .boundary-grid { grid-template-columns: 1fr; }
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      }
     </style>
   </head>
   <body>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="目次を開く">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="menu-backdrop" id="menu-backdrop" aria-hidden="true"></div>
+    <nav class="menu-drawer" id="site-menu" aria-label="サイト目次">
+      <p>夜の目次</p>
+      <ul>
+        <li><a href="main.html">メインページ</a></li>
+        <li><a href="#catalog">妖怪図鑑・検索</a></li>
+        <li><a href="#name-only">名前だけ残る妖怪</a></li>
+        <li><a href="#three-great">日本三大妖怪</a></li>
+        <li><a href="#map">伝承地マップ</a></li>
+        <li><a href="#perspectives">民俗学・宗教史の視点</a></li>
+        <li><a href="#boundaries">境界と地域</a></li>
+        <li><a href="yokai.html">妖怪ごとの詳しいページ</a></li>
+        <li><a href="#game">夜道のミニゲーム</a></li>
+        <li><a href="#sources">参考資料</a></li>
+      </ul>
+    </nav>
     <header class="hero">
       <div class="hero-figure" aria-hidden="true"><span class="figure-eyes"></span><span class="figure-mouth"></span></div>
       <p class="eyebrow">FOLKLORE OF JAPAN</p>
       <h1>日本の妖怪</h1>
       <p class="lead">古くから日本各地で語り継がれてきた、不思議で少しこわい存在たち。妖怪は、自然への畏れ、共同体の規範、死者へのまなざしを映す「語り」のかたちでもあります。</p>
       <nav aria-label="ページ内ナビゲーション">
+        <a href="main.html">メインページ</a>
         <a href="#catalog">妖怪図鑑</a>
+        <a href="#name-only">名前だけの妖怪</a>
         <a href="#three-great">三大妖怪</a>
         <a href="#map">伝承地マップ</a>
         <a href="yokai.html">詳しい解説</a>
@@ -855,6 +952,21 @@
           <article class="yokai-card" data-yokai-card data-name="べとべとさん" data-kana="べとべとさん" data-category="鬼・怪異"><div class="card-top"><span class="icon" aria-hidden="true">👣</span><span class="tag">音・夜道</span></div><h3><a href="yokai/betobeto.html">べとべとさん</a></h3><p>背後から足音だけがついてくる夜道の気配。</p></article>
           <article class="yokai-card" data-yokai-card data-name="川赤子" data-kana="かわあかご" data-category="自然・水"><div class="card-top"><span class="icon" aria-hidden="true">👶</span><span class="tag">水辺・声</span></div><h3><a href="yokai/kawa-akago.html">川赤子（かわあかご）</a></h3><p>川辺から聞こえる赤子の泣き声。</p></article>
           <article class="yokai-card" data-yokai-card data-name="火間虫入道" data-kana="ひまむしにゅうどう" data-category="書物・記憶"><div class="card-top"><span class="icon" aria-hidden="true">🕯️</span><span class="tag">火・夜・書物</span></div><h3><a href="yokai/himamushi-nyudo.html">火間虫入道（ひまむしにゅうどう）</a></h3><p>灯りのそばを飛び回る火に縁のある怪異。</p></article>
+        </div>
+      </section>
+
+      <section id="name-only" aria-labelledby="name-only-title">
+        <div class="section-heading">
+          <p class="section-kicker">UNFIXED NAMES</p>
+          <h2 id="name-only-title">名前だけ残る妖怪群</h2>
+          <p>全国には、姿や物語が定まらないまま、地名・古文書・聞き書きに名前だけ残る怪異もあります。ひとつの妖怪として数を競うのではなく、呼び名が生まれた環境ごとにまとめました。</p>
+        </div>
+        <div class="name-only-teaser">
+          <div>
+            <h3>「もののけ」「山の怪」「辻の怪」など</h3>
+            <p>柳田国男の採集的な視線と折口信夫の境界論を手がかりに、名前が記憶をつなぐ仕組みを読む小さな分類帖。</p>
+          </div>
+          <a href="yokai/name-only.html">分類帖をひらく →</a>
         </div>
       </section>
 
@@ -982,14 +1094,16 @@
         <div class="game-intro">
           <p class="section-kicker">NIGHT PARADE</p>
           <h2 id="game-title">百鬼夜行：夜道の影</h2>
-          <p>暗い夜道に現れる妖怪から、20秒間逃げ切ろう。河童、鬼、ろくろ首、絡新婦、ぬらりひょん、目目連が灯りを追ってきます。矢印キーまたはWASDで灯りを動かし、妖怪に触れないようにしてください。</p>
+          <p>暗い夜道に現れる妖怪から、20秒間逃げ切ろう。河童、鬼、ろくろ首、絡新婦、ぬらりひょん、目目連が灯りを追ってきます。矢印キーまたはWASDで灯りを動かし、妖怪に触れないようにしてください。妖怪に触れても灯りの体力が1減るだけ。画面に現れる回復札を拾えば、体力が1戻ります。</p>
         </div>
         <div class="game-board">
           <canvas id="yokai-game" width="720" height="405" aria-label="妖怪の影から逃げるゲーム"></canvas>
           <div class="game-toolbar">
             <button id="game-start" class="game-button" type="button">夜道に入る</button>
             <p id="game-status" class="game-status" aria-live="polite">灯りを手に、夜道へ進みますか？</p>
+            <p class="game-health">灯りの体力：<strong id="game-health">3</strong> / 3</p>
             <p class="game-time">生存時間：<strong id="game-time">0.0</strong> / 20.0 秒</p>
+            <p class="game-help">回復札（赤い御守り）を拾うと体力が1回復します。最大3。</p>
           </div>
         </div>
       </section>
@@ -1140,23 +1254,66 @@
     </script>
     <script>
       (() => {
+        const menuToggle = document.getElementById("menu-toggle");
+        const menu = document.getElementById("site-menu");
+        const backdrop = document.getElementById("menu-backdrop");
+        if (!menuToggle || !menu || !backdrop) return;
+
+        function closeMenu() {
+          menu.classList.remove("is-open");
+          backdrop.classList.remove("is-open");
+          backdrop.setAttribute("aria-hidden", "true");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "目次を開く");
+          document.body.classList.remove("menu-open");
+        }
+
+        function toggleMenu() {
+          const open = menuToggle.getAttribute("aria-expanded") === "true";
+          if (open) closeMenu();
+          else {
+            menu.classList.add("is-open");
+            backdrop.classList.add("is-open");
+            backdrop.setAttribute("aria-hidden", "false");
+            menuToggle.setAttribute("aria-expanded", "true");
+            menuToggle.setAttribute("aria-label", "目次を閉じる");
+            document.body.classList.add("menu-open");
+          }
+        }
+
+        menuToggle.addEventListener("click", toggleMenu);
+        backdrop.addEventListener("click", closeMenu);
+        menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") closeMenu();
+        });
+      })();
+    </script>
+    <script>
+      (() => {
         const canvas = document.getElementById("yokai-game");
         const context = canvas.getContext("2d");
         const startButton = document.getElementById("game-start");
         const status = document.getElementById("game-status");
         const timeLabel = document.getElementById("game-time");
+        const healthLabel = document.getElementById("game-health");
         const width = canvas.width;
         const height = canvas.height;
         const duration = 20;
         const keys = new Set();
         const player = { x: width / 2, y: height / 2, radius: 9, speed: 210 };
         const shadows = [];
+        const recoveryItems = [];
+        const maxHealth = 3;
         let running = false;
         let startedAt = 0;
         let lastFrame = 0;
         let spawnTimer = 0;
         let animationFrame;
         let fear = 0;
+        let health = maxHealth;
+        let itemTimer = 0;
+        let pickupFlash = 0;
 
         const kinds = [
           { name: "河童", color: "#5f9a88", type: "kappa" },
@@ -1171,10 +1328,15 @@
           player.x = width / 2;
           player.y = height / 2;
           shadows.length = 0;
+          recoveryItems.length = 0;
           spawnTimer = 0;
+          itemTimer = 0;
+          health = maxHealth;
+          pickupFlash = 0;
           fear = 0;
           document.getElementById("game").classList.remove("is-danger");
           timeLabel.textContent = "0.0";
+          healthLabel.textContent = String(health);
           draw(0);
         }
 
@@ -1186,7 +1348,37 @@
               : side === 2 ? { x: Math.random() * width, y: height + margin }
                 : { x: -margin, y: Math.random() * height };
           const kind = kinds[Math.floor(Math.random() * kinds.length)];
-          shadows.push({ ...position, radius: 13 + Math.random() * 6, speed: 28 + Math.random() * 26, kind });
+          shadows.push({ ...position, radius: 13 + Math.random() * 6, speed: 24 + Math.random() * 20, kind });
+        }
+
+        function spawnRecoveryItem() {
+          if (recoveryItems.length >= 2 || health >= maxHealth) return;
+          const margin = 34;
+          recoveryItems.push({
+            x: margin + Math.random() * (width - margin * 2),
+            y: margin + Math.random() * (height - margin * 2),
+            radius: 9,
+            phase: Math.random() * Math.PI * 2,
+          });
+        }
+
+        function drawRecoveryItem(item, elapsed) {
+          const pulse = Math.sin(elapsed * 4 + item.phase) * 1.5;
+          context.save();
+          context.translate(item.x, item.y + pulse);
+          context.rotate(-0.12);
+          context.shadowColor = "#e06462";
+          context.shadowBlur = 12;
+          context.fillStyle = "#eab47d";
+          context.fillRect(-8, -10, 16, 20);
+          context.fillStyle = "#6d1c35";
+          context.fillRect(-8, -4, 16, 2);
+          context.fillRect(-8, 4, 16, 2);
+          context.font = "bold 11px serif";
+          context.textAlign = "center";
+          context.textBaseline = "middle";
+          context.fillText("護", 0, 0);
+          context.restore();
         }
 
         function update(delta, elapsed) {
@@ -1201,19 +1393,44 @@
           player.y = Math.max(player.radius, Math.min(height - player.radius, player.y + (dy / length) * player.speed * delta));
 
           spawnTimer += delta;
-          const interval = Math.max(0.34, 0.95 - elapsed * 0.025);
+          const interval = Math.max(0.48, 1.15 - elapsed * 0.02);
           if (spawnTimer > interval) {
             spawnTimer = 0;
             spawnShadow();
           }
 
-          for (const shadow of shadows) {
+          itemTimer += delta;
+          if (itemTimer > 3.6) {
+            itemTimer = 0;
+            spawnRecoveryItem();
+          }
+          pickupFlash = Math.max(0, pickupFlash - delta);
+          for (let itemIndex = recoveryItems.length - 1; itemIndex >= 0; itemIndex -= 1) {
+            const item = recoveryItems[itemIndex];
+            if (Math.hypot(player.x - item.x, player.y - item.y) < player.radius + item.radius + 7) {
+              recoveryItems.splice(itemIndex, 1);
+              health = Math.min(maxHealth, health + 1);
+              healthLabel.textContent = String(health);
+              pickupFlash = 0.8;
+              status.textContent = `回復札を拾った。灯りが戻った（${health}/${maxHealth}）`;
+            }
+          }
+
+          for (let shadowIndex = shadows.length - 1; shadowIndex >= 0; shadowIndex -= 1) {
+            const shadow = shadows[shadowIndex];
             const toPlayerX = player.x - shadow.x;
             const toPlayerY = player.y - shadow.y;
             const distance = Math.hypot(toPlayerX, toPlayerY) || 1;
             shadow.x += (toPlayerX / distance) * shadow.speed * delta;
             shadow.y += (toPlayerY / distance) * shadow.speed * delta;
-            if (distance < player.radius + shadow.radius - 3) return "caught";
+            if (distance < player.radius + shadow.radius - 3) {
+              if (health <= 0) return "caught";
+              health -= 1;
+              healthLabel.textContent = String(health);
+              shadows.splice(shadowIndex, 1);
+              status.textContent = health > 0 ? `影が灯りをかすめた……身代わりの札（残り${health}）` : "灯りが消えかけている……";
+              if (health <= 0) return "caught";
+            }
           }
           const nearest = shadows.reduce((minimum, shadow) => Math.min(minimum, Math.hypot(player.x - shadow.x, player.y - shadow.y)), Infinity);
           fear = Math.max(0, Math.min(1, 1 - nearest / 170));
@@ -1333,6 +1550,7 @@
             context.fill();
           }
 
+          for (const item of recoveryItems) drawRecoveryItem(item, elapsed);
           for (const shadow of shadows) drawYokai(shadow);
 
           const lantern = context.createRadialGradient(player.x, player.y, 1, player.x, player.y, 62);
@@ -1350,6 +1568,11 @@
           context.arc(player.x, player.y, player.radius, 0, Math.PI * 2);
           context.fill();
           context.shadowBlur = 0;
+
+          if (pickupFlash > 0) {
+            context.fillStyle = `rgba(234, 180, 125, ${pickupFlash * 0.13})`;
+            context.fillRect(0, 0, width, height);
+          }
 
           if (running && fear > 0) {
             document.getElementById("game").classList.toggle("is-danger", fear > 0.35);
@@ -1370,7 +1593,7 @@
           document.getElementById("game").classList.remove("is-danger");
           startButton.disabled = false;
           startButton.textContent = result === "escaped" ? "もう一度遊ぶ" : "再び夜道へ";
-          status.textContent = result === "escaped" ? "夜明けだ。影を振り切りました。" : "影に捕まりました……もう一度、灯りを持って。";
+          status.textContent = result === "escaped" ? "夜明けだ。影を振り切りました。" : "護符が尽き、影に呑まれました……もう一度、灯りを持って。";
           context.fillStyle = "rgba(4, 3, 7, 0.66)";
           context.fillRect(0, 0, width, height);
           context.fillStyle = result === "escaped" ? "#eab47d" : "#ba3e55";

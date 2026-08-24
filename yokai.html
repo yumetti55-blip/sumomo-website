@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="妖怪ごとの個別解説ページへの入口。" />
+    <title>妖怪を読む | 日本の妖怪 | Sumomo</title>
+    <link rel="stylesheet" href="yokai/yokai-detail.css" />
+    <style>
+      .directory-intro { margin-bottom: 1.25rem; }
+      .directory-intro p { margin: 0; color: #d5c8c7; font-size: 0.95rem; }
+      .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.8rem; }
+      .directory-card { display: block; padding: 1rem; color: #eab47d; background: rgb(255 255 255 / 6%); border: 1px solid rgb(219 163 108 / 25%); border-radius: 0.35rem; text-decoration: none; transition: border-color 160ms ease, transform 160ms ease, background 160ms ease; }
+      .directory-card:hover, .directory-card:focus-visible { background: rgb(186 62 85 / 15%); border-color: #ba3e55; transform: translateY(-2px); }
+      .directory-card span { display: block; margin-bottom: 0.35rem; font-size: 1.7rem; line-height: 1; }
+      .directory-card small { display: block; margin-top: 0.2rem; color: #a99a9d; font-size: 0.75rem; }
+      .reference-note a { color: #eab47d; }
+    </style>
+  </head>
+  <body>
+    <header class="detail-header">
+      <div class="page-shell">
+        <a class="back-link" href="index.html#catalog">← 妖怪一覧へ戻る</a>
+        <span class="detail-mark" aria-hidden="true">百</span>
+        <p class="category">YŌKAI DIRECTORY</p>
+        <h1>妖怪を読む</h1>
+        <p class="subtitle">名前の奥にある、土地・信仰・記憶をたどる個別解説。</p>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <article class="detail-card">
+        <div class="directory-intro"><p>下の名前から、それぞれの妖怪を一体ずつ読むページへ移動できます。地域伝承と古典語彙を区別しながら、民俗学・宗教史・文化史の視点で整理しています。</p></div>
+        <div class="directory-grid">
+          <a class="directory-card" href="yokai/kappa.html"><span>🥒</span>河童<small>水辺の怪異</small></a>
+          <a class="directory-card" href="yokai/tengu.html"><span>👺</span>天狗<small>山岳信仰</small></a>
+          <a class="directory-card" href="yokai/yuki-onna.html"><span>❄️</span>雪女<small>雪国の伝承</small></a>
+          <a class="directory-card" href="yokai/kitsune.html"><span>🦊</span>狐<small>動物霊・変化</small></a>
+          <a class="directory-card" href="yokai/tanuki.html"><span>🦝</span>化け狸<small>里山の変化</small></a>
+          <a class="directory-card" href="yokai/oni.html"><span>👹</span>鬼<small>異界・災厄</small></a>
+          <a class="directory-card" href="yokai/zashiki-warashi.html"><span>🏠</span>座敷童子<small>家の守り</small></a>
+          <a class="directory-card" href="yokai/umibozu.html"><span>🌊</span>海坊主<small>海の怪異</small></a>
+          <a class="directory-card" href="yokai/ubume.html"><span>🕯️</span>産女・姑獲鳥<small>母・死者</small></a>
+          <a class="directory-card" href="yokai/tsukumogami.html"><span>🪵</span>付喪神<small>もののけ・道具</small></a>
+          <a class="directory-card" href="yokai/nue.html"><span>🌙</span>鵺<small>宮廷説話</small></a>
+          <a class="directory-card" href="yokai/amabie.html"><span>🔮</span>アマビエ<small>予言獣</small></a>
+          <a class="directory-card" href="yokai/mouryou.html"><span>🌫️</span>魍魎<small>水と山の精霊</small></a>
+          <a class="directory-card" href="yokai/tessou.html"><span>🐀</span>鉄鼠<small>寺院・怨念</small></a>
+          <a class="directory-card" href="yokai/jorogumo.html"><span>🕷️</span>絡新婦<small>変化・誘惑</small></a>
+          <a class="directory-card" href="yokai/nuribotoke.html"><span>🪦</span>塗仏<small>仏像・異形</small></a>
+          <a class="directory-card" href="yokai/onmoraki.html"><span>🦅</span>陰摩羅鬼<small>死体・変化</small></a>
+          <a class="directory-card" href="yokai/jakki.html"><span>👁️</span>邪魅<small>邪気・境界</small></a>
+          <a class="directory-card" href="yokai/fukurumayoubi.html"><span>📜</span>文車妖妃<small>書物・記憶</small></a>
+          <a class="directory-card" href="yokai/kasha.html"><span>🔥</span>火車<small>葬送・地獄</small></a>
+        </div>
+      </article>
+      <p class="reference-note">京極夏彦さんの<a href="https://store.kadokawa.co.jp/shop/g/g201103000122/" target="_blank" rel="noreferrer">『妖怪の理 妖怪の檻』</a>、<a href="https://www.kadokawa.co.jp/product/322003000402/" target="_blank" rel="noreferrer">『妖怪の宴 妖怪の匣』</a>などに見られる、妖怪を文献・社会・人の認識の関係から読む姿勢を構成の参考にしています。文章は作品から引用していません。</p>
+    </main>
+    <footer>妖怪の伝承を通して、日本の文化と想像力を楽しもう。</footer>
+  </body>
+</html>
